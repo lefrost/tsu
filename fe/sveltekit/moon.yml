@@ -1,0 +1,7 @@
+tasks:
+  build:
+    script: 'pnpm run build ; pnpm run preview'
+  dev:
+    command: 'pnpm run dev'
+  install:
+    command: 'pnpm install'
