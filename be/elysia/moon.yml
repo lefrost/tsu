@@ -1,0 +1,7 @@
+tasks:
+  build:
+    script: 'bun run dev'
+  dev:
+    command: 'bun run dev'
+  install:
+    command: 'bun install'
