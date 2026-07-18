@@ -1,4 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ja!"
+	"heading": "こんにちは、{name}。",
+	"language": "言語",
+	"name": "ツ"
 }

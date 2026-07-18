@@ -5,15 +5,27 @@
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import { ModeWatcher } from "mode-watcher";
 
 	let { children } = $props();
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-{@render children()}
+<ModeWatcher />
+
+<div class="flex flex-col items-center h-full w-full">
+	{@render children()}
+</div>
 
 <div style="display:none">
 	{#each locales as locale (locale)}
 		<a href={resolve(localizeHref(page.url.pathname, { locale }) as Pathname)}>{locale}</a>
 	{/each}
 </div>
+
+<style>
+	:global(html,body) {
+		width: 100%;
+		height: 100%;
+	}
+</style>

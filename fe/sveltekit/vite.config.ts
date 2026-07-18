@@ -10,7 +10,12 @@ export default defineConfig(({ mode }) => {
 
 	return {
 		plugins: [
-			tailwindcss(),
+			paraglideVitePlugin({
+				project: './project.inlang',
+				outdir: './src/lib/paraglide',
+				strategy: ['url']
+			}),
+			
 			sveltekit({
 				compilerOptions: {
 					// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
@@ -27,12 +32,8 @@ export default defineConfig(({ mode }) => {
 					}
 				}
 			}),
-
-			paraglideVitePlugin({
-				project: './project.inlang',
-				outdir: './src/lib/paraglide',
-				strategy: ['url']
-			})
+			
+			tailwindcss()
 		],
 		server: { port: Number(env.FE_PORT) },
 		test: {
