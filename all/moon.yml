@@ -1,3 +1,11 @@
 tasks:
+  dbinit:
+    script: 'bun run auth:schema ; bun run db:push'
+  dbgen:
+    script: 'bun run auth:schema ; bun run db:generate'
+  dbup:
+    command: 'bun run db:migrate'
+  dev:
+    command: 'bun run db:studio'
   install:
     command: 'pnpm install'

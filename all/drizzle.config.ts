@@ -1,11 +1,11 @@
 import { defineConfig } from 'drizzle-kit';
 
-if (!Bun.env.NEON_URL) throw new Error('NEON_URL is not set');
+if (!process.env.NEON_URL) throw new Error('NEON_URL is not set');
 
 export default defineConfig({
-	schema: './src/lib/server/db/schema.ts',
+	schema: './src/schema.ts',
 	dialect: 'postgresql',
-	dbCredentials: { url: Bun.env.NEON_URL },
+	dbCredentials: { url: process.env.NEON_URL },
 	verbose: true,
 	strict: true
 });

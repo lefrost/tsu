@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 
 const app = new Elysia()
-  .get(`/`, () => `${Bun.env.NAME} BE`)
-  .listen(Number(Bun.env.BE_PORT));
+  .get(`/`, () => `${process.env.NAME} BE`)
+  .listen(Number(process.env.BE_PORT));
 
-console.log(`Elysia - ${Bun.env.BE_URL}`);
+console.log(`Elysia - ${process.env.BE_URL}`);

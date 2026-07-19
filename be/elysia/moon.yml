@@ -4,4 +4,4 @@ tasks:
   dev:
     command: 'bun run dev'
   install:
-    command: 'bun install'
+    command: 'bun install' # use bun over pnpm for elysia installation specifically

@@ -3,18 +3,18 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from './db';
 
 export const authConfig = {
-  baseURL: Bun.env.FE_URL,
-  secret: Bun.env.BETTER_AUTH_SECRET,
+  baseURL: process.env.FE_URL,
+  secret: process.env.BETTER_AUTH_SECRET,
   database: drizzleAdapter(db, { provider: `pg` }),
   emailAndPassword: { enabled: true },
   socialProviders: {
     github: {
-      clientId: Bun.env.GITHUB_CLIENT_ID as string,
-      clientSecret: Bun.env.GITHUB_CLIENT_SECRET as string
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string
     },
     google: {
-      clientId: Bun.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: Bun.env.GOOGLE_CLIENT_SECRET as string
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }
   },
   user: {
