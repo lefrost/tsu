@@ -2,6 +2,6 @@ tasks:
   build:
     script: 'pnpm run build ; pnpm run preview'
   dev:
-    command: 'pnpm run dev'
+    script: 'pnpm exec concurrently "pnpm run dev" "pnpm run db:studio"'
   install:
     command: 'pnpm install'
