@@ -13,6 +13,8 @@ export default defineConfig(({ mode }) => {
 			paraglideVitePlugin({
 				project: './project.inlang',
 				outdir: './src/lib/paraglide',
+				emitTsDeclarations: true,
+				experimentalPerLocaleBuild: true,
 				strategy: ['url']
 			}),
 			

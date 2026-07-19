@@ -1,6 +1,11 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"email": "Email",
 	"heading": "Hello, {name}.",
 	"language": "Language",
-	"name": "Tsu"
+	"login": "Login / Sign up",
+	"loginSocial": "Login with {provider}",
+	"name": "Tsu",
+	"password": "Password",
+	"passwordForgot": "Forgot your password?"
 }
