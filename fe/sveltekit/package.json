@@ -13,12 +13,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run",
-		"db:push": "drizzle-kit push",
-		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "dotenv -e ../../.env drizzle-kit studio",
-		"auth:schema": "dotenv -e ../../.env better-auth generate --config src/lib/server/auth.ts --output src/lib/server/db/auth.schema.ts --yes"
+		"test": "npm run test:unit -- --run"
 	},
 	"devDependencies": {
 		"@better-auth/cli": "latest",

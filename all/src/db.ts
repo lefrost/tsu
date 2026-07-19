@@ -1,10 +1,9 @@
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
 import * as schema from './schema';
-import { env } from '$env/dynamic/private';
 
-if (!env.NEON_URL) throw new Error('NEON_URL is not set');
+if (!Bun.env.NEON_URL) throw new Error('NEON_URL is not set');
 
-const client = neon(env.NEON_URL);
+const client = neon(Bun.env.NEON_URL);
 
 export const db = drizzle(client, { schema });
