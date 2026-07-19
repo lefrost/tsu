@@ -35,6 +35,12 @@ export default defineConfig(({ mode }) => {
 			
 			tailwindcss()
 		],
+		resolve: {
+			alias: {
+				'@tsu/auth': path.resolve(import.meta.dirname, '../../all/src/auth.ts'),
+				'@tsu/db': path.resolve(import.meta.dirname, '../../all/src/db.ts')
+			}
+		},
 		server: { port: Number(env.FE_PORT) },
 		test: {
 			expect: { requireAssertions: true },

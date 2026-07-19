@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "db:push": "bun run --env-file=../.env drizzle-kit push",
-    "db:generate": "bun run --env-file=../.env drizzle-kit generate",
-    "db:migrate": "bun run --env-file=../.env drizzle-kit migrate",
-    "db:studio": "bun run --env-file=../.env drizzle-kit studio",
-    "auth:schema": "bun run --env-file=../.env better-auth generate --config ./src/auth.ts --output ./src/auth.schema.ts --yes"
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": " drizzle-kit studio",
+    "auth:schema": "better-auth generate --config ./src/auth.ts --output ./src/auth.schema.ts --yes"
   },
   "dependencies": {
 		"@better-auth/cli": "latest",

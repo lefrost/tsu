@@ -1,11 +1,11 @@
 tasks:
   dbinit:
-    script: 'bun run auth:schema ; bun run db:push'
+    script: 'bun run --env-file=../.env auth:schema ; bun run --env-file=../.env db:push'
   dbgen:
-    script: 'bun run auth:schema ; bun run db:generate'
+    script: 'bun run --env-file=../.env auth:schema ; bun run --env-file=../.env db:generate'
   dbup:
-    command: 'bun run db:migrate'
+    script: 'bun run --env-file=../.env db:migrate'
   dev:
-    command: 'bun run db:studio'
+    script: 'bun run --env-file=../.env db:studio'
   install:
-    command: 'pnpm install'
+    script: 'pnpm install'
