@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:studio": " drizzle-kit studio",
-    "auth:schema": "better-auth generate --config ./src/auth.ts --output ./src/auth.schema.ts --yes"
+    "db:push": "drizzle-kit --config=./drizzle/drizzle.config.ts push",
+    "db:generate": "drizzle-kit --config=./drizzle/drizzle.config.ts generate",
+    "db:migrate": "drizzle-kit --config=./drizzle/drizzle.config.ts migrate",
+    "db:studio": " drizzle-kit --config=./drizzle/drizzle.config.ts studio",
+    "auth:schema": "better-auth generate --config ./betterauth/auth.ts --output ./betterauth/schema.ts --yes"
   },
   "dependencies": {
     "@better-auth/cli": "latest",

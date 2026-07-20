@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			paraglideVitePlugin({
-				project: path.resolve(import.meta.dirname, '../../all/project.inlang'),
-				outdir: path.resolve(import.meta.dirname, '../../all/project.inlang/paraglide'),
+				project: path.resolve(import.meta.dirname, '../../all/paraglide/project.inlang'),
+				outdir: path.resolve(import.meta.dirname, '../../all/paraglide/generated'),
 				emitTsDeclarations: true,
 				experimentalPerLocaleBuild: false,
 				strategy: ['url']
@@ -28,20 +28,20 @@ export default defineConfig(({ mode }) => {
 					dir: '../../'
 				},
 				adapter: adapter(),
-				typescript: {
-					config: (config) => {
-						config.include.push('../drizzle.config.ts');
-					}
-				}
+				// typescript: {
+				// 	config: (config) => {
+				// 		config.include.push('../drizzle.config.ts');
+				// 	}
+				// }
 			}),
 			
 			tailwindcss()
 		],
 		resolve: {
 			alias: {
-				'$auth': path.resolve(import.meta.dirname, '../../all/src/auth.ts'),
-				'$db': path.resolve(import.meta.dirname, '../../all/src/db.ts'),
-				'$paraglide': path.resolve(import.meta.dirname, '../../all/project.inlang/paraglide')
+				'$betterauth': path.resolve(import.meta.dirname, '../../all/betterauth/instance.ts'),
+				'$drizzle': path.resolve(import.meta.dirname, '../../all/drizzle/instance.ts'),
+				'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide/generated')
 			}
 		},
 		server: { port: Number(env.FE_PORT) },

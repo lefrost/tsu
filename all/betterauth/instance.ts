@@ -1,7 +1,7 @@
 import type { User } from 'better-auth';
 import { betterAuth } from 'better-auth/minimal';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { db } from './db';
+import { db } from '../drizzle/instance';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({

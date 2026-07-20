@@ -1,0 +1,12 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"email": "メール",
+	"heading": "こんにちは、{name}。",
+	"language": "言語",
+	"login": "ログイン／新規登録",
+	"loginSocial": "{provider}でログイン",
+	"logout": "ログアウト",
+	"name": "ツ",
+	"password": "パスワード",
+	"passwordForgot": "パスワードをお忘れですか？"
+}
