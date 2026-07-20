@@ -9,8 +9,10 @@
 		"paths": {
 			"$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
-			"@tsu/auth": ["../../all/src/auth.ts"],
-			"@tsu/db": ["../../all/src/db.ts"]
+			"$auth": ["../../all/src/auth.ts"],
+			"$db": ["../../all/src/db.ts"],
+			"$paraglide": ["../../all/project.inlang/paraglide"],
+			"$paraglide/*": ["../../all/project.inlang/paraglide/*"],
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,

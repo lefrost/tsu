@@ -11,10 +11,10 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			paraglideVitePlugin({
-				project: './project.inlang',
-				outdir: './src/lib/paraglide',
+				project: path.resolve(import.meta.dirname, '../../all/project.inlang'),
+				outdir: path.resolve(import.meta.dirname, '../../all/project.inlang/paraglide'),
 				emitTsDeclarations: true,
-				experimentalPerLocaleBuild: true,
+				experimentalPerLocaleBuild: false,
 				strategy: ['url']
 			}),
 			
@@ -39,8 +39,9 @@ export default defineConfig(({ mode }) => {
 		],
 		resolve: {
 			alias: {
-				'@tsu/auth': path.resolve(import.meta.dirname, '../../all/src/auth.ts'),
-				'@tsu/db': path.resolve(import.meta.dirname, '../../all/src/db.ts')
+				'$auth': path.resolve(import.meta.dirname, '../../all/src/auth.ts'),
+				'$db': path.resolve(import.meta.dirname, '../../all/src/db.ts'),
+				'$paraglide': path.resolve(import.meta.dirname, '../../all/project.inlang/paraglide')
 			}
 		},
 		server: { port: Number(env.FE_PORT) },

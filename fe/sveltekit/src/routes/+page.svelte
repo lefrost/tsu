@@ -5,8 +5,8 @@
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-	import { getLocale, locales, setLocale } from '$lib/paraglide/runtime';
-	import { m } from '$lib/paraglide/messages.js';
+	import { getLocale, locales, setLocale } from '$paraglide/runtime';
+	import { m } from '$paraglide/messages';
   import FishSymbolIcon from "@lucide/svelte/icons/fish-symbol";
   import SunIcon from "@lucide/svelte/icons/sun";
   import MoonIcon from "@lucide/svelte/icons/moon";
