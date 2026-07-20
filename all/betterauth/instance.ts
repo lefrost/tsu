@@ -20,11 +20,11 @@ export const authConfig = {
   database: drizzleAdapter(db, { provider: `pg` }),
   emailAndPassword: {
     enabled: true,
-    async sendResetPassword(url: string, user: User) {
+    async sendResetPassword(data: { user: User; url: string; token: string }) {
       await transporter.sendMail({
-        to: user.email,
+        to: data.user.email,
         subject: `Reset your password`,
-        html: `<a href="${url}">Reset password</a>`,
+        html: `<a href="${data.url}">Reset password</a>`,
       });
     }
   },

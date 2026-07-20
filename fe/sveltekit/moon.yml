@@ -4,4 +4,4 @@ tasks:
   dev:
     script: 'bun run --env-file=../../.env dev'
   install:
-    script: 'pnpm install'
+    script: 'rm -rf node_modules ; pnpm install'
