@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
@@ -10,9 +11,9 @@
   import SunIcon from "@lucide/svelte/icons/sun";
   import MoonIcon from "@lucide/svelte/icons/moon";
   import { toggleMode } from "mode-watcher";
-	import type { PageServerData } from './$types';
+	import type { ActionData, PageServerData } from './$types';
 
-  let { data }: { data: PageServerData } = $props();
+  let { data, form }: { data: PageServerData, form: ActionData } = $props();
   
   let locale = $state(getLocale());
   
@@ -58,23 +59,23 @@
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content align="end" class="p-0 w-[16rem]">
-          <Card.Root class="w-full">
-            <!-- <Card.Header>
-              <Card.Title>Login to your account</Card.Title>
-              <Card.Description
-                >Enter your email below to login to your account</Card.Description
-              >
-            </Card.Header> -->
-            <Card.Content>
-              <form>
-                <div class="flex flex-col gap-[1.2em]">
-                  <div class="flex flex-col gap-[0.6em]">
+          <Card.Root>
+            {#if user}
+              <form method="post" action="?/logout" use:enhance>
+                <Button type="submit" class="cursor-pointer w-full">
+                  {m.logout()}
+                </Button>
+              </form>
+            {:else}
+              <Card.Content>
+                <form method="post" action="?/loginEmail" use:enhance class="flex flex-col gap-[1.2rem] w-full">
+                  <div class="flex flex-col gap-[0.6rem] self-stretch">
                     <Label for="email">
                       {m.email()}
                     </Label>
                     <Input type="email" />
                   </div>
-                  <div class="flex flex-col gap-[0.6em]">
+                  <div class="flex flex-col gap-[0.4rem] self-stretch">
                     <div class="flex flex-row self-stretch">
                       <Label for="password">
                         {m.password()}
@@ -85,20 +86,33 @@
                     </div>
                     <Input type="password" />
                   </div>
+                  <div class="flex flex-col self-stretch">
+                    {#if form?.message}
+                      <p class="mb-[0.4rem] text-red-500">{form.message}</p>
+                    {/if}
+                    <Button type="submit" class="cursor-pointer w-full">
+                      {m.login()}
+                    </Button>
+                  </div>
+                </form>
+                <div class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
+                  <form method="post" action="?/loginSocial" use:enhance>
+                    <input type="hidden" name="provider" value="google" />
+                    <input type="hidden" name="callbackURL" value="/" />
+                    <Button type="submit" variant="outline" class="cursor-pointer w-full">
+                      {m.loginSocial({ provider: `Google` })}
+                    </Button>
+                  </form>
+                  <form method="post" action="?/loginSocial" use:enhance>
+                    <input type="hidden" name="provider" value="github" />
+                    <input type="hidden" name="callbackURL" value="/" />
+                    <Button type="submit" variant="outline" class="cursor-pointer w-full">
+                      {m.loginSocial({ provider: `GitHub` })}
+                    </Button>
+                  </form>
                 </div>
-              </form>
-            </Card.Content>
-            <Card.Footer class="flex-col gap-2">
-              <Button type="submit" class="cursor-pointer w-full">
-                {m.login()}
-              </Button>
-              <Button variant="outline" class="cursor-pointer w-full">
-                {m.loginSocial({ provider: `Google` })}
-              </Button>
-              <Button variant="outline" class="cursor-pointer w-full">
-                {m.loginSocial({ provider: `GitHub` })}
-              </Button>
-            </Card.Footer>
+              </Card.Content>
+            {/if}
           </Card.Root>
         </DropdownMenu.Content>
       </DropdownMenu.Root>

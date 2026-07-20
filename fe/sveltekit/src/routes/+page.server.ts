@@ -1,7 +1,7 @@
 import { APIError } from 'better-auth/api';
 import type { Actions, PageServerLoad } from './$types';
 import { auth } from '$lib/server/auth';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = (event) => {
   // if (!event.locals.user) {
@@ -44,12 +44,12 @@ export const actions: Actions = {
     const result = await auth.api.signInSocial({
       body: {
         provider: provider,
-        callbackURL
+        callbackURL,
       }
     });
 
     if (result.url) {
-      return;
+      return redirect(302, result.url);
     }
     return fail(400, { message: `Social sign-in failed` });
   },

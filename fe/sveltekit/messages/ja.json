@@ -5,6 +5,7 @@
 	"language": "言語",
 	"login": "ログイン／新規登録",
 	"loginSocial": "{provider}でログイン",
+	"logout": "ログアウト",
 	"name": "ツ",
 	"password": "パスワード",
 	"passwordForgot": "パスワードをお忘れですか？"
