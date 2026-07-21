@@ -1,14 +1,7 @@
 import { APIError } from 'better-auth/api';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 import { auth } from '$lib/server/auth';
 import { fail, redirect } from '@sveltejs/kit';
-
-export const load: PageServerLoad = (event) => {
-  // if (!event.locals.user) {
-  //   return redirect(302, '/demo/better-auth/login');
-  // }
-  return { user: event.locals.user };
-};
 
 export const actions: Actions = {
   loginEmail: async (event) => {

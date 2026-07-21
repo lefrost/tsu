@@ -37,13 +37,11 @@ export default defineConfig(({ mode }) => {
 			
 			tailwindcss()
 		],
-		// resolve: {
-		// 	alias: {
-		// 		'$betterauth': path.resolve(import.meta.dirname, '../../all/betterauth/instance.ts'),
-		// 		'$drizzle': path.resolve(import.meta.dirname, '../../all/drizzle/instance.ts'),
-		// 		'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide/generated')
-		// 	}
-		// },
+		resolve: {
+			alias: {
+				'$paraglide': path.resolve(import.meta.dirname, '../../all/fe/paraglide/generated') // paraglide files are generated at runtime
+			}
+		},
 		server: { port: Number(env.FE_PORT) },
 		test: {
 			expect: { requireAssertions: true },

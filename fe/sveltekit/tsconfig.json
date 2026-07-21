@@ -9,10 +9,8 @@
 		"paths": {
 			"$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
-			// "$betterauth": ["../../all/betterauth/instance.ts"],
-			// "$drizzle": ["../../all/drizzle/instance.ts"],
-			// "$paraglide": ["../../all/paraglide/generated"],
-			// "$paraglide/*": ["../../all/paraglide/generated/*"],
+			"$paraglide": ["../../all/fe/paraglide/generated"],
+			"$paraglide/*": ["../../all/fe/paraglide/generated/*"]
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
