@@ -1,6 +1,7 @@
 **Tsu** is a fullstack web boilerplate with a customizable stack. (Currently a work-in-progress.)
 
 - Install: `moon run :install`
+- Install with latest packages: `moon run :update`
 - Initialize DB: `moon run :dbinit`
 - Prepare DB patch: `moon run :dbgen`
 - Execute DB patch: `moon run :dbup`
