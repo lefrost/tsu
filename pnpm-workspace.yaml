@@ -1,0 +1,4 @@
+packages:
+  - "all"
+  - "be/*"
+  - "fe/*"

@@ -2,12 +2,28 @@
   "name": "@tsu/all",
   "version": "0.0.1",
   "private": true,
+  "exports": {
+    "./betterauth": "./fe/betterauth/instance.ts",
+    "./betterauth/schema": "./fe/betterauth/schema.ts",
+    "./drizzle": "./fe/drizzle/instance.ts",
+    "./drizzle/schema": "./fe/drizzle/schema.ts",
+    "./paraglide/*": "./fe/paraglide/generated/*"
+  },
+  "typesVersions": {
+    "*": {
+      "betterauth": ["./fe/betterauth/instance.ts"],
+      "betterauth/schema": ["./fe/betterauth/schema.ts"],
+      "drizzle": ["./fe/drizzle/instance.ts"],
+      "drizzle/schema": ["./fe/drizzle/schema.ts"],
+      "paraglide/*": ["./fe/paraglide/generated/*"]
+    }
+  },
   "scripts": {
-    "db:push": "drizzle-kit --config=./drizzle/drizzle.config.ts push",
-    "db:generate": "drizzle-kit --config=./drizzle/drizzle.config.ts generate",
-    "db:migrate": "drizzle-kit --config=./drizzle/drizzle.config.ts migrate",
-    "db:studio": " drizzle-kit --config=./drizzle/drizzle.config.ts studio",
-    "auth:schema": "better-auth generate --config ./betterauth/auth.ts --output ./betterauth/schema.ts --yes"
+    "db:push": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts push",
+    "db:generate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts generate",
+    "db:migrate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts migrate",
+    "db:studio": " drizzle-kit --config=./fe/drizzle/drizzle.config.ts studio",
+    "auth:schema": "better-auth generate --config ./fe/betterauth/auth.ts --output ./fe/betterauth/schema.ts --yes"
   },
   "dependencies": {
     "@better-auth/cli": "latest",
@@ -19,6 +35,7 @@
   "devDependencies": {
     "@inlang/paraglide-js": "^2.22.0",
     "@types/nodemailer": "^8.0.1",
+		"better-auth": "~1.4.21",
     "bun-types": "latest",
     "drizzle-kit": "^0.31.10",
     "typescript": "^6.0.3"

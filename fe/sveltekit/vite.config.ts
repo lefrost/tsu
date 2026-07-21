@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			paraglideVitePlugin({
-				project: path.resolve(import.meta.dirname, '../../all/paraglide/project.inlang'),
-				outdir: path.resolve(import.meta.dirname, '../../all/paraglide/generated'),
+				project: path.resolve(import.meta.dirname, '../../all/fe/paraglide/project.inlang'),
+				outdir: path.resolve(import.meta.dirname, '../../all/fe/paraglide/generated'),
 				emitTsDeclarations: true,
 				experimentalPerLocaleBuild: false,
 				strategy: ['url']
@@ -37,13 +37,13 @@ export default defineConfig(({ mode }) => {
 			
 			tailwindcss()
 		],
-		resolve: {
-			alias: {
-				'$betterauth': path.resolve(import.meta.dirname, '../../all/betterauth/instance.ts'),
-				'$drizzle': path.resolve(import.meta.dirname, '../../all/drizzle/instance.ts'),
-				'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide/generated')
-			}
-		},
+		// resolve: {
+		// 	alias: {
+		// 		'$betterauth': path.resolve(import.meta.dirname, '../../all/betterauth/instance.ts'),
+		// 		'$drizzle': path.resolve(import.meta.dirname, '../../all/drizzle/instance.ts'),
+		// 		'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide/generated')
+		// 	}
+		// },
 		server: { port: Number(env.FE_PORT) },
 		test: {
 			expect: { requireAssertions: true },

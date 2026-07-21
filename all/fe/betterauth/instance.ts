@@ -1,6 +1,6 @@
-import type { User } from 'better-auth';
-import { betterAuth } from 'better-auth/minimal';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import type { User } from '@tsu/all/fe/better-auth';
+import { betterAuth } from '@tsu/all/fe/better-auth/minimal';
+import { drizzleAdapter } from '@tsu/all/fe/better-auth/adapters/drizzle';
 import { db } from '../drizzle/instance';
 import nodemailer from 'nodemailer';
 

@@ -29,7 +29,6 @@
 		"@tailwindcss/vite": "^4.3.0",
 		"@tanstack/table-core": "^8.21.3",
 		"@types/node": "^24",
-		"better-auth": "~1.4.21",
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
 		"concurrently": "^10.0.3",
@@ -65,6 +64,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.25.0",
+		"@tsu/all": "workspace:*",
 		"mode-watcher": "^1.1.0"
 	}
 }
