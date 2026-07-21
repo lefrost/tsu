@@ -8,5 +8,10 @@
 	"logout": "ログアウト",
 	"name": "ツ",
 	"password": "パスワード",
-	"passwordForgot": "パスワードをお忘れですか？"
+	"passwordForgot": "パスワードをお忘れですか？",
+	"passwordResetSend": "パスワードリセットリンクを送信",
+	"cancel": "キャンセル",
+	"unknownError": "不明なエラー",
+	"loginEmail:VALIDATION_ERROR": "メールアドレスまたはパスワードが無効です。",
+	"passwordForgot:VALIDATION_ERROR": "無効なメールアドレスです。"
 }

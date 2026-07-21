@@ -8,5 +8,10 @@
 	"logout": "Logout",
 	"name": "Tsu",
 	"password": "Password",
-	"passwordForgot": "Forgot your password?"
+	"passwordForgot": "Forgot your password?",
+	"passwordResetSend": "Send password reset link",
+	"cancel": "Cancel",
+	"unknownError": "Unknown error",
+	"loginEmail:VALIDATION_ERROR": "Invalid email or password.",
+	"passwordForgot:VALIDATION_ERROR": "Invalid email."
 }

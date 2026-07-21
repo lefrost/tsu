@@ -16,4 +16,5 @@ Prerequisites:
 - [Node](https://nodejs.org/en/download).
 - Moon: `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh) ; proto install moon ; proto pin moon latest`
 - Bun: `powershell -c "irm bun.sh/install.ps1 | iex"`
+- [Sherlock](https://inlang.com/m/r7kp499g/app-inlang-ideExtension).
 - (TBA~)

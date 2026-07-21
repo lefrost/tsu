@@ -1,5 +1,5 @@
 import type { User } from 'better-auth';
-import { betterAuth } from 'better-auth/minimal';
+import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '../drizzle/instance';
 import nodemailer from 'nodemailer';
