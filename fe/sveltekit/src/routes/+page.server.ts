@@ -1,4 +1,4 @@
-import { APIError } from '@tsu/all/fe/better-auth/api';
+import { APIError } from 'better-auth/api';
 import type { Actions, PageServerLoad } from './$types';
 import { auth } from '$lib/server/auth';
 import { fail, redirect } from '@sveltejs/kit';

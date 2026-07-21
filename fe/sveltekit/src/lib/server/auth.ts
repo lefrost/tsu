@@ -1,7 +1,7 @@
 import { getRequestEvent } from '$app/server';
-import { betterAuth } from '@tsu/all/fe/better-auth/minimal';
-import { sveltekitCookies } from '@tsu/all/fe/better-auth/svelte-kit';
-import { authConfig } from '@tsu/all/fe/betterauth';
+import { betterAuth } from 'better-auth/minimal';
+import { sveltekitCookies } from 'better-auth/svelte-kit';
+import { authConfig } from '@tsu/all/betterauth';
 
 export const auth = betterAuth({
   ...authConfig,

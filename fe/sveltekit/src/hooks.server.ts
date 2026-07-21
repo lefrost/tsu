@@ -1,10 +1,10 @@
 import { sequence } from '@sveltejs/kit/hooks';
 import { building } from '$app/environment';
 import { auth } from '$lib/server/auth';
-import { svelteKitHandler } from '@tsu/all/fe/better-auth/svelte-kit';
+import { svelteKitHandler } from 'better-auth/svelte-kit';
 import type { Handle } from '@sveltejs/kit';
-import { getTextDirection } from '@tsu/all/fe/paraglide/runtime';
-import { paraglideMiddleware } from '@tsu/all/fe/paraglide/server';
+import { getTextDirection } from '@tsu/all/paraglide/runtime';
+import { paraglideMiddleware } from '@tsu/all/paraglide/server';
 
 const paraglideHandle: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
