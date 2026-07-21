@@ -3,7 +3,7 @@
 	"email": "メール",
 	"heading": "こんにちは、{name}。",
 	"language": "言語",
-	"login": "ログイン／新規登録",
+	"login": "ログイン",
 	"loginSocial": "{provider}でログイン",
 	"logout": "ログアウト",
 	"name": "ツ",
@@ -13,5 +13,11 @@
 	"cancel": "キャンセル",
 	"unknownError": "不明なエラー",
 	"loginEmail:VALIDATION_ERROR": "メールアドレスまたはパスワードが無効です。",
-	"passwordForgot:VALIDATION_ERROR": "無効なメールアドレスです。"
+	"passwordForgot:VALIDATION_ERROR": "無効なメールアドレスです。",
+	"passwordNew": "新しいパスワード",
+	"submit": "提出する",
+	"passwordResetSent": "パスワードリセットリンクを送信しました。",
+	"return": "戻る",
+	"passwordReset:INVALID_TOKEN": "URL内のトークンが無効です。",
+	"loginSignup": "ログイン／新規登録"
 }

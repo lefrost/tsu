@@ -16,7 +16,7 @@
 
 {#if forgot}
   <div class="flex flex-col gap-[0.6rem] self-stretch">
-    <UserForgot />
+    <UserForgot bind:forgot={forgot} />
     <Button variant="outline" class="cursor-pointer w-full" onclick={() => { forgot = false; }}>
       {m.cancel()}
     </Button>
@@ -46,7 +46,7 @@
         <p class="mb-[0.4rem] text-red-400">{emailForm.message}</p>
       {/if}
       <Button type="submit" class="cursor-pointer w-full">
-        {m.login()}
+        {m.loginSignup()}
       </Button>
     </div>
   </form>

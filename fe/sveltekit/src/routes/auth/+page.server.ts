@@ -68,7 +68,6 @@ export const actions: Actions = {
         body: { email, redirectTo: `${process.env.FE_URL}/reset-password` }});
     } catch (error) {
       const errorKey = `passwordForgot:${(error as any).body?.code}`;
-      console.log(errorKey); // test
       if (error instanceof APIError) {
         return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
       }
@@ -76,5 +75,26 @@ export const actions: Actions = {
     }
 
     return { success: true };
+  },
+
+  passwordReset: async (event) => {
+    const formData = await event.request.formData();
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    const password = formData.get(`password`)?.toString() ?? ``;
+    const token = event.url.searchParams.get(`token`) ?? '';
+
+    try {
+      await auth.api.resetPassword({
+        body: { newPassword: password, token }
+      });
+    } catch (error) {
+      const errorKey = `passwordReset:${(error as any).body?.code}`;
+      if (error instanceof APIError) {
+        return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
+      }
+      return fail(500, { message: m.unknownError({}, { locale } as any) });
+    }
+    
+    throw redirect(302, `/`);
   }
 };

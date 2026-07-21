@@ -3,7 +3,7 @@
 	"email": "Email",
 	"heading": "Hello, {name}.",
 	"language": "Language",
-	"login": "Login / Sign up",
+	"login": "Login",
 	"loginSocial": "Login with {provider}",
 	"logout": "Logout",
 	"name": "Tsu",
@@ -13,5 +13,11 @@
 	"cancel": "Cancel",
 	"unknownError": "Unknown error",
 	"loginEmail:VALIDATION_ERROR": "Invalid email or password.",
-	"passwordForgot:VALIDATION_ERROR": "Invalid email."
+	"passwordForgot:VALIDATION_ERROR": "Invalid email.",
+	"passwordNew": "New password",
+	"submit": "Submit",
+	"passwordResetSent": "Password reset link sent.",
+	"return": "Return",
+	"passwordReset:INVALID_TOKEN": "Token in URL invalid.",
+	"loginSignup": "Login / Sign up"
 }

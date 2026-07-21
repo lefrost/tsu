@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Header from '$lib/comp/Header.svelte';
 	import type { Pathname } from '$app/types';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
@@ -14,7 +15,10 @@
 <ModeWatcher />
 
 <div class="flex flex-col items-center h-full w-full">
-	{@render children()}
+	<Header />
+	<div class="flex flex-1 flex-col px-[1rem] py-[2rem] max-w-[1400px] w-full">
+		{@render children()}
+	</div>
 </div>
 
 <div style="display:none">

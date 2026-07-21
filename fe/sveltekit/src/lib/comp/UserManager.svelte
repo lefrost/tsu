@@ -4,6 +4,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+	import { m } from '$paraglide/messages';
 
   let user = $derived(page.data.user);
 </script>
@@ -11,7 +12,7 @@
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>
     <Button variant="outline" class="cursor-pointer">
-      {user ? `Logout` : `Login`}
+      {user ? `Logout` : m.login()}
     </Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" class="p-0 w-[16rem]">

@@ -7,6 +7,7 @@
 	import { m } from '$paraglide/messages';
 	import { getLocale } from '$paraglide/runtime';
   
+  let { forgot = $bindable() } = $props();
   let locale = $state(getLocale());
   let form = formCreate();
 </script>
@@ -21,10 +22,21 @@
   </div>
   <div class="flex flex-col self-stretch">
     {#if form.message}
-      <p class="mb-[0.4rem] text-red-400">{form.message}</p>
+      <p class="mb-[0.4rem] text-red-400">
+        {form.message}
+      </p>
     {/if}
-    <Button type="submit" class="cursor-pointer w-full">
-      {m.passwordResetSend()}
-    </Button>
+    {#if form.success}
+      <p class="mb-[0.4rem] text-green-400">
+        {m.passwordResetSent()}
+      </p>
+      <Button variant="outline" class="cursor-pointer w-full">
+        {m.return()}
+      </Button>
+    {:else}
+      <Button type="submit" class="cursor-pointer w-full">
+        {m.passwordResetSend()}
+      </Button>
+    {/if}
   </div>
 </form>
