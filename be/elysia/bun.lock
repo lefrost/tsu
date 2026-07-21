@@ -5,10 +5,10 @@
     "": {
       "name": "elysia",
       "dependencies": {
-        "elysia": "latest",
+        "elysia": "^1.4.29",
       },
       "devDependencies": {
-        "bun-types": "latest",
+        "bun-types": "^1.3.14",
       },
     },
   },
