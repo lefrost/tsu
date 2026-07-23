@@ -1,6 +1,7 @@
 import type { User } from 'better-auth';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle/instance';
 import nodemailer from 'nodemailer';
 
@@ -15,6 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const authConfig = {
+  appName: process.env.NAME,
   baseURL: process.env.FE_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   database: drizzleAdapter(db, { provider: `pg` }),
@@ -28,6 +30,20 @@ export const authConfig = {
       });
     }
   },
+  emailVerification: {
+    callbackURL: `/?email-verified=true`,
+    enabled: true,
+    async sendVerificationEmail(data: { user: User; url: string; token: string }) {
+      await transporter.sendMail({
+        to: data.user.email,
+        subject: `Verify your email address`,
+        html: `<a href="${data.url}">Verify email address</a>`
+      });
+    }
+  },
+  plugins: [
+    twoFactor()
+  ],
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID as string,

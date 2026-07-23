@@ -19,5 +19,6 @@
 	"passwordResetSent": "パスワードリセットリンクを送信しました。",
 	"return": "戻る",
 	"passwordReset:INVALID_TOKEN": "URL内のトークンが無効です。",
-	"loginSignup": "ログイン／新規登録"
+	"loginSignup": "ログイン／新規登録",
+	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。"
 }

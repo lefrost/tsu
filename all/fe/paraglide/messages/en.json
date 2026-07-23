@@ -19,5 +19,6 @@
 	"passwordResetSent": "Password reset link sent.",
 	"return": "Return",
 	"passwordReset:INVALID_TOKEN": "Token in URL invalid.",
-	"loginSignup": "Login / Sign up"
+	"loginSignup": "Login / Sign up",
+	"emailVerify": "Verification email sent. Please check your inbox."
 }

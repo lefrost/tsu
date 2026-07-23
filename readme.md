@@ -1,5 +1,6 @@
 **Tsu** is a fullstack web boilerplate with a customizable stack. (Currently a work-in-progress.)
 
+- Select one folder from `/shelf/be` and `shelf/fe` respectively, and move it into `/be` and `/fe` respectively.
 - Install: `moon run :install`
 - Install with latest packages: `moon run :update`
 - Initialize DB: `moon run :dbinit`

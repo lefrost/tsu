@@ -1,15 +1,15 @@
-export function formCreate() {
+export function formCreate(options?: { onSuccess?: () => void }) {
   let data = $state<{ message?: string, success?: boolean }>({});
 
   function enhance() {
-    return ({ result }: { result: any }) => {
+    return async ({ result }: { result: any }) => {
       if (result.type === `error`) {
         data = { message: result.error?.message || `An error occurred` };
       } else if (result.type === `failure`) {
         data = { message: result.data?.message || `An error occurred` };
       } else {
-        data = {};
-        data.success = result.success;
+        data = { success: true, message: result.data?.message };
+        if (options?.onSuccess) await options.onSuccess();
       }
     };
   }

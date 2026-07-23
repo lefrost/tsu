@@ -33,7 +33,7 @@
     "db:generate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts generate",
     "db:migrate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts migrate",
     "db:studio": " drizzle-kit --config=./fe/drizzle/drizzle.config.ts studio",
-    "auth:schema": "better-auth generate --config ./fe/betterauth/auth.ts --output ./fe/betterauth/schema.ts --yes"
+    "auth:schema": "better-auth generate --config ./fe/betterauth/instance.ts --output ./fe/betterauth/schema.ts --yes"
   },
   "dependencies": {
     "@better-auth/cli": "^1.4.21",

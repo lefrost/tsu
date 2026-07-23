@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+  import { invalidateAll } from '$app/navigation';
   import { UserForgot } from '$lib/comp';
   import { formCreate } from '$lib/form.svelte';
   import { Button } from "$lib/components/ui/button/index.js";
@@ -11,7 +12,11 @@
   let forgot = $state(false);
   let locale = $state(getLocale());
 
-  let emailForm = formCreate();
+  let emailForm = formCreate({
+    onSuccess: async () => {
+      await invalidateAll();
+    }
+  });
 </script>
 
 {#if forgot}

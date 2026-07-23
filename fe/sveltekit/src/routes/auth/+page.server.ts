@@ -1,6 +1,6 @@
 import { APIError } from 'better-auth/api';
 import type { Actions } from './$types';
-import { auth } from '$lib/server/auth';
+import { auth, authClient } from '$lib/server/auth';
 import { m } from '$paraglide/messages';
 import { fail, redirect } from '@sveltejs/kit';
 
@@ -13,23 +13,37 @@ export const actions: Actions = {
     const password = formData.get(`password`)?.toString() ?? ``;
 
     try {
-      await auth.api.signUpEmail({
-        body: {
-          email,
-          password,
-          name,
-          // callbackURL: '/auth/verification-success'
-        }
+      await auth.api.signInEmail({
+        body: { email, password }
       });
+
+      return { success: true };
     } catch (error) {
-      const errorKey = `loginEmail:${(error as any).body?.code}`;
+      const errorCode = (error as any).body?.code;
+      const errorKey = `loginEmail:${errorCode}`;
+
+      console.log(error);
+
+      if (errorCode === `USER_NOT_FOUND`) {
+        await auth.api.signUpEmail({
+          body: { email, password, name }
+        });
+
+        return fail(400, {
+          message: m.emailVerify({}, { locale } as any)
+        });
+      } else if (errorCode === `EMAIL_NOT_VERIFIED`) {
+        await authClient.sendVerificationEmail({ email });
+        return fail(400, {
+          message: m.emailVerify({}, { locale } as any)
+        });
+      }
+
       if (error instanceof APIError) {
         return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
       }
       return fail(500, { message: m.unknownError({}, { locale } as any) });
     }
-
-    return;
   },
 
   loginSocial: async (event) => {
@@ -65,7 +79,7 @@ export const actions: Actions = {
     
     try {
       await auth.api.requestPasswordReset({
-        body: { email, redirectTo: `${process.env.FE_URL}/reset-password` }});
+        body: { email, redirectTo: `${process.env.FE_URL}/auth/reset-password` }});
     } catch (error) {
       const errorKey = `passwordForgot:${(error as any).body?.code}`;
       if (error instanceof APIError) {
@@ -96,5 +110,21 @@ export const actions: Actions = {
     }
     
     throw redirect(302, `/`);
-  }
+  },
+
+  twoFactorDisable: async (event) => {
+    // tba
+  },
+  
+  twoFactorEnable: async (event) => {
+    // tba
+  },
+
+  twoFactorGenerate: async (event) => {
+    // tba
+  },
+
+  twoFactorVerify: async (event) => {
+    // tba
+  },
 };
