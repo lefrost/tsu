@@ -27,7 +27,7 @@
     </Button>
   </div>
 {:else}
-  <form method="post" action="/auth?/loginEmail" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">
+  <form method="post" action="/auth?/emailLogin" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">
     <input type="hidden" name="locale" value={locale} />
     <div class="flex flex-col gap-[0.6rem] self-stretch">
       <Label for="email">
@@ -50,13 +50,18 @@
       {#if emailForm.message}
         <p class="mb-[0.4rem] text-red-400">{emailForm.message}</p>
       {/if}
-      <Button type="submit" class="cursor-pointer w-full">
-        {m.loginSignup()}
-      </Button>
+      <div class="flex flex-row gap-[0.6rem] self-stretch">
+        <Button type="submit" name="action" value="login" class="cursor-pointer grow-1">
+          {m.login()}
+        </Button>
+        <Button type="submit" variant="outline" name="action" value="signup" class="cursor-pointer grow-1">
+          {m.signup()}
+        </Button>
+      </div>
     </div>
   </form>
   <div class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <form method="post" action="/auth?/loginSocial" use:enhance>
+    <form method="post" action="/auth?/socialLogin" use:enhance>
       <input type="hidden" name="callbackURL" value="/" />
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="google" />
@@ -64,7 +69,7 @@
         {m.loginSocial({ provider: `Google` })}
       </Button>
     </form>
-    <form method="post" action="/auth?/loginSocial" use:enhance>
+    <form method="post" action="/auth?/socialLogin" use:enhance>
       <input type="hidden" name="callbackURL" value="/" />
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="github" />

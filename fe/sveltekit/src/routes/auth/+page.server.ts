@@ -5,48 +5,69 @@ import { m } from '$paraglide/messages';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions: Actions = {
-  loginEmail: async (event) => {
+  emailLogin: async (event) => {
     const formData = await event.request.formData();
+    const action = formData.get(`action`)?.toString() ?? ``;
     const email = formData.get(`email`)?.toString() ?? ``;
     const locale = formData.get(`locale`)?.toString() ?? ``;
     const name = formData.get(`name`)?.toString() ?? ``;
     const password = formData.get(`password`)?.toString() ?? ``;
 
     try {
-      await auth.api.signInEmail({
-        body: { email, password }
-      });
-
-      return { success: true };
-    } catch (error) {
-      const errorCode = (error as any).body?.code;
-      const errorKey = `loginEmail:${errorCode}`;
-
-      console.log(error);
-
-      if (errorCode === `USER_NOT_FOUND`) {
+      if (action === `login`) {
+        await auth.api.signInEmail({
+          body: { email, password }
+        });
+      } else if (action === `signup`) {
         await auth.api.signUpEmail({
           body: { email, password, name }
         });
-
-        return fail(400, {
-          message: m.emailVerify({}, { locale } as any)
-        });
-      } else if (errorCode === `EMAIL_NOT_VERIFIED`) {
-        await authClient.sendVerificationEmail({ email });
-        return fail(400, {
-          message: m.emailVerify({}, { locale } as any)
-        });
       }
-
+    } catch (error) {
       if (error instanceof APIError) {
-        return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
+        return fail(400, { message: error.message });
+        // return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
       }
+      
       return fail(500, { message: m.unknownError({}, { locale } as any) });
     }
+    //   await auth.api.signInEmail({
+    //     body: { email, password }
+    //   });
+
+    //   return { success: true };
+    // } catch (error) {
+    //   const errorCode = (error as any).body?.code;
+    //   const errorKey = `loginEmail:${errorCode}`;
+
+    //   console.log(`TEST ERROR: ` + errorCode + " - " + error); // test
+      
+
+    //   if (errorCode === `INVALID_EMAIL_OR_PASSWORD`) {
+    //     return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || m.unknownError({}, { locale } as any) });
+    //   } else if (errorCode === `USER_NOT_FOUND`) {
+    //     await auth.api.signUpEmail({
+    //       body: { email, password, name }
+    //     });
+
+    //     return fail(400, {
+    //       message: m.emailVerify({}, { locale } as any)
+    //     });
+    //   } else if (errorCode === `EMAIL_NOT_VERIFIED`) {
+    //     await authClient.sendVerificationEmail({ email });
+    //     return fail(400, {
+    //       message: m.emailVerify({}, { locale } as any)
+    //     });
+    //   }
+
+    //   if (error instanceof APIError) {
+    //     return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
+    //   }
+
+    //   return fail(500, { message: m.unknownError({}, { locale } as any) });
   },
 
-  loginSocial: async (event) => {
+  socialLogin: async (event) => {
     const formData = await event.request.formData();
     const callbackURL = formData.get(`callbackURL`)?.toString() ?? `/`;
     const locale = formData.get(`locale`)?.toString() ?? ``;

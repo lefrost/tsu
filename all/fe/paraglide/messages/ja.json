@@ -19,6 +19,7 @@
 	"passwordResetSent": "パスワードリセットリンクを送信しました。",
 	"return": "戻る",
 	"passwordReset:INVALID_TOKEN": "URL内のトークンが無効です。",
-	"loginSignup": "ログイン／新規登録",
-	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。"
+	"signup": "新規登録",
+	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。",
+	"loginEmail:INVALID_EMAIL_OR_PASSWORD": "メールアドレスは有効である必要があり、パスワードは8文字から128文字の間でなければなりません。"
 }

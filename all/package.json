@@ -29,10 +29,11 @@
     }
   },
   "scripts": {
-    "db:push": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts push",
+    "db:reset": "bun run ./fe/drizzle/reset.ts",
+    "db:push": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts push --force",
     "db:generate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts generate",
     "db:migrate": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts migrate",
-    "db:studio": " drizzle-kit --config=./fe/drizzle/drizzle.config.ts studio",
+    "db:studio": "drizzle-kit --config=./fe/drizzle/drizzle.config.ts studio",
     "auth:schema": "better-auth generate --config ./fe/betterauth/instance.ts --output ./fe/betterauth/schema.ts --yes"
   },
   "dependencies": {

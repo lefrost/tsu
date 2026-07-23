@@ -1,6 +1,6 @@
 tasks:
   dbinit:
-    script: 'bun run --env-file=../.env auth:schema ; bun run --env-file=../.env db:push'
+    script: 'bun run --env-file=../.env db:reset ; bun run --env-file=../.env auth:schema ; bun run --env-file=../.env db:push'
   dbgen:
     script: 'bun run --env-file=../.env auth:schema ; bun run --env-file=../.env db:generate'
   dbup:

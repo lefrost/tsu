@@ -12,7 +12,7 @@
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>
     <Button variant="outline" class="cursor-pointer">
-      {user ? `Logout` : m.login()}
+      {user ? user.email : m.login()}
     </Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" class="p-0 w-[16rem]">
