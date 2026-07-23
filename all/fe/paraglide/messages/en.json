@@ -4,7 +4,7 @@
 	"heading": "Hello, {name}.",
 	"language": "Language",
 	"login": "Login",
-	"loginSocial": "Login with {provider}",
+	"socialLogin": "Login with {provider}",
 	"logout": "Logout",
 	"name": "Tsu",
 	"password": "Password",
@@ -12,14 +12,10 @@
 	"passwordResetSend": "Send password reset link",
 	"cancel": "Cancel",
 	"unknownError": "Unknown error",
-	"loginEmail:VALIDATION_ERROR": "Invalid email or password.",
-	"passwordForgot:VALIDATION_ERROR": "Invalid email.",
 	"passwordNew": "New password",
 	"submit": "Submit",
 	"passwordResetSent": "Password reset link sent.",
 	"return": "Return",
-	"passwordReset:INVALID_TOKEN": "Token in URL invalid.",
 	"signup": "Sign up",
-	"emailVerify": "Verification email sent. Please check your inbox.",
-	"loginEmail:INVALID_EMAIL_OR_PASSWORD": "Email must be valid, and password between 8 to 128 characters."
+	"emailVerify": "Verification email sent. Please check your inbox."
 }

@@ -66,7 +66,7 @@
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="google" />
       <Button type="submit" variant="outline" class="cursor-pointer w-full">
-        {m.loginSocial({ provider: `Google` })}
+        {m.socialLogin({ provider: `Google` })}
       </Button>
     </form>
     <form method="post" action="/auth?/socialLogin" use:enhance>
@@ -74,7 +74,7 @@
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="github" />
       <Button type="submit" variant="outline" class="cursor-pointer w-full">
-        {m.loginSocial({ provider: `GitHub` })}
+        {m.socialLogin({ provider: `GitHub` })}
       </Button>
     </form>
   </div>

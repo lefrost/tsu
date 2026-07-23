@@ -4,7 +4,7 @@
 	"heading": "こんにちは、{name}。",
 	"language": "言語",
 	"login": "ログイン",
-	"loginSocial": "{provider}でログイン",
+	"socialLogin": "{provider}でログイン",
 	"logout": "ログアウト",
 	"name": "ツ",
 	"password": "パスワード",
@@ -12,14 +12,10 @@
 	"passwordResetSend": "パスワードリセットリンクを送信",
 	"cancel": "キャンセル",
 	"unknownError": "不明なエラー",
-	"loginEmail:VALIDATION_ERROR": "メールアドレスまたはパスワードが無効です。",
-	"passwordForgot:VALIDATION_ERROR": "無効なメールアドレスです。",
 	"passwordNew": "新しいパスワード",
 	"submit": "提出する",
 	"passwordResetSent": "パスワードリセットリンクを送信しました。",
 	"return": "戻る",
-	"passwordReset:INVALID_TOKEN": "URL内のトークンが無効です。",
 	"signup": "新規登録",
-	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。",
-	"loginEmail:INVALID_EMAIL_OR_PASSWORD": "メールアドレスは有効である必要があり、パスワードは8文字から128文字の間でなければなりません。"
+	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。"
 }

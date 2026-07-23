@@ -26,7 +26,7 @@ export const session = pgTable(
   "session",
   {
     id: text("id").primaryKey(),
-    expiresAt: timestamp("expires_at").notNull(),
+    expires: timestamp("expires").notNull(),
     token: text("token").notNull().unique(),
     created: timestamp("created").defaultNow().notNull(),
     updated: timestamp("updated")
@@ -53,8 +53,8 @@ export const account = pgTable(
     accessToken: text("access_token"),
     refreshToken: text("refresh_token"),
     idToken: text("id_token"),
-    accessTokenExpires: timestamp("access_token_expires"),
-    refreshTokenExpires: timestamp("refresh_token_expires"),
+    access_token_expires: timestamp("access_token_expires"),
+    refresh_token_expires: timestamp("refresh_token_expires"),
     scope: text("scope"),
     password: text("password"),
     created: timestamp("created").defaultNow().notNull(),

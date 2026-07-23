@@ -67,30 +67,27 @@ export const actions: Actions = {
     //   return fail(500, { message: m.unknownError({}, { locale } as any) });
   },
 
-  socialLogin: async (event) => {
-    const formData = await event.request.formData();
-    const callbackURL = formData.get(`callbackURL`)?.toString() ?? `/`;
-    const locale = formData.get(`locale`)?.toString() ?? ``;
-    const provider = formData.get(`provider`)?.toString() ?? ``;
-
-    const result = await auth.api.signInSocial({
-      body: {
-        provider: provider,
-        callbackURL,
-      }
-    });
-
-    if (result.url) {
-      return redirect(302, result.url);
-    }
-    return fail(400, { message: m.unknownError({}, { locale } as any) });
-  },
-
   logout: async (event) => {
     await auth.api.signOut({
       headers: event.request.headers
     });
     return;
+  },
+
+  emailVerificationResend: async (event) => {
+    const formData = await event.request.formData();
+    const email = formData.get(`email`)?.toString() ?? ``;
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    
+    try {
+      await authClient.sendVerificationEmail({ email });
+      return { success: true };
+    } catch (error) {
+      if (error instanceof APIError) {
+        return fail(400, { message: error.message });
+      }
+      return fail(500, { message: m.unknownError({}, { locale } as any) });
+    }
   },
 
   passwordForgot: async (event) => {
@@ -100,16 +97,16 @@ export const actions: Actions = {
     
     try {
       await auth.api.requestPasswordReset({
-        body: { email, redirectTo: `${process.env.FE_URL}/auth/reset-password` }});
+        body: { email, redirectTo: `${process.env.FE_URL}/auth/reset-password` }
+      });
+
+      return { success: true };
     } catch (error) {
-      const errorKey = `passwordForgot:${(error as any).body?.code}`;
       if (error instanceof APIError) {
-        return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
+        return fail(400, { message: error.message });
       }
       return fail(500, { message: m.unknownError({}, { locale } as any) });
     }
-
-    return { success: true };
   },
 
   passwordReset: async (event) => {
@@ -122,15 +119,41 @@ export const actions: Actions = {
       await auth.api.resetPassword({
         body: { newPassword: password, token }
       });
+      
+      throw redirect(302, `/`);
     } catch (error) {
-      const errorKey = `passwordReset:${(error as any).body?.code}`;
       if (error instanceof APIError) {
-        return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
+        return fail(400, { message: error.message });
       }
       return fail(500, { message: m.unknownError({}, { locale } as any) });
     }
-    
-    throw redirect(302, `/`);
+  },
+
+  socialLogin: async (event) => {
+    const formData = await event.request.formData();
+    const callbackURL = formData.get(`callbackURL`)?.toString() ?? `/`;
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    const provider = formData.get(`provider`)?.toString() ?? ``;
+
+    try {
+      const result = await auth.api.signInSocial({
+        body: {
+          provider: provider,
+          callbackURL,
+        }
+      });
+
+      if (result.url) {
+        return redirect(302, result.url);
+      }
+
+      return fail(500, { message: m.unknownError({}, { locale } as any) });
+    } catch (error) {
+      if (error instanceof APIError) {
+        return fail(400, { message: error.message });
+      }
+      return fail(500, { message: m.unknownError({}, { locale } as any) });
+    }
   },
 
   twoFactorDisable: async (event) => {

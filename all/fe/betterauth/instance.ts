@@ -1,5 +1,6 @@
 import type { User } from 'better-auth';
 import { betterAuth } from 'better-auth';
+import { localization } from "better-auth-localization";
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle/instance';
@@ -43,6 +44,10 @@ export const authConfig = {
     }
   },
   plugins: [
+    localization({
+      defaultLocale: `default`,
+      fallbackLocale: `default`
+    }),
     twoFactor() as any
   ],
   socialProviders: {
@@ -55,23 +60,27 @@ export const authConfig = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }
   },
-  user: {
+  account: {
     fields: {
+      accessTokenExpiresAt: `access_token_expires`,
       createdAt: `created`,
+      refreshTokenExpiresAt: `refresh_token_expires`,
       updatedAt: `updated`,
     }
   },
   session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    freshAge: 0,
+    updateAge: 60 * 60 * 24 * 1, // 1 day
     fields: {
       createdAt: `created`,
+      expiresAt: `expires`,
       updatedAt: `updated`,
     }
   },
-  account: {
+  user: {
     fields: {
-      accessTokenExpiresAt: `accessTokenExpires`,
       createdAt: `created`,
-      refreshTokenExpiresAt: `refreshTokenExpires`,
       updatedAt: `updated`,
     }
   },
