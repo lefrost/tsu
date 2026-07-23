@@ -6,7 +6,10 @@ import { authConfig } from '@tsu/all/betterauth';
 
 export const auth = betterAuth({
   ...authConfig,
-  plugins: [sveltekitCookies(getRequestEvent)]
+  plugins: [
+    ...(authConfig.plugins || []),
+    sveltekitCookies(getRequestEvent)
+  ]
 });
 
 export const authClient = createAuthClient({

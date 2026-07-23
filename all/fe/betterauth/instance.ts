@@ -33,6 +33,7 @@ export const authConfig = {
   emailVerification: {
     callbackURL: `/?email-verified=true`,
     enabled: true,
+    sendOnSignUp: true,
     async sendVerificationEmail(data: { user: User; url: string; token: string }) {
       await transporter.sendMail({
         to: data.user.email,
@@ -42,7 +43,7 @@ export const authConfig = {
     }
   },
   plugins: [
-    twoFactor()
+    twoFactor() as any
   ],
   socialProviders: {
     github: {
