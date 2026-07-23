@@ -4,7 +4,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-	import { m } from '$paraglide/messages';
+	import { m } from '$paraglide/generated/messages';
 
   let user = $derived(page.data.user);
 </script>

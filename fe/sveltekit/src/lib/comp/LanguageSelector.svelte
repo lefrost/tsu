@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-	import { m } from '$paraglide/messages';
-	import { getLocale, locales, setLocale } from '$paraglide/runtime';
+	import { m } from '$paraglide/generated/messages';
+	import { getLocale, locales, setLocale } from '$paraglide/generated/runtime';
   
   let locale = $state(getLocale());
 
@@ -20,7 +20,15 @@
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" >
     {#each langs as lang}
-      <DropdownMenu.Item class="cursor-pointer" onclick={() => setLocale(lang.locale)}>
+      <DropdownMenu.Item class="cursor-pointer" onclick={async () => {
+        setLocale(lang.locale);
+        // await fetch('/i18n', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ locale: lang.locale }),
+        // });
+
+      }}>
         {lang.label}
       </DropdownMenu.Item>
     {/each}

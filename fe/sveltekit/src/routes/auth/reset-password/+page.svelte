@@ -5,8 +5,8 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { formCreate } from '$lib/form.svelte';
-	import { m } from '$paraglide/messages';
-	import { getLocale } from '$paraglide/runtime';
+	import { m } from '$paraglide/generated/messages';
+	import { getLocale } from '$paraglide/generated/runtime';
   
   let locale = $state(getLocale());
   let form = formCreate();

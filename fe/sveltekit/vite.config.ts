@@ -39,7 +39,8 @@ export default defineConfig(({ mode }) => {
 		],
 		resolve: {
 			alias: {
-				'$paraglide': path.resolve(import.meta.dirname, '../../all/fe/paraglide/generated') // paraglide files are generated at runtime
+				'$all': path.resolve(import.meta.dirname, '../../all/'),
+				'$paraglide': path.resolve(import.meta.dirname, '../../all/fe/paraglide') // paraglide files are generated at runtime
 			}
 		},
 		server: { port: Number(env.FE_PORT) },

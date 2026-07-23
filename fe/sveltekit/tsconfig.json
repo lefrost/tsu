@@ -9,8 +9,10 @@
 		"paths": {
 			"$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
-			"$paraglide": ["../../all/fe/paraglide/generated"],
-			"$paraglide/*": ["../../all/fe/paraglide/generated/*"]
+			"$all": ["../../all"],
+			"$all/*": ["../../all/*"],
+			"$paraglide": ["../../all/fe/paraglide"],
+			"$paraglide/*": ["../../all/fe/paraglide/*"]
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,

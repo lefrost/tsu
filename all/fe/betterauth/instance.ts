@@ -1,7 +1,8 @@
+import { translations } from './i18n';
 import type { User } from 'better-auth';
 import { betterAuth } from 'better-auth';
-import { localization } from "better-auth-localization";
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { i18n } from '@better-auth/i18n';
 import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle/instance';
 import nodemailer from 'nodemailer';
@@ -44,9 +45,12 @@ export const authConfig = {
     }
   },
   plugins: [
-    localization({
-      defaultLocale: `default`,
-      fallbackLocale: `default`
+    i18n({
+      translations,
+      detection: [`callback`],
+      getLocale: (ctx) => {
+        throw new Error() // force fallback --- todo: find actual fix or update on patch
+      },
     }),
     twoFactor() as any
   ],

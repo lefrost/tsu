@@ -4,7 +4,7 @@
   import { page } from '$app/state';
   import { formCreate } from '$lib/form.svelte';
   import { Button } from "$lib/components/ui/button/index.js";
-	import { m } from '$paraglide/messages';
+	import { m } from '$paraglide/generated/messages';
 
   let form = formCreate({
     onSuccess: async () => {

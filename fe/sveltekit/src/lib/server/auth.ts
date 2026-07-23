@@ -8,7 +8,7 @@ export const auth = betterAuth({
   ...authConfig,
   plugins: [
     ...(authConfig.plugins || []),
-    sveltekitCookies(getRequestEvent)
+    sveltekitCookies(getRequestEvent),
   ]
 });
 

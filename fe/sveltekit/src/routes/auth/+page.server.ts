@@ -1,7 +1,7 @@
 import { APIError } from 'better-auth/api';
 import type { Actions } from './$types';
 import { auth, authClient } from '$lib/server/auth';
-import { m } from '$paraglide/messages';
+import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions: Actions = {

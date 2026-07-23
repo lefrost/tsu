@@ -4,8 +4,8 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-	import { m } from '$paraglide/messages';
-	import { getLocale } from '$paraglide/runtime';
+	import { m } from '$paraglide/generated/messages';
+	import { getLocale } from '$paraglide/generated/runtime';
   
   let { forgot = $bindable() } = $props();
   let locale = $state(getLocale());
