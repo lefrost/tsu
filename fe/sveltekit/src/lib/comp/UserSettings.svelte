@@ -10,6 +10,7 @@
   let locale = $state(getLocale());
 
   let form = formCreate({
+    job: `logout`,
     onSuccess: async () => {
       await invalidateAll();
     }
@@ -25,7 +26,7 @@
   {:else}
     <!-- tba -->
   {/if}
-  <Button type="submit" variant="outline" class="cursor-pointer w-full">
+  <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={form.loading}>
     {m.logout()}
   </Button>
 </form>

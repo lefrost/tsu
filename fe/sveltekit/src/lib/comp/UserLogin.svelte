@@ -6,6 +6,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  // import LoaderCircle from "@lucide/svelte/icons/loader-circle";
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
   
@@ -13,7 +14,16 @@
   let locale = $state(getLocale());
 
   let emailForm = formCreate({
+    job: `emailLogin`,
     onSuccess: async () => { await invalidateAll(); }
+  });
+
+  let googleForm = formCreate({
+    job: `googleLogin`
+  });
+
+  let githubForm = formCreate({
+    job: `githubLogin`
   });
 </script>
 
@@ -46,29 +56,29 @@
         <p class="mb-[0.4rem] text-red-400">{emailForm.message}</p>
       {/if}
       <div class="flex flex-row gap-[0.6rem] self-stretch">
-        <Button type="submit" name="action" value="login" class="cursor-pointer grow-1">
+        <Button type="submit" name="action" value="login" class="cursor-pointer grow-1" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
           {m.login()}
         </Button>
-        <Button type="submit" variant="outline" name="action" value="signup" class="cursor-pointer grow-1">
+        <Button type="submit" variant="outline" name="action" value="signup" class="cursor-pointer grow-1" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
           {m.signup()}
         </Button>
       </div>
     </div>
   </form>
   <div class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <form method="post" action="/auth?/socialLogin" use:enhance>
+    <form method="post" action="/auth?/socialLogin" use:enhance={googleForm.enhance}>
       <input type="hidden" name="callbackURL" value="/" />
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="google" />
-      <Button type="submit" variant="outline" class="cursor-pointer w-full">
+      <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
         {m.socialLogin({ provider: `Google` })}
       </Button>
     </form>
-    <form method="post" action="/auth?/socialLogin" use:enhance>
+    <form method="post" action="/auth?/socialLogin" use:enhance={githubForm.enhance}>
       <input type="hidden" name="callbackURL" value="/" />
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="provider" value="github" />
-      <Button type="submit" variant="outline" class="cursor-pointer w-full">
+      <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
         {m.socialLogin({ provider: `GitHub` })}
       </Button>
     </form>

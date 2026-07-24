@@ -10,7 +10,9 @@
 	import { getLocale } from '$paraglide/generated/runtime';
   
   let locale = $state(getLocale());
-  let form = formCreate();
+  let form = formCreate({
+    job: `passwordReset`
+  });
   
   const token = $derived(page.url.searchParams.get(`token`));
 </script>
@@ -31,7 +33,7 @@
           </p>
         {/if}
         <div class="flex flex-row gap-[0.6rem] self-stretch">
-          <Button type="submit" class="cursor-pointer grow-1">
+          <Button type="submit" class="cursor-pointer grow-1" disabled={form.loading}>
             {m.submit()}
           </Button>
           <Button href="/" variant="outline" class="cursor-pointer">

@@ -9,7 +9,9 @@
   
   let { forgot = $bindable() } = $props();
   let locale = $state(getLocale());
-  let form = formCreate();
+  let form = formCreate({
+    job: `passwordForgot`
+  });
 </script>
 
 <form method="post" action="/auth?/passwordForgot" use:enhance={form.enhance} class="flex flex-col gap-[1.2rem] w-full">
@@ -31,7 +33,7 @@
         <p class="mb-[0.4rem] text-green-400">
           {m.passwordResetSent()}
         </p>
-        <Button variant="outline" class="cursor-pointer w-full">
+        <Button variant="outline" class="cursor-pointer w-full" disabled={form.loading}>
           {m.return()}
         </Button>
       {:else}
