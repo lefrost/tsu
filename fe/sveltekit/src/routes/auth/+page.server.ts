@@ -1,8 +1,18 @@
-import { APIError } from 'better-auth/api';
+// import { APIError } from 'better-auth/api';
 import type { Actions } from './$types';
 import { auth, authClient } from '$lib/server/auth';
 import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
+import { translations } from '$all/fe/betterauth/i18n';
+
+function errorMessageGet(error: any, locale: string) {
+  const localeEntry = translations[locale as keyof typeof translations];
+  const message = localeEntry?.[(error as any).body?.code as keyof typeof localeEntry & string];
+
+  return message
+    || (error as any).message
+    || m.unknownError({}, { locale } as any)
+}
 
 export const actions: Actions = {
   emailLogin: async (event) => {
@@ -24,71 +34,40 @@ export const actions: Actions = {
         });
       }
     } catch (error) {
-      if (error instanceof APIError) {
-        return fail(400, { message: error.message });
-        // return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
-      }
-      
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
+      return fail(400, { message: errorMessageGet(error, locale) });
     }
-    //   await auth.api.signInEmail({
-    //     body: { email, password }
-    //   });
 
-    //   return { success: true };
-    // } catch (error) {
-    //   const errorCode = (error as any).body?.code;
-    //   const errorKey = `loginEmail:${errorCode}`;
-
-    //   console.log(`TEST ERROR: ` + errorCode + " - " + error); // test
-      
-
-    //   if (errorCode === `INVALID_EMAIL_OR_PASSWORD`) {
-    //     return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || m.unknownError({}, { locale } as any) });
-    //   } else if (errorCode === `USER_NOT_FOUND`) {
-    //     await auth.api.signUpEmail({
-    //       body: { email, password, name }
-    //     });
-
-    //     return fail(400, {
-    //       message: m.emailVerify({}, { locale } as any)
-    //     });
-    //   } else if (errorCode === `EMAIL_NOT_VERIFIED`) {
-    //     await authClient.sendVerificationEmail({ email });
-    //     return fail(400, {
-    //       message: m.emailVerify({}, { locale } as any)
-    //     });
-    //   }
-
-    //   if (error instanceof APIError) {
-    //     return fail(400, { message: (m as any)[errorKey]?.({}, { locale }) || error.message });
-    //   }
-
-    //   return fail(500, { message: m.unknownError({}, { locale } as any) });
+    return { success: true };
   },
 
   logout: async (event) => {
-    await auth.api.signOut({
-      headers: event.request.headers
-    });
-    return;
+    const formData = await event.request.formData();
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    try {
+      await auth.api.signOut({
+        headers: event.request.headers
+      });
+    } catch (error) {
+      return fail(400, { message: errorMessageGet(error, locale) });
+    }
+    return { success: true };
   },
 
-  emailVerificationResend: async (event) => {
-    const formData = await event.request.formData();
-    const email = formData.get(`email`)?.toString() ?? ``;
-    const locale = formData.get(`locale`)?.toString() ?? ``;
-    
-    try {
-      await authClient.sendVerificationEmail({ email });
-      return { success: true };
-    } catch (error) {
-      if (error instanceof APIError) {
-        return fail(400, { message: error.message });
-      }
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
-    }
-  },
+  // emailVerificationResend: async (event) => {
+  //   const formData = await event.request.formData();
+  //   const email = formData.get(`email`)?.toString() ?? ``;
+  //   const locale = formData.get(`locale`)?.toString() ?? ``;
+
+  //   try {
+  //     await authClient.sendVerificationEmail({ 
+  //       email
+  //     });
+  //   } catch (error) {
+  //     return fail(400, { message: errorMessageGet(error, locale) });
+  //   }
+
+  //   return { success: true };
+  // },
 
   passwordForgot: async (event) => {
     const formData = await event.request.formData();
@@ -99,34 +78,28 @@ export const actions: Actions = {
       await auth.api.requestPasswordReset({
         body: { email, redirectTo: `${process.env.FE_URL}/auth/reset-password` }
       });
-
-      return { success: true };
     } catch (error) {
-      if (error instanceof APIError) {
-        return fail(400, { message: error.message });
-      }
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
+      return fail(400, { message: errorMessageGet(error, locale) });
     }
+    
+    return { success: true };
   },
 
   passwordReset: async (event) => {
     const formData = await event.request.formData();
     const locale = formData.get(`locale`)?.toString() ?? ``;
     const password = formData.get(`password`)?.toString() ?? ``;
-    const token = event.url.searchParams.get(`token`) ?? '';
+    const token = formData.get(`token`)?.toString() ?? ``;
 
     try {
       await auth.api.resetPassword({
         body: { newPassword: password, token }
       });
-      
-      throw redirect(302, `/`);
     } catch (error) {
-      if (error instanceof APIError) {
-        return fail(400, { message: error.message });
-      }
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
+      return fail(400, { message: errorMessageGet(error, locale) });
     }
+    
+    return redirect(302, `/`);
   },
 
   socialLogin: async (event) => {
@@ -135,25 +108,26 @@ export const actions: Actions = {
     const locale = formData.get(`locale`)?.toString() ?? ``;
     const provider = formData.get(`provider`)?.toString() ?? ``;
 
+    let result;
+
     try {
-      const result = await auth.api.signInSocial({
+      result = await auth.api.signInSocial({
         body: {
           provider: provider,
           callbackURL,
         }
-      });
-
-      if (result.url) {
-        return redirect(302, result.url);
-      }
-
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
+      })
     } catch (error) {
-      if (error instanceof APIError) {
-        return fail(400, { message: error.message });
-      }
-      return fail(500, { message: m.unknownError({}, { locale } as any) });
+      return fail(400, { message: errorMessageGet(error, locale) });
     }
+    
+    if (result?.url) {
+      return redirect(302, result.url);
+    }
+
+    return fail(400, {
+      message: m.unknownError({}, { locale } as any)
+    });
   },
 
   twoFactorDisable: async (event) => {

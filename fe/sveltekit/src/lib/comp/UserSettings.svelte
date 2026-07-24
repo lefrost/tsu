@@ -5,6 +5,9 @@
   import { formCreate } from '$lib/form.svelte';
   import { Button } from "$lib/components/ui/button/index.js";
 	import { m } from '$paraglide/generated/messages';
+	import { getLocale } from '$paraglide/generated/runtime';
+  
+  let locale = $state(getLocale());
 
   let form = formCreate({
     onSuccess: async () => {
@@ -16,6 +19,7 @@
 </script>
 
 <form method="post" action="/auth?/logout" use:enhance={form.enhance}>
+  <input type="hidden" name="locale" value={locale} />
   {#if user.emailVerified}
     <!-- tba -->
   {:else}

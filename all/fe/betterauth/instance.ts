@@ -45,13 +45,10 @@ export const authConfig = {
     }
   },
   plugins: [
-    i18n({
-      translations,
-      detection: [`callback`],
-      getLocale: (ctx) => {
-        throw new Error() // force fallback --- todo: find actual fix or update on patch
-      },
-    }),
+    // i18n({
+    //   defaultLocale: `en`,
+    //   translations
+    // }),
     twoFactor() as any
   ],
   socialProviders: {

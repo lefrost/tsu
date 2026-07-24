@@ -1,8 +1,13 @@
 // src: https://github.com/marcellosso/better-auth-localization/tree/main/src/translations
 
 export const translations = {
+  // tba: override for "en"
+  
   ja: {
-    	// User related errors
+    // adhoc
+    VALIDATION_ERROR: "検証エラー",
+
+    // User related errors
     USER_NOT_FOUND: "ユーザーが見つかりません",
     FAILED_TO_CREATE_USER: "ユーザーの作成に失敗しました",
     FAILED_TO_UPDATE_USER: "ユーザーの更新に失敗しました",

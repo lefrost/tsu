@@ -27,7 +27,6 @@
         //   headers: { 'Content-Type': 'application/json' },
         //   body: JSON.stringify({ locale: lang.locale }),
         // });
-
       }}>
         {lang.label}
       </DropdownMenu.Item>

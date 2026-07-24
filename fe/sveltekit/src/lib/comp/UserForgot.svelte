@@ -26,17 +26,22 @@
         {form.message}
       </p>
     {/if}
-    {#if form.success}
-      <p class="mb-[0.4rem] text-green-400">
-        {m.passwordResetSent()}
-      </p>
-      <Button variant="outline" class="cursor-pointer w-full">
-        {m.return()}
-      </Button>
-    {:else}
-      <Button type="submit" class="cursor-pointer w-full">
-        {m.passwordResetSend()}
-      </Button>
-    {/if}
+    <div class="flex flex-col gap-[0.6rem] self-stretch">
+      {#if form.success}
+        <p class="mb-[0.4rem] text-green-400">
+          {m.passwordResetSent()}
+        </p>
+        <Button variant="outline" class="cursor-pointer w-full">
+          {m.return()}
+        </Button>
+      {:else}
+        <Button type="submit" class="cursor-pointer w-full">
+          {m.passwordResetSend()}
+        </Button>
+        <Button variant="outline" class="cursor-pointer w-full" onclick={() => { forgot = false; }}>
+          {m.cancel()}
+        </Button>
+      {/if}
+    </div>
   </div>
 </form>

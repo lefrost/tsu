@@ -1,4 +1,3 @@
-// src/routes/api/set-locale/+server.ts
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+  import { page } from '$app/state';
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
@@ -10,6 +11,8 @@
   
   let locale = $state(getLocale());
   let form = formCreate();
+  
+  const token = $derived(page.url.searchParams.get(`token`));
 </script>
 
 <div class="flex flex-col h-full items-center justify-center w-full">
@@ -17,6 +20,7 @@
     <Card.Content>
       <form method="post" action="/auth?/passwordReset" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem]">
         <input type="hidden" name="locale" value={locale} />
+        <input type="hidden" name="token" value={token} />
         <Label for="email">
           {m.passwordNew()}
         </Label>

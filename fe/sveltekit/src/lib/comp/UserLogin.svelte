@@ -13,18 +13,13 @@
   let locale = $state(getLocale());
 
   let emailForm = formCreate({
-    onSuccess: async () => {
-      await invalidateAll();
-    }
+    onSuccess: async () => { await invalidateAll(); }
   });
 </script>
 
 {#if forgot}
   <div class="flex flex-col gap-[0.6rem] self-stretch">
     <UserForgot bind:forgot={forgot} />
-    <Button variant="outline" class="cursor-pointer w-full" onclick={() => { forgot = false; }}>
-      {m.cancel()}
-    </Button>
   </div>
 {:else}
   <form method="post" action="/auth?/emailLogin" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">

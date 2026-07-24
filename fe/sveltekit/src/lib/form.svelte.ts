@@ -1,3 +1,5 @@
+import { goto } from '$app/navigation';
+
 export function formCreate(options?: { onSuccess?: () => void }) {
   let data = $state<{ message?: string, success?: boolean }>({});
 
@@ -7,6 +9,8 @@ export function formCreate(options?: { onSuccess?: () => void }) {
         data = { message: result.error?.message || `An error occurred` };
       } else if (result.type === `failure`) {
         data = { message: result.data?.message || `An error occurred` };
+      } else if (result.type === `redirect`) {
+        await goto(result.location);
       } else {
         data = { success: true, message: result.data?.message };
         if (options?.onSuccess) await options.onSuccess();
