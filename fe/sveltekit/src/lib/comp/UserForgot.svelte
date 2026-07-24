@@ -23,21 +23,24 @@
     <Input type="email" name="email" />
   </div>
   <div class="flex flex-col self-stretch">
-    {#if form.message}
-      <p class="mb-[0.4rem] text-red-400">
-        {form.message}
-      </p>
-    {/if}
-    <div class="flex flex-col gap-[0.6rem] self-stretch">
-      {#if form.success}
+    {#if form.updated}
+      {#if form.success}      
         <p class="mb-[0.4rem] text-green-400">
           {m.passwordResetSent()}
         </p>
-        <Button variant="outline" class="cursor-pointer w-full" disabled={form.loading}>
+      {:else}
+        <p class="mb-[0.4rem] text-red-400">
+          {form.error}
+        </p>
+      {/if}
+    {/if}
+    <div class="flex flex-col gap-[0.6rem] self-stretch">
+      {#if form.success}
+        <Button variant="outline" class="cursor-pointer w-full">
           {m.return()}
         </Button>
       {:else}
-        <Button type="submit" class="cursor-pointer w-full">
+        <Button type="submit" class="cursor-pointer w-full" disabled={form.loading}>
           {m.passwordResetSend()}
         </Button>
         <Button variant="outline" class="cursor-pointer w-full" onclick={() => { forgot = false; }}>

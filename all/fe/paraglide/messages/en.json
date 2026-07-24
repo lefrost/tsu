@@ -17,5 +17,7 @@
 	"passwordResetSent": "Password reset link sent.",
 	"return": "Return",
 	"signup": "Sign up",
-	"emailVerify": "Verification email sent. Please check your inbox."
+	"emailVerificationSent": "Verification email sent. Please check your inbox.",
+	"emailVerificationPrompt": "Verify your email to gain full access.",
+	"emailVerificationResend": "Resend verification email"
 }

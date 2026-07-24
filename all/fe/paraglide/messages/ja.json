@@ -17,5 +17,7 @@
 	"passwordResetSent": "パスワードリセットリンクを送信しました。",
 	"return": "戻る",
 	"signup": "新規登録",
-	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。"
+	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。",
+	"emailVerificationPrompt": "メールアドレスを確認して、フルアクセス権限を取得してください。",
+	"emailVerificationResend": "確認メールを再送信します"
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { UserLogin, UserSettings } from '$lib/comp';
+  import { UserEmailVerify, UserLogin, UserLogout, UserSettings } from '$lib/comp';
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
@@ -17,9 +17,14 @@
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" class="p-0 w-[16rem]">
     <Card.Root>
-      <Card.Content>
+      <Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
         {#if user}
-          <UserSettings />
+          {#if user.emailVerified}
+            <UserSettings />
+          {:else}
+            <UserEmailVerify />
+          {/if}
+          <UserLogout />
         {:else}
           <UserLogin />
         {/if}

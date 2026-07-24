@@ -33,7 +33,7 @@ export const authConfig = {
     }
   },
   emailVerification: {
-    callbackURL: `/?email-verified=true`,
+    callbackURL: encodeURIComponent(`/?email-verified=true`),
     enabled: true,
     sendOnSignUp: true,
     async sendVerificationEmail(data: { user: User; url: string; token: string }) {

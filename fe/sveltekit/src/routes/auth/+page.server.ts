@@ -53,21 +53,21 @@ export const actions: Actions = {
     return { success: true };
   },
 
-  // emailVerificationResend: async (event) => {
-  //   const formData = await event.request.formData();
-  //   const email = formData.get(`email`)?.toString() ?? ``;
-  //   const locale = formData.get(`locale`)?.toString() ?? ``;
+  emailVerificationResend: async (event) => {
+    const formData = await event.request.formData();
+    const email = formData.get(`email`)?.toString() ?? ``;
+    const locale = formData.get(`locale`)?.toString() ?? ``;
 
-  //   try {
-  //     await authClient.sendVerificationEmail({ 
-  //       email
-  //     });
-  //   } catch (error) {
-  //     return fail(400, { message: errorMessageGet(error, locale) });
-  //   }
+    try {
+      await authClient.sendVerificationEmail({ 
+        email
+      });
+    } catch (error) {
+      return fail(400, { message: errorMessageGet(error, locale) });
+    }
 
-  //   return { success: true };
-  // },
+    return { success: true };
+  },
 
   passwordForgot: async (event) => {
     const formData = await event.request.formData();

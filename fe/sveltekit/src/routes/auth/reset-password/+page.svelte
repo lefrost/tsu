@@ -27,9 +27,9 @@
           {m.passwordNew()}
         </Label>
         <Input type="password" name="password" />
-        {#if form.message}
+        {#if form.updated && form.error}
           <p class="text-red-400">
-            {form.message}
+            {form.error}
           </p>
         {/if}
         <div class="flex flex-row gap-[0.6rem] self-stretch">

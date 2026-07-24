@@ -52,8 +52,8 @@
       <Input type="password" name="password" />
     </div>
     <div class="flex flex-col self-stretch">
-      {#if emailForm.message}
-        <p class="mb-[0.4rem] text-red-400">{emailForm.message}</p>
+      {#if emailForm.updated && emailForm.error}
+        <p class="mb-[0.4rem] text-red-400">{emailForm.error}</p>
       {/if}
       <div class="flex flex-row gap-[0.6rem] self-stretch">
         <Button type="submit" name="action" value="login" class="cursor-pointer grow-1" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
