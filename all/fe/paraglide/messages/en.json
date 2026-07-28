@@ -1,7 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"accountNotLinked": "To use social sign-on with this account, please login with your email and password, and verify your email.",
 	"email": "Email",
-	"heading": "Hello, {name}.",
+	"hello": "Hello, {name}.",
 	"language": "Language",
 	"login": "Login",
 	"socialLogin": "Login with {provider}",
@@ -9,6 +10,7 @@
 	"name": "Tsu",
 	"password": "Password",
 	"passwordForgot": "Forgot your password?",
+	"passwordReset": "Reset password",
 	"passwordResetSend": "Send password reset link",
 	"cancel": "Cancel",
 	"unknownError": "Unknown error",

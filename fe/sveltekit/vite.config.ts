@@ -1,3 +1,4 @@
+
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite';

@@ -4,6 +4,6 @@
 
 <div class="flex flex-1 flex-col font-medium items-center justify-center">
   <div class="text-5xl">
-    {m.heading({ name: m.name() })}
+    {m.hello({ name: m.name() })}
   </div>
 </div>

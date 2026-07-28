@@ -1,7 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"accountNotLinked": "このアカウントでソーシャル サインオンを使用するには、電子メールとパスワードを使用してログインし、電子メールを確認してください。",
 	"email": "メール",
-	"heading": "こんにちは、{name}。",
+	"hello": "こんにちは、{name}。",
 	"language": "言語",
 	"login": "ログイン",
 	"socialLogin": "{provider}でログイン",
@@ -9,6 +10,7 @@
 	"name": "ツ",
 	"password": "パスワード",
 	"passwordForgot": "パスワードをお忘れですか？",
+	"passwordReset": "パスワードをリセットする",
 	"passwordResetSend": "パスワードリセットリンクを送信",
 	"cancel": "キャンセル",
 	"unknownError": "不明なエラー",

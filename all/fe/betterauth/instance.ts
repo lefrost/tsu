@@ -17,6 +17,17 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const socialProviders = {
+  github: {
+    clientId: process.env.GITHUB_CLIENT_ID as string,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET as string
+  },
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID as string,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+  }
+};
+
 export const authConfig = {
   appName: process.env.NAME,
   baseURL: process.env.FE_URL,
@@ -51,17 +62,12 @@ export const authConfig = {
     // }),
     twoFactor() as any
   ],
-  socialProviders: {
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string
-    },
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
-    }
-  },
+  socialProviders,
   account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: Object.keys(socialProviders),
+    },
     fields: {
       accessTokenExpiresAt: `access_token_expires`,
       createdAt: `created`,

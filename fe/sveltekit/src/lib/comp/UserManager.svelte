@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { UserEmailVerify, UserLogin, UserLogout, UserSettings } from '$lib/comp';
+  import { UserAccounts, UserEmailVerify, UserLogin, UserLogout } from '$lib/comp';
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
@@ -20,7 +20,7 @@
       <Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
         {#if user}
           {#if user.emailVerified}
-            <UserSettings />
+            <UserAccounts />
           {:else}
             <UserEmailVerify />
           {/if}

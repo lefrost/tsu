@@ -18,7 +18,7 @@
 
 <form method="post" action="/auth?/logout" use:enhance={form.enhance}>
   <input type="hidden" name="locale" value={locale} />
-  <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={form.loading}>
+  <Button type="submit" variant="destructive" class="cursor-pointer w-full" disabled={form.loading}>
     {m.logout()}
   </Button>
 </form>

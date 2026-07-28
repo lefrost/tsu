@@ -1,6 +1,7 @@
 // import { APIError } from 'better-auth/api';
 import type { Actions } from './$types';
-import { auth, authClient } from '$lib/server/auth';
+import { authClient } from '$lib/auth';
+import { auth } from '$lib/server/auth';
 import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
 import { translations } from '$all/fe/betterauth/i18n';
@@ -115,6 +116,7 @@ export const actions: Actions = {
         body: {
           provider: provider,
           callbackURL,
+          errorCallbackURL: `/auth/error`,
         }
       })
     } catch (error) {

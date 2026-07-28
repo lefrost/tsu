@@ -20,7 +20,7 @@
 <div class="flex flex-col h-full items-center justify-center w-full">
   <Card.Root>
     <Card.Content>
-      <form method="post" action="/auth?/passwordReset" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem]">
+      <form method="post" action="/auth?/passwordReset" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem] w-[12rem]">
         <input type="hidden" name="locale" value={locale} />
         <input type="hidden" name="token" value={token} />
         <Label for="email">

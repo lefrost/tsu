@@ -8,6 +8,8 @@ export function formCreate(options?: { onSuccess?: () => void; job?: string }) {
 
   function enhance() {
     if (options?.job) jobs.add(options.job);
+    
+    data = {};
 
     return async ({ result }: { result: any }) => {
       let locale = getLocale();
