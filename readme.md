@@ -46,8 +46,8 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All /fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
-| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All /fe | BetterAuth default SSO option | WIP |
-| [Google OAuth](https://better-auth.com/docs/authentication/google) | All /fe | BetterAuth default SSO option | WIP |
+| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All /fe | Better Auth default SSO option | WIP |
+| [Google OAuth](https://better-auth.com/docs/authentication/google) | All /fe | Better Auth default SSO option | WIP |
 | [Lucide](https://github.com/lucide-icons/lucide/) | All /fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
