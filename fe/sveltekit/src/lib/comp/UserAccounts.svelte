@@ -1,25 +1,139 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+  import { invalidateAll } from '$app/navigation';
+  import { page } from '$app/state';
   import { authClient } from '$lib/auth';
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { cache } from '$lib/cache';
+  import { Button } from '$lib/components/ui/button';
+  import { Spinner } from '$lib/components/ui/spinner';
+  import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
+	import { getLocale } from '$paraglide/generated/runtime';
   import { onMount } from 'svelte';
+  
+  type Account = Awaited<ReturnType<typeof authClient.listAccounts>>[`data`][number];
+  type Form = ReturnType<typeof formCreate>;
+  type Locale = ReturnType<typeof getLocale>;
+  type User = ReturnType<typeof page.data.user>;
+    
+  let accounts: Account[] = $state([]);
+  let locale: Locale = $state(getLocale());
+  let user : User = $derived(page.data.user);
 
-  let accounts = $state([]);
+  let socialLinkForm: Form = formCreate({
+    job: `socialLink`
+  });
+
+  let socialUnlinkForm: Form = formCreate({
+    job: `socialUnlink`,
+    onSuccess: async () => {
+      await invalidateAll();
+    }
+  });
   
   onMount(async () => {
-    accounts = await authClient.listAccounts() as any;
+    let cachedAccounts: Account[] = cache.get(`accounts`) || [];
+    if (cachedAccounts.length) {
+      accounts = cachedAccounts;
+    } else {
+      accounts = (await authClient.listAccounts()).data || [];
+      cache.set(`accounts`, accounts);
+    }
   });
 </script>
 
-<div class="flex flex-col gap-[0.6rm] self-stretch">
-  {#each accounts as account}
-    <!-- tba: email & password; comes with "set password" or "reset password" -->
+<div class="flex flex-col gap-[0.4rem] self-stretch">
+  <div class="flex flex-row gap-[0.4rem] self-stretch">
+    <div class="opacity-40">
+      {m.email()}
+    </div>
+    <div class="ms-auto">
+      {user.email}
+    </div>
+  </div>
+  {#if accounts.length}
+    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+      <div class="opacity-40">{m.password()}</div>
+      {#if accounts.some(account => account.providerId === `credential`)}
+        <div>{m.set()}</div>
+      {:else}
+        <div class="opacity-30">{m.unset()}</div>
+      {/if}
+      <Button class="cursor-pointer h-auto ms-auto" href="/auth/reset-password" variant="outline">
+        {#if accounts.some(account => account.providerId === `credential`)}
+          {m.reset()}
+        {:else}
+          {m.set()}
+        {/if}
+      </Button>
+    </div>
 
-    <!-- <Button class="cursor-pointer" href="/auth/reset-password" variant="outline">
-      {m.passwordReset()}
-    </Button> -->
+    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+      <span class="opacity-40">
+        GitHub
+      </span>
 
-    <!-- tba: github -->
-    <!-- tba: google -->
-  {/each}
+      {#if accounts.some(account => account.providerId === `github`)}
+        <div>{m.linked()}</div>
+        <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
+          <input type="hidden" name="locale" value={locale} />
+          <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="github" variant="outline">
+            {m.unlink()}
+          </Button>
+        </form>
+      {:else}
+        <div class="opacity-30">{m.unlinked()}</div>
+        <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
+          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="action" value="link" />
+          <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="github" variant="outline">
+            {m.link()}
+          </Button>
+        </form>
+      {/if}
+    </div>
+
+    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+      <span class="opacity-40">
+        Google
+      </span>
+
+      {#if accounts.some(account => account.providerId === `google`)}
+        <div>{m.linked()}</div>
+        <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
+          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="action" value="unlink" />
+          <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="google" variant="outline">
+            {m.unlink()}
+          </Button>
+        </form>
+      {:else}
+        <div class="opacity-30">{m.unlinked()}</div>
+        <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
+          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="action" value="link" />
+          <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="google" variant="outline">
+            {m.link()}
+          </Button>
+        </form>
+      {/if}
+    </div>
+
+    {#if socialLinkForm.updated}
+      <div class="text-red-400">
+        {socialLinkForm.error}
+      </div>
+    {/if}
+    
+    {#if socialUnlinkForm.updated}
+      <div class="text-red-400">
+        {socialUnlinkForm.error}
+      </div>
+    {/if}
+  {:else}
+    <div class="flex flex-row items-center gap-[0.2rem] opacity-40">
+      <Spinner />
+      {m.accountsLoading()}
+    </div>
+  {/if}
 </div>

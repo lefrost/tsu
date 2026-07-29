@@ -33,7 +33,7 @@
           </p>
         {/if}
         <div class="flex flex-row gap-[0.6rem] self-stretch">
-          <Button type="submit" class="cursor-pointer grow-1" disabled={form.loading}>
+          <Button type="submit" class="grow-1" disabled={form.loading}>
             {m.submit()}
           </Button>
           <Button href="/" variant="outline" class="cursor-pointer">

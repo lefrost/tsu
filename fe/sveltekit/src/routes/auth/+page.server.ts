@@ -1,6 +1,4 @@
-// import { APIError } from 'better-auth/api';
 import type { Actions } from './$types';
-import { authClient } from '$lib/auth';
 import { auth } from '$lib/server/auth';
 import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
@@ -60,8 +58,9 @@ export const actions: Actions = {
     const locale = formData.get(`locale`)?.toString() ?? ``;
 
     try {
-      await authClient.sendVerificationEmail({ 
-        email
+      await auth.api.sendVerificationEmail({
+        body: { email },
+        headers: event.request.headers,
       });
     } catch (error) {
       return fail(400, { message: errorMessageGet(error, locale) });
@@ -103,6 +102,31 @@ export const actions: Actions = {
     return redirect(302, `/`);
   },
 
+  socialLink: async (event) => {
+    const formData = await event.request.formData();
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    const provider = formData.get(`provider`)?.toString() ?? ``;
+
+    let result;
+
+    try {
+      result = await auth.api.linkSocialAccount({
+        body: { provider },
+        headers: event.request.headers,
+      });
+    } catch (error) {
+      return fail(400, { message: errorMessageGet(error, locale) });
+    }
+    
+    if (result && !(`error` in result) && `url` in result) {
+      return redirect(302, result.url);
+    }
+
+    return fail(400, {
+      message: m.unknownError({}, { locale } as any)
+    });
+  },
+
   socialLogin: async (event) => {
     const formData = await event.request.formData();
     const callbackURL = formData.get(`callbackURL`)?.toString() ?? `/`;
@@ -130,6 +154,23 @@ export const actions: Actions = {
     return fail(400, {
       message: m.unknownError({}, { locale } as any)
     });
+  },
+
+  socialUnlink: async (event) => {
+    const formData = await event.request.formData();
+    const locale = formData.get(`locale`)?.toString() ?? ``;
+    const provider = formData.get(`provider`)?.toString() ?? ``;
+
+    try {
+      await auth.api.unlinkAccount({
+        body: { providerId: provider },
+        headers: event.request.headers,
+      });
+    } catch (error) {
+      return fail(400, { message: errorMessageGet(error, locale) });
+    }
+    
+    return { success: true };
   },
 
   twoFactorDisable: async (event) => {

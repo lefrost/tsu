@@ -16,11 +16,11 @@
 
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>
-    <Button variant="outline" class="cursor-pointer">{m.language()}</Button>
+    <Button variant="outline">{m.language()}</Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" >
     {#each langs as lang}
-      <DropdownMenu.Item class="cursor-pointer" onclick={async () => {
+      <DropdownMenu.Item onclick={async () => {
         setLocale(lang.locale);
         // await fetch('/i18n', {
         //   method: 'POST',

@@ -18,12 +18,8 @@
     onSuccess: async () => { await invalidateAll(); }
   });
 
-  let googleForm = formCreate({
-    job: `googleLogin`
-  });
-
-  let githubForm = formCreate({
-    job: `githubLogin`
+  let socialForm = formCreate({
+    job: `socialLogin`
   });
 </script>
 
@@ -45,7 +41,7 @@
         <Label for="password">
           {m.password()}
         </Label>
-        <div class="cursor-pointer ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4 hover:underline" onclick={() => { forgot = true; }}>
+        <div class="ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4 hover:underline" onclick={() => { forgot = true; }}>
           {m.passwordForgot()}
         </div>
       </div>
@@ -56,31 +52,23 @@
         <p class="mb-[0.4rem] text-red-400">{emailForm.error}</p>
       {/if}
       <div class="flex flex-row gap-[0.6rem] self-stretch">
-        <Button type="submit" name="action" value="login" class="cursor-pointer grow-1" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
+        <Button type="submit" name="action" value="login" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
           {m.login()}
         </Button>
-        <Button type="submit" variant="outline" name="action" value="signup" class="cursor-pointer grow-1" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
+        <Button type="submit" variant="outline" name="action" value="signup" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
           {m.signup()}
         </Button>
       </div>
     </div>
   </form>
-  <div class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <form method="post" action="/auth?/socialLogin" use:enhance={googleForm.enhance}>
-      <input type="hidden" name="callbackURL" value="/" />
-      <input type="hidden" name="locale" value={locale} />
-      <input type="hidden" name="provider" value="google" />
-      <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
-        {m.socialLogin({ provider: `Google` })}
-      </Button>
-    </form>
-    <form method="post" action="/auth?/socialLogin" use:enhance={githubForm.enhance}>
-      <input type="hidden" name="callbackURL" value="/" />
-      <input type="hidden" name="locale" value={locale} />
-      <input type="hidden" name="provider" value="github" />
-      <Button type="submit" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || googleForm.loading || githubForm.loading}>
-        {m.socialLogin({ provider: `GitHub` })}
-      </Button>
-    </form>
-  </div>
+  <form method="post" action="/auth?/socialLogin" use:enhance={socialForm.enhance} class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
+    <input type="hidden" name="callbackURL" value="/" />
+    <input type="hidden" name="locale" value={locale} />
+    <Button type="submit" name="provider" value="google" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
+      {m.socialLogin({ provider: `Google` })}
+    </Button>
+    <Button type="submit" name="provider" value="github" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
+      {m.socialLogin({ provider: `GitHub` })}
+    </Button>
+  </form>
 {/if}

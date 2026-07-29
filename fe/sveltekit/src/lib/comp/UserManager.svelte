@@ -6,12 +6,14 @@
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import { m } from '$paraglide/generated/messages';
 
-  let user = $derived(page.data.user);
+  type User = ReturnType<typeof page.data.user>[number];
+  
+  let user: User = $derived(page.data.user);
 </script>
 
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>
-    <Button variant="outline" class="cursor-pointer">
+    <Button variant="outline">
       {user ? user.email : m.login()}
     </Button>
   </DropdownMenu.Trigger>

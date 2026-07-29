@@ -36,14 +36,14 @@
     {/if}
     <div class="flex flex-col gap-[0.6rem] self-stretch">
       {#if form.success}
-        <Button variant="outline" class="cursor-pointer w-full">
+        <Button variant="outline" class="w-full">
           {m.return()}
         </Button>
       {:else}
-        <Button type="submit" class="cursor-pointer w-full" disabled={form.loading}>
+        <Button type="submit" class="w-full" disabled={form.loading}>
           {m.passwordResetSend()}
         </Button>
-        <Button variant="outline" class="cursor-pointer w-full" onclick={() => { forgot = false; }}>
+        <Button variant="outline" class="w-full" onclick={() => { forgot = false; }}>
           {m.cancel()}
         </Button>
       {/if}
