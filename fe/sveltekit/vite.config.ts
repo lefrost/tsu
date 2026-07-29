@@ -1,5 +1,6 @@
 
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
+import { routesSync } from './src/lib/scripts/routes-sync';
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import adapter from 'svelte-adapter-bun';
@@ -18,6 +19,8 @@ export default defineConfig(({ mode }) => {
 				experimentalPerLocaleBuild: false,
 				strategy: ['url']
 			}),
+
+			routesSync(),
 			
 			sveltekit({
 				compilerOptions: {
