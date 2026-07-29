@@ -1,4 +1,6 @@
-**Tsu** is a fullstack web boilerplate with a customizable stack. (Currently a work-in-progress.)
+### (WIP) **Tsu** is a fullstack web boilerplate with a customizable stack.
+
+Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and deployable to a [Fly machine](https://fly.io/docs/machines/) as a [Docker image](https://docs.docker.com/reference/dockerfile/). Get started with the following commands:
 
 - Select one folder from `/shelf/be` and `shelf/fe` respectively, and move it into `/be` and `/fe` respectively.
 - Make adjustments within `/edge` of the selected `/be/~` and `/fe/~` folders, decoupled from boilerplate, barring documented edge cases. 
@@ -9,19 +11,60 @@
 - Execute DB patch: `moon run :dbup`
 - Spin up: `moon run :dev`
 - Build and preview: `moon run :build`
-- (TBA~)
 
-Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and deployable to a [Fly machine](https://fly.io/docs/machines/) as a [Docker image](https://docs.docker.com/reference/dockerfile/). Frontend framework options are: [SvelteKit](https://github.com/sveltejs/kit) (using [pnpm](https://github.com/pnpm/pnpm) package management and a [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment); (TBA). Backend framework options are: [Elysia](https://github.com/elysiajs/elysia) (using [Bun](https://github.com/oven-sh/bun) runtime and package management); (TBA). All frontend frameworks independently use: [Better Auth](https://github.com/better-auth/better-auth) BFF user authentication with password resetting, TOTP 2FA; [Lucide](https://github.com/lucide-icons/lucide/) icons; [Nodemailer](https://github.com/nodemailer/nodemailer) SMTP; [Paraglide](https://github.com/opral/paraglide-js) i18n; [Shadcn](https://github.com/shadcn-ui/ui) UI components; [Tailwind](https://github.com/tailwindlabs/tailwindcss) CSS classes; (TBA). All backend frameworks independently use: (TBA). All stack variations use: [Drizzle](https://github.com/drizzle-team/drizzle-orm) ORM for a centralized [PostgreSQL](https://github.com/postgres/postgres) database deployed as a [Neon](https://github.com/neondatabase/neon) instance; [TypeScript](https://github.com/microsoft/typescript) in place of JavaScript; (TBA). Default user authentication options are: email + password; and SSO with [GitHub OAuth](https://better-auth.com/docs/authentication/github) and [Google OAuth](https://better-auth.com/docs/authentication/google). (TBA~)
+### Frontend options:
 
-Prerequisites:
+| Directory | Client-side | Server-side | Status | Prerequisites | Local ingredients |
+| --- | --- | --- | --- | --- | --- |
+| fe/astrosvelte | [Svelte](https://github.com/sveltejs/svelte) | Astro | TBA | - | - |
+| fe/next | [React](https://github.com/react/react) | [Next](https://github.com/vercel/next.js) | TBA | - | - |
+| fe/nuxt | [Vue](https://github.com/vuejs/core) | [Nuxt](https://github.com/nuxt/nuxt) | TBA | - | - |
+| fe/sveltekit | Svelte | [SvelteKit](https://github.com/sveltejs/kit) | WIP | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment. |
 
-- [Node](https://nodejs.org/en/download).
+### Backend options:
+
+| Directory | Framework | Runtime | Status | Prerequistes | Local ingredients |
+| --- | --- | --- | --- | --- | --- |
+| be/actixweb | [Actix Web](https://github.com/actix/actix-web) | [Tokio](https://github.com/tokio-rs/tokio) ([Rust](https://github.com/rust-lang/rust)) | TBA | - | - |
+| be/drogon | [Drogon](https://github.com/drogonframework/drogon) | C++ | TBA | - | - |
+| be/elysia | [Elysia](https://github.com/elysiajs/elysia) | [Bun](https://github.com/oven-sh/bun) | WIP | Bun | Bun package management; [Bunqueue](https://github.com/egeominotti/bunqueue) job queueing. |
+| be/fastapi | [FastAPI](https://github.com/fastapi/fastapi) | Python | TBA | - | - |
+| be/fiber | [Fiber](https://github.com/gofiber/fiber) | [Go](https://github.com/golang/go) | TBA | - | - |
+| be/laravel | [Laravel](https://github.com/laravel/laravel) | PHP | TBA | - | - |
+| be/nest | [Nest](https://github.com/nestjs/nest) | Node | TBA | - | - |
+| be/rails | [Rails](https://github.com/rails/rails) | [Ruby](https://github.com/ruby/ruby) | TBA | - | - |
+| be/springboot | [Spring Boot](https://github.com/spring-projects/spring-boot) | Java | TBA | - | - |
+
+### Miscellaneous ingredients:
+
+| Name | Usage | Purpose | Status |
+| --- | --- | --- | --- |
+| [Better Auth](https://github.com/better-auth/better-auth) | All /fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
+| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All /be | Object storage | TBA |
+| [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as Docker image | TBA |
+| [Dragonfly](https://github.com/dragonflydb/dragonfly) | All /be | In-memory data storage | TBA |
+| [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All /fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
+| [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
+| [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
+| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All /fe | BetterAuth default SSO option | WIP |
+| [Google OAuth](https://better-auth.com/docs/authentication/google) | All /fe | BetterAuth default SSO option | WIP |
+| [Lucide](https://github.com/lucide-icons/lucide/) | All /fe | Icons | WIP |
+| [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
+| [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
+| [Nodemailer](https://github.com/nodemailer/nodemailer) | All /fe, be/elysia, be/nest | SMTP | WIP |
+| [Paraglide](https://github.com/opral/paraglide-js) | All /fe | i18n | WIP |
+| [pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | WIP |
+| [Polar](https://github.com/polarsource/polar) | All /be | User billing and seats | TBA |
+| [PostgreSQL](https://github.com/postgres/postgres) | All | Database | WIP |
+| [Shadcn](https://github.com/shadcn-ui/ui) | All /fe | UI components | WIP |
+| [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable
+| [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All /fe | CSS classes | WIP |
+| [TypeScript](https://github.com/microsoft/typescript) | All /fe, be/elysia/, be/nest | Used in place of JavaScript | WIP |
+| [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of IDE | Stable
+
+
+### Prerequisite library:
+
 - Bun: `powershell -c "irm bun.sh/install.ps1 | iex"`
 - Moon: `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh) ; proto install moon ; proto pin moon latest`
-- (TBA~)
-
-QoL:
-
-- [Ethereal](https://ethereal.email/) for SMTP testing.
-- [Sherlock](https://github.com/opral/sherlock) for Paraglide management in [VS Code](https://github.com/microsoft/vscode).
-- (TBA~)
+- [Node](https://nodejs.org/en/download).
