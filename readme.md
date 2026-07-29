@@ -57,10 +57,11 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Polar](https://github.com/polarsource/polar) | All /be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Database | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All /fe | UI components | WIP |
-| [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable
+| [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All /fe | CSS classes | WIP |
 | [TypeScript](https://github.com/microsoft/typescript) | All /fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
-| [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of IDE | Stable
+| [Vite](https://github.com/vitejs/vite) | All /fe | Frontend build tool | WIP |
+| [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of IDE | Stable |
 
 
 ### Prerequisite library:
