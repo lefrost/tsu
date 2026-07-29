@@ -186,6 +186,6 @@ export const actions: Actions = {
   },
 
   twoFactorVerify: async (event) => {
-    // tba
+    // tba: with standalone page to input 2fa code and call this function as part of login ux
   },
 };

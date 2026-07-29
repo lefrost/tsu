@@ -25,10 +25,7 @@
   });
 
   let socialUnlinkForm: Form = formCreate({
-    job: `socialUnlink`,
-    onSuccess: async () => {
-      await invalidateAll();
-    }
+    job: `socialUnlink`
   });
   
   onMount(async () => {
