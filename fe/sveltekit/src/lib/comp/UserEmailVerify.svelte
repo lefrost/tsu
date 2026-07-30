@@ -21,7 +21,7 @@
 
 <form method="post" action="/auth?/emailVerificationResend" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem] self-stretch">
   <input type="hidden" name="email" value={user.email} />
-  <input type="hidden" name="locale" value={loc} />
+  <input type="hidden" name="loc" value={loc} />
   {#if form.up}
     {#if form.ok}
       <div class="text-green-400">

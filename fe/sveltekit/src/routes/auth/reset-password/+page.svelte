@@ -21,7 +21,7 @@
   <Card.Root>
     <Card.Content>
       <form method="post" action="/auth?/passwordReset" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem] w-[12rem]">
-        <input type="hidden" name="locale" value={loc} />
+        <input type="hidden" name="loc" value={loc} />
         <input type="hidden" name="token" value={token} />
         <Label for="email">
           {m.passwordNew()}

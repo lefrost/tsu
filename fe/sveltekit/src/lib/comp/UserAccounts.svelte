@@ -72,7 +72,7 @@
       {#if accounts.some(account => account.providerId === `github`)}
         <div>{m.linked()}</div>
         <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
-          <input type="hidden" name="locale" value={loc} />
+          <input type="hidden" name="loc" value={loc} />
           <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="github" variant="outline">
             {m.unlink()}
           </Button>
@@ -80,8 +80,8 @@
       {:else}
         <div class="opacity-30">{m.unlinked()}</div>
         <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
-          <input type="hidden" name="locale" value={loc} />
-          <input type="hidden" name="action" value="link" />
+          <input type="hidden" name="loc" value={loc} />
+          <input type="hidden" name="act" value="link" />
           <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="github" variant="outline">
             {m.link()}
           </Button>
@@ -97,8 +97,8 @@
       {#if accounts.some(account => account.providerId === `google`)}
         <div>{m.linked()}</div>
         <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
-          <input type="hidden" name="locale" value={loc} />
-          <input type="hidden" name="action" value="unlink" />
+          <input type="hidden" name="loc" value={loc} />
+          <input type="hidden" name="act" value="unlink" />
           <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="google" variant="outline">
             {m.unlink()}
           </Button>
@@ -106,8 +106,8 @@
       {:else}
         <div class="opacity-30">{m.unlinked()}</div>
         <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
-          <input type="hidden" name="locale" value={loc} />
-          <input type="hidden" name="action" value="link" />
+          <input type="hidden" name="loc" value={loc} />
+          <input type="hidden" name="act" value="link" />
           <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="google" variant="outline">
             {m.link()}
           </Button>

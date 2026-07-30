@@ -68,5 +68,6 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 ### Prerequisite library:
 
 - Bun: `powershell -c "irm bun.sh/install.ps1 | iex"`
+- [Git](https://git-scm.com/install/).
 - Moon: `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh) ; proto install moon ; proto pin moon latest`
 - [Node](https://nodejs.org/en/download).

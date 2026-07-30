@@ -15,7 +15,7 @@
 </script>
 
 <form method="post" action="/auth?/passwordForgot" use:enhance={form.enhance} class="flex flex-col gap-[1.2rem] w-full">
-  <input type="hidden" name="locale" value={loc} />
+  <input type="hidden" name="loc" value={loc} />
   <div class="flex flex-col gap-[0.6rem] self-stretch">
     <Label for="email">
       {m.email()}

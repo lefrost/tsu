@@ -4,32 +4,30 @@ import { m } from '$paraglide/generated/msgs';
 import { fail, redirect } from '@sveltejs/kit';
 import { translations } from '$all/fe/betterauth/i18n';
 
-function erMsgGet(error: any, loc: string) {
+function erMsgGet(er: any, loc: string) {
   const locEntry = translations[loc as keyof typeof translations];
-  const msg = locEntry?.[(error as any).body?.code as keyof typeof locEntry & string];
+  const msg = locEntry?.[(er as any).body?.code as keyof typeof locEntry & string];
 
-  return msg
-    || (error as any).msg
-    || m.unknownError({}, { loc } as any)
+  return msg || m.unknownError({}, { loc } as any)
 }
 
 export const actions: Actions = {
   emailLogin: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.data();
-    const action = dat.get(`action`);
+    const act = dat.get(`act`);
     const email = dat.get(`email`);
     const loc = dat.get(`loc`);
     const name = dat.get(`name`);
     const password = dat.get(`password`);
 
     try {
-      if (action === `login`) {
+      if (act === `login`) {
         await auth.api.signInEmail({
           body: { email, password }
         });
 
-      } else if (action === `signup`) {
+      } else if (act === `signup`) {
         await auth.api.signUpEmail({
           body: { email, password, name }
         });
@@ -124,8 +122,8 @@ export const actions: Actions = {
   socialLink: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.data();
-    const loc = dat.get(`loc`)?.toString();
-    const provider = dat.get(`provider`)?.toString();;
+    const loc = dat.get(`loc`);
+    const provider = dat.get(`provider`);
 
     try {
       let res = await auth.api.linkSocialAccount({
@@ -148,7 +146,7 @@ export const actions: Actions = {
     const req = ev.request;
     const dat = await req.data();
     const callbackUrl = dat.get(`callbackUrl`) ?? `/`;
-    const loc = dat.get(`loc`)?.toString();
+    const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
     try {
@@ -190,24 +188,30 @@ export const actions: Actions = {
     }
   },
 
-  twoFactorDisable: async (ev: RequestEvent) => {
+  twofaDisable: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.data();
-    const loc: string = dat.get(`loc`)?.toString();
+    const loc: string = dat.get(`loc`);
+    const password: string = dat.get(`password`);
 
     try {
-      // tba
+      await (auth.api as any).disableTwoFactor({
+        body: { password },
+        headers: req.headers
+      });
+
+      return { ok: true };
 
     } catch (er) {
       return fail(400, { msg: erMsgGet(er, loc) });
     }
   },
 
-  twoFactorEnable: async (ev: RequestEvent) => {
+  twofaEnable: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.data();
-    const password: string = dat.get(`password`)?.toString();
-    const loc: string = dat.get(`loc`)?.toString();
+    const password: string = dat.get(`password`);
+    const loc: string = dat.get(`loc`);
 
     try {
       const result = await (auth.api as any).enableTwoFactor({
@@ -226,26 +230,13 @@ export const actions: Actions = {
     }
   },
 
-  twoFactorGenerate: async (ev: RequestEvent) => {
+  twofaVerify: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.data();
-    const loc: string = dat.get(`loc`)?.toString();
+    const loc: string = dat.get(`loc`);
 
     try {
-      // tba
-
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
-  },
-
-  twoFactorVerify: async (ev: RequestEvent) => {
-    const req = ev.request;
-    const dat = await req.data();
-    const loc: string = dat.get(`loc`)?.toString();
-
-    try {
-      // tba: with standalone page to input 2fa code and call this function as part of login ux
+      // tba: with standalone page to input 2fa code and call this function as part of login ux; add 2fa intercept in emailLogin and socialLogin
 
     } catch (er) {
       return fail(400, { msg: erMsgGet(er, loc) });

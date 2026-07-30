@@ -28,7 +28,7 @@
   </div>
 {:else}
   <form method="post" action="/auth?/emailLogin" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">
-    <input type="hidden" name="locale" value={loc} />
+    <input type="hidden" name="loc" value={loc} />
     <div class="flex flex-col gap-[0.6rem] self-stretch">
       <Label for="email">
         {m.email()}
@@ -51,18 +51,18 @@
         <p class="mb-[0.4rem] text-red-400">{emailForm.er}</p>
       {/if}
       <div class="flex flex-row gap-[0.6rem] self-stretch">
-        <Button type="submit" name="action" value="login" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
+        <Button type="submit" name="act" value="login" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
           {m.login()}
         </Button>
-        <Button type="submit" variant="outline" name="action" value="signup" class="grow" disabled={emailForm.loading || socialForm.loading}>
+        <Button type="submit" variant="outline" name="act" value="signup" class="grow" disabled={emailForm.loading || socialForm.loading}>
           {m.signup()}
         </Button>
       </div>
     </div>
   </form>
   <form method="post" action="/auth?/socialLogin" use:enhance={socialForm.enhance} class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <input type="hidden" name="callbackURL" value="/" />
-    <input type="hidden" name="locale" value={loc} />
+    <input type="hidden" name="callbackUrl" value="/" />
+    <input type="hidden" name="loc" value={loc} />
     <Button type="submit" name="provider" value="google" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
       {m.socialLogin({ provider: `Google` })}
     </Button>

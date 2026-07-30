@@ -17,7 +17,7 @@
 </script>
 
 <form method="post" action="/auth?/logout" use:enhance={form.enhance}>
-  <input type="hidden" name="locale" value={loc} />
+  <input type="hidden" name="loc" value={loc} />
   <Button type="submit" variant="destructive" class="w-full" disabled={form.loading}>
     {m.logout()}
   </Button>
