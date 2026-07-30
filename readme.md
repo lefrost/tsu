@@ -40,29 +40,29 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 
 | Name | Usage | Purpose | Status |
 | --- | --- | --- | --- |
-| [Better Auth](https://github.com/better-auth/better-auth) | All /fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
-| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All /be | Object storage | TBA |
+| [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
+| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | TBA |
 | [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as Docker image | TBA |
-| [Dragonfly](https://github.com/dragonflydb/dragonfly) | All /be | In-memory data storage | TBA |
-| [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All /fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
+| [Dragonfly](https://github.com/dragonflydb/dragonfly) | All be | In-memory data storage | TBA |
+| [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
-| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All /fe | Better Auth default SSO option | WIP |
-| [Google OAuth](https://better-auth.com/docs/authentication/google) | All /fe | Better Auth default SSO option | WIP |
-| [Lucide](https://github.com/lucide-icons/lucide/) | All /fe | Icons | WIP |
+| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
+| [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
+| [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
-| [Nodemailer](https://github.com/nodemailer/nodemailer) | All /fe, be/elysia, be/nest | SMTP | WIP |
-| [Paraglide](https://github.com/opral/paraglide-js) | All /fe | i18n | WIP |
-| [pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
-| [Polar](https://github.com/polarsource/polar) | All /be | User billing and seats | TBA |
-| [PostgreSQL](https://github.com/postgres/postgres) | All | Database | WIP |
-| [Shadcn](https://github.com/shadcn-ui/ui) | All /fe | UI components | WIP |
-| [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
-| [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All /fe | CSS classes | WIP |
-| [TypeScript](https://github.com/microsoft/typescript) | All /fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
-| [Vite](https://github.com/vitejs/vite) | All /fe | Frontend build tool | WIP |
-| [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of IDE | Stable |
+| [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | WIP |
+| [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
+| [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
+| [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
+| [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
+| [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
+| [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
+| [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
+| [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
+| [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
+| [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
 
 
 ### Prerequisite library:

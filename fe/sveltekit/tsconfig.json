@@ -7,10 +7,12 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"paths": {
-			"$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"],
 			"$all": ["../../all"],
 			"$all/*": ["../../all/*"],
+			"$edge": ["./edge"],
+			"$edge/*": ["./edge/*"],
+			"$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"],
 			"$paraglide": ["../../all/fe/paraglide"],
 			"$paraglide/*": ["../../all/fe/paraglide/*"]
 		},

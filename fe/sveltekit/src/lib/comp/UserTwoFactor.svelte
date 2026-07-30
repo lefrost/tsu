@@ -8,21 +8,21 @@
 
   type Form = ReturnType<typeof formCreate>;
   type User = ReturnType<typeof page.data.user>[number];
-  
+
   let user: User = $derived(page.data.user);
 
   let enableGenerated = false;
 
   let disableForm: Form = formCreate({
     job: `userTwoFactorDisable`,
-    onSuccess: async () => {
+    onOk: async () => {
       await invalidateAll();
     }
   });
 
   let enableForm: Form = formCreate({
     job: `userTwoFactorEnable`,
-    onSuccess: async () => {
+    onOk: async () => {
       await invalidateAll();
     }
   });

@@ -5,19 +5,19 @@
   import { Button } from "$lib/components/ui/button/index.js";
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
-  
-  let locale = $state(getLocale());
+
+  let loc = $state(getLocale());
 
   let form = formCreate({
     job: `logout`,
-    onSuccess: async () => {
+    onOk: async () => {
       await invalidateAll();
     }
   });
 </script>
 
 <form method="post" action="/auth?/logout" use:enhance={form.enhance}>
-  <input type="hidden" name="locale" value={locale} />
+  <input type="hidden" name="locale" value={loc} />
   <Button type="submit" variant="destructive" class="w-full" disabled={form.loading}>
     {m.logout()}
   </Button>

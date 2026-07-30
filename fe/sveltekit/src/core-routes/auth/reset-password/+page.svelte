@@ -8,12 +8,12 @@
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
-  
-  let locale = $state(getLocale());
+
+  let loc = $state(getLocale());
   let form = formCreate({
     job: `passwordReset`
   });
-  
+
   const token = $derived(page.url.searchParams.get(`token`));
 </script>
 
@@ -21,19 +21,19 @@
   <Card.Root>
     <Card.Content>
       <form method="post" action="/auth?/passwordReset" use:enhance={form.enhance} class="flex flex-col gap-[0.6rem] w-[12rem]">
-        <input type="hidden" name="locale" value={locale} />
+        <input type="hidden" name="locale" value={loc} />
         <input type="hidden" name="token" value={token} />
         <Label for="email">
           {m.passwordNew()}
         </Label>
         <Input type="password" name="password" />
-        {#if form.updated && form.error}
+        {#if form.up && form.er}
           <p class="text-red-400">
-            {form.error}
+            {form.er}
           </p>
         {/if}
         <div class="flex flex-row gap-[0.6rem] self-stretch">
-          <Button type="submit" class="grow-1" disabled={form.loading}>
+          <Button type="submit" class="grow" disabled={form.loading}>
             {m.submit()}
           </Button>
           <Button href="/" variant="outline" class="cursor-pointer">

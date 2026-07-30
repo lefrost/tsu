@@ -44,6 +44,7 @@ export default defineConfig(({ mode }) => {
 		resolve: {
 			alias: {
 				'$all': path.resolve(import.meta.dirname, '../../all/'),
+				'$edge': path.resolve(import.meta.dirname, './edge'),
 				'$paraglide': path.resolve(import.meta.dirname, '../../all/fe/paraglide') // paraglide files are generated at runtime
 			}
 		},

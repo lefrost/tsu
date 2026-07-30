@@ -2,9 +2,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale, locales, setLocale } from '$paraglide/generated/runtime';
-  
-  let locale = $state(getLocale());
+	import { locales, setLocale } from '$paraglide/generated/runtime';
 
   let langs = $derived.by(() =>
     locales.map(locale => ({

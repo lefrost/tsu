@@ -6,16 +6,15 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  // import LoaderCircle from "@lucide/svelte/icons/loader-circle";
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
-  
+
   let forgot = $state(false);
-  let locale = $state(getLocale());
+  let loc = $state(getLocale());
 
   let emailForm = formCreate({
     job: `emailLogin`,
-    onSuccess: async () => { await invalidateAll(); }
+    onOk: async () => { await invalidateAll(); }
   });
 
   let socialForm = formCreate({
@@ -29,7 +28,7 @@
   </div>
 {:else}
   <form method="post" action="/auth?/emailLogin" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">
-    <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="locale" value={loc} />
     <div class="flex flex-col gap-[0.6rem] self-stretch">
       <Label for="email">
         {m.email()}
@@ -41,21 +40,21 @@
         <Label for="password">
           {m.password()}
         </Label>
-        <div class="ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4 hover:underline" onclick={() => { forgot = true; }}>
+        <div class="cursor-default hover:underline ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4" onclick={() => { forgot = true; }} onkeydown={() => {}} role="button" tabindex="0">
           {m.passwordForgot()}
         </div>
       </div>
       <Input type="password" name="password" />
     </div>
     <div class="flex flex-col self-stretch">
-      {#if emailForm.updated && emailForm.error}
-        <p class="mb-[0.4rem] text-red-400">{emailForm.error}</p>
+      {#if emailForm.up && emailForm.er}
+        <p class="mb-[0.4rem] text-red-400">{emailForm.er}</p>
       {/if}
       <div class="flex flex-row gap-[0.6rem] self-stretch">
         <Button type="submit" name="action" value="login" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
           {m.login()}
         </Button>
-        <Button type="submit" variant="outline" name="action" value="signup" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
+        <Button type="submit" variant="outline" name="action" value="signup" class="grow" disabled={emailForm.loading || socialForm.loading}>
           {m.signup()}
         </Button>
       </div>
@@ -63,7 +62,7 @@
   </form>
   <form method="post" action="/auth?/socialLogin" use:enhance={socialForm.enhance} class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
     <input type="hidden" name="callbackURL" value="/" />
-    <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="locale" value={loc} />
     <Button type="submit" name="provider" value="google" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
       {m.socialLogin({ provider: `Google` })}
     </Button>

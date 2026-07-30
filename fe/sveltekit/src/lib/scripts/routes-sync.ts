@@ -4,10 +4,10 @@ import { fileURLToPath } from 'url';
 import type { Plugin } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SRC = join(__dirname, `../..`);
-const CORE = join(SRC, `core-routes`);
+const SRC = join(__dirname, `../../..`);
+const CORE = join(SRC, `src/core-routes`);
 const EDGE = join(SRC, `edge/routes`);
-const TARGET = join(SRC, `routes`);
+const TARGET = join(SRC, `src/routes`);
 
 let firstRun = true;
 let timer: number | null = null;

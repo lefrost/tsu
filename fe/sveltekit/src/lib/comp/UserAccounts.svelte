@@ -9,14 +9,14 @@
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
   import { onMount } from 'svelte';
-  
+
   type Account = Awaited<ReturnType<typeof authClient.listAccounts>>[`data`][number];
   type Form = ReturnType<typeof formCreate>;
   type Locale = ReturnType<typeof getLocale>;
   type User = ReturnType<typeof page.data.user>;
-    
+
   let accounts: Account[] = $state([]);
-  let locale: Locale = $state(getLocale());
+  let loc: Locale = $state(getLocale());
   let user : User = $derived(page.data.user);
 
   let socialLinkForm: Form = formCreate({
@@ -26,7 +26,7 @@
   let socialUnlinkForm: Form = formCreate({
     job: `socialUnlink`
   });
-  
+
   onMount(async () => {
     let cachedAccounts: Account[] = cache.get(`accounts`) || [];
     if (cachedAccounts.length) {
@@ -72,7 +72,7 @@
       {#if accounts.some(account => account.providerId === `github`)}
         <div>{m.linked()}</div>
         <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
-          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="locale" value={loc} />
           <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="github" variant="outline">
             {m.unlink()}
           </Button>
@@ -80,7 +80,7 @@
       {:else}
         <div class="opacity-30">{m.unlinked()}</div>
         <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
-          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="locale" value={loc} />
           <input type="hidden" name="action" value="link" />
           <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="github" variant="outline">
             {m.link()}
@@ -97,7 +97,7 @@
       {#if accounts.some(account => account.providerId === `google`)}
         <div>{m.linked()}</div>
         <form action="/auth?/socialUnlink" class="ms-auto" method="post" use:enhance={socialUnlinkForm.enhance}>
-          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="locale" value={loc} />
           <input type="hidden" name="action" value="unlink" />
           <Button class="cursor-pointer h-auto" disabled={socialUnlinkForm.loading} name="provider" type="submit" value="google" variant="outline">
             {m.unlink()}
@@ -106,7 +106,7 @@
       {:else}
         <div class="opacity-30">{m.unlinked()}</div>
         <form action="/auth?/socialLink" class="ms-auto" method="post" use:enhance={socialLinkForm.enhance}>
-          <input type="hidden" name="locale" value={locale} />
+          <input type="hidden" name="locale" value={loc} />
           <input type="hidden" name="action" value="link" />
           <Button class="cursor-pointer h-auto" disabled={socialLinkForm.loading} name="provider" type="submit" value="google" variant="outline">
             {m.link()}
@@ -115,15 +115,15 @@
       {/if}
     </div>
 
-    {#if socialLinkForm.updated}
+    {#if socialLinkForm.up}
       <div class="text-red-400">
-        {socialLinkForm.error}
+        {socialLinkForm.er}
       </div>
     {/if}
-    
-    {#if socialUnlinkForm.updated}
+
+    {#if socialUnlinkForm.up}
       <div class="text-red-400">
-        {socialUnlinkForm.error}
+        {socialUnlinkForm.er}
       </div>
     {/if}
   {:else}
