@@ -6,6 +6,6 @@ tasks:
   dev:
     script: 'bun run --env-file=../../.env dev'
   install:
-    script: 'bun install --force' # use bun over pnpm for elysia installation specifically
+    script: 'bun install' # use bun over pnpm for elysia installation specifically
   update:
     script: 'bun update --latest'

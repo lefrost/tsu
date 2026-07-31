@@ -4,6 +4,6 @@ tasks:
   dev:
     script: 'bun run --env-file=../../.env dev'
   install:
-    script: 'pnpm install --force'
+    script: 'pnpm install'
   update:
     script: 'pnpm up --latest'

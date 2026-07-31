@@ -64,7 +64,7 @@
 		"vitest": "^4.1.10"
 	},
 	"dependencies": {
-		"@tsu/all": "workspace:*",
+    "better-auth": "^1.6.23",
 		"mode-watcher": "^1.1.0"
 	}
 }
