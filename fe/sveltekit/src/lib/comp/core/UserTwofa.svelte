@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
   import { page } from '$app/state';
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
 

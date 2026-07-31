@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
   import { formCreate } from '$lib/form.svelte';
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
 

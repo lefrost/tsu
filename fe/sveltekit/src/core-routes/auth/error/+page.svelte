@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as Card from "$lib/components/ui/card/index.js";
+  import { Button, Card } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
   

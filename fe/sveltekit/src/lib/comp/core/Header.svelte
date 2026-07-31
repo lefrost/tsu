@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LanguageSelector, ModeToggler, UserManager } from '$lib/comp';
+  import { LanguageSelector, ModeToggler, UserManager } from '$lib/comp/core';
   import FishSymbolIcon from "@lucide/svelte/icons/fish-symbol";
 </script>
 

@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
   import { page } from '$app/state';
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as Card from "$lib/components/ui/card/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
+  import { Button, Card, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';

@@ -3,8 +3,7 @@
   import { page } from '$app/state';
   import { authClient } from '$lib/auth';
   import { cache } from '$lib/runtime.svelte';
-  import { Button } from '$lib/components/ui/button';
-  import { Spinner } from '$lib/components/ui/spinner';
+  import { Button, Spinner } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';

@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
-  import { UserForgot } from '$lib/comp';
+  import { UserForgot } from '$lib/comp/core';
   import { formCreate } from '$lib/form.svelte';
-  import { Button } from "$lib/components/ui/button/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
+  import { Button, Input, Label } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
 

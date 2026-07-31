@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import { Button, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 	import { locales, setLocale } from '$paraglide/generated/runtime';
 
