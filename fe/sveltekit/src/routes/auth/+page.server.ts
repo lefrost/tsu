@@ -1,13 +1,12 @@
-import type { Actions, RequestEvent } from './$types';
+import { translations } from '$all/fe/betterauth/i18n';
 import { auth } from '$lib/server/auth';
 import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
-import { translations } from '$all/fe/betterauth/i18n';
+import type { Actions, RequestEvent } from './$types';
 
 function erMsgGet(er: any, loc: string) {
   const locEntry = translations[loc as keyof typeof translations];
   const msg = locEntry?.[(er as any).body?.code as keyof typeof locEntry & string];
-  console.log(er, loc, locEntry, msg); // test
 
   return msg || m.unknownError({}, { loc } as any)
 }
@@ -21,24 +20,24 @@ export const actions: Actions = {
     const loc = dat.get(`loc`);
     const password = dat.get(`password`);
 
+    let res;
+    
     try {
-      if (act === `login`) {
-        await auth.api.signInEmail({
-          body: { email, password }
-        });
+      if (act === `login`) res = await auth.api.signInEmail({
+        body: { email, password }
+      });
 
-      } else if (act === `signup`) {
-        await auth.api.signUpEmail({
-          body: { email, password, name: `` }
-        });
-      }
-
-      return { ok: true };
+      else if (act === `signup`) await auth.api.signUpEmail({
+        body: { email, password, name: `` }
+      });
 
     } catch (er) {
-      console.log(er);
       return fail(400, { msg: erMsgGet(er, loc) });
     }
+
+    if (res && `twoFactorRedirect` in res && res.twoFactorRedirect) throw redirect(303, `/auth/twofa`);
+    
+    return { ok: true };
   },
 
   logout: async (ev: RequestEvent) => {
@@ -148,7 +147,6 @@ export const actions: Actions = {
   socialLogin: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.formData();
-    const callbackUrl = dat.get(`callbackUrl`) ?? `/`;
     const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
@@ -158,7 +156,7 @@ export const actions: Actions = {
       res = await auth.api.signInSocial({
         body: {
           provider: provider,
-          callbackURL: callbackUrl,
+          callbackURL: `/auth/twofa`,
           errorCallbackURL: `/auth/error`,
         }
       });
@@ -193,7 +191,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaDisable: async (ev: RequestEvent) => {
+  twofaDisable: async (ev: RequestEvent) => { // tba: use in UserTwofa.svelte
     const req = ev.request;
     const dat = await req.formData();
     const loc: string = dat.get(`loc`);
@@ -212,7 +210,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaEnable: async (ev: RequestEvent) => {
+  twofaEnable: async (ev: RequestEvent) => { // tba: use in UserTwofa.svelte
     const req = ev.request;
     const dat = await req.formData();
     const password: string = dat.get(`password`);
@@ -235,13 +233,19 @@ export const actions: Actions = {
     }
   },
 
-  twofaVerify: async (ev: RequestEvent) => {
+  twofaVerify: async (ev: RequestEvent) => { // tba: use in /auth/twofa/+page.svelte (during 2fa-enabled login flow) and UserTwofa.svelte (on /auth?/twofaEnable flow)
     const req = ev.request;
     const dat = await req.formData();
+    const code: string = dat.get(`code`);
     const loc: string = dat.get(`loc`);
 
     try {
-      // tba: with standalone page to input 2fa code and call this function as part of login ux; add 2fa intercept in emailLogin and socialLogin
+      await (auth.api as any).verifyTOTP({
+        body: { code, trustDevice: true },
+        headers: req.headers,
+      });
+
+      return { ok: true };
 
     } catch (er) {
       return fail(400, { msg: erMsgGet(er, loc) });

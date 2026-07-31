@@ -61,7 +61,6 @@
     </div>
   </form>
   <form method="post" action="/auth?/socialLogin" use:enhance={socialForm.enhance} class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <input type="hidden" name="callbackUrl" value="/" />
     <input type="hidden" name="loc" value={loc} />
     <Button type="submit" name="provider" value="google" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
       {m.socialLogin({ provider: `Google` })}

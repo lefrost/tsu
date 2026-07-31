@@ -11,46 +11,46 @@
 
   let user: User = $derived(page.data.user);
 
-  let enableGenerated = false;
+  let enableGened = false;
 
   let disableForm: Form = formCreate({
-    job: `userTwoFactorDisable`,
+    job: `userTwofaDisable`,
     onOk: async () => {
       await invalidateAll();
     }
   });
 
   let enableForm: Form = formCreate({
-    job: `userTwoFactorEnable`,
+    job: `userTwofaEnable`,
     onOk: async () => {
       await invalidateAll();
     }
   });
 
-  let generateForm: Form = formCreate({
-    job: `userTwoFactorGenerate`,
+  let genForm: Form = formCreate({
+    job: `userTwofaGen`,
   });
 </script>
 
 <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
   <div class="opacity-40">
-    {m.twoFactor()}
+    {m.twofa()}
   </div>
 
   {#if user.twoFactorEnabled}
     <div class="opacity-30">{m.enabled()}</div>
-    <form action="/auth?/twoFactorDisable" method="post" use:enhance={disableForm.enhance}>
+    <form action="/auth?/twofaDisable" method="post" use:enhance={disableForm.enhance}>
       <!-- tba -->
     </form>
 
   {:else}
     <div class="opacity-30">{m.disabled()}</div>
-    {#if enableGenerated}
-      <form action="/auth?/twoFactorEnable" method="post" use:enhance={enableForm.enhance}>
+    {#if enableGened}
+      <form action="/auth?/twoFaEnable" method="post" use:enhance={enableForm.enhance}>
         <!-- tba -->
       </form>
     {:else}
-      <form action="/auth?/twoFactorGenerate" method="post" use:enhance={generateForm.enhance}>
+      <form action="/auth?/twoFaGen" method="post" use:enhance={genForm.enhance}>
         <!-- tba -->
       </form>
     {/if}

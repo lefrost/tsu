@@ -31,7 +31,7 @@
 	"socialLink": "{provider}と連携",
 	"socialLogin": "{provider}でログイン",
 	"submit": "提出する",
-	"twoFactor": "二段階認証",
+	"twofa": "二段階認証",
 	"unknownError": "不明なエラー",
 	"unlink": "リンク解除",
 	"unlinked": "リンク解除",

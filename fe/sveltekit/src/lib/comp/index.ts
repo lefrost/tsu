@@ -7,4 +7,4 @@ export { default as UserForgot } from './UserForgot.svelte';
 export { default as UserLogin } from './UserLogin.svelte';
 export { default as UserLogout } from './UserLogout.svelte';
 export { default as UserManager } from './UserManager.svelte';
-export { default as UserTwoFactor } from './UserTwoFactor.svelte';
+export { default as UserTwofa } from './UserTwofa.svelte';

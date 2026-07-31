@@ -31,7 +31,7 @@
 	"socialLink": "Link with {provider}",
 	"socialLogin": "Login with {provider}",
 	"submit": "Submit",
-	"twoFactor": "Two-factor authentication",
+	"twofa": "Two-factor authentication",
 	"unknownError": "Unknown error",
 	"unlink": "Unlink",
 	"unlinked": "Unlinked",

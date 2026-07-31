@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { UserAccounts, UserEmailVerify, UserLogin, UserLogout, UserTwoFactor } from '$lib/comp';
+  import { UserAccounts, UserEmailVerify, UserLogin, UserLogout, UserTwofa } from '$lib/comp';
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
@@ -23,7 +23,7 @@
         {#if user}
           {#if user.emailVerified}
             <UserAccounts />
-            <UserTwoFactor />
+            <UserTwofa />
           {:else}
             <UserEmailVerify />
           {/if}
