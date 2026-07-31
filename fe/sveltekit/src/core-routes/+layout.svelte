@@ -1,6 +1,6 @@
 <script lang="ts">
 	import './layout.css';
-	import Header from '$lib/comp/Header.svelte';
+	import { Header } from '$lib/comp/core';
 	import type { Pathname } from '$app/types';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';

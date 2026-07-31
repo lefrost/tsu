@@ -32,7 +32,7 @@
   });
 </script>
 
-<div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+<div class="flex gap-[0.4rem] items-center self-stretch">
   <div class="opacity-40">
     {m.twofa()}
   </div>

@@ -34,7 +34,7 @@
       <Input type="email" name="email" />
     </div>
     <div class="flex flex-col gap-[0.4rem] self-stretch">
-      <div class="flex flex-row self-stretch">
+      <div class="flex self-stretch">
         <Label for="password">
           {m.password()}
         </Label>
@@ -48,7 +48,7 @@
       {#if emailForm.up && emailForm.er}
         <p class="mb-[0.4rem] text-red-400">{emailForm.er}</p>
       {/if}
-      <div class="flex flex-row gap-[0.6rem] self-stretch">
+      <div class="flex gap-[0.6rem] self-stretch">
         <Button type="submit" name="act" value="login" class="grow-1" disabled={emailForm.loading || socialForm.loading}>
           {m.login()}
         </Button>

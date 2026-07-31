@@ -233,7 +233,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaVerify: async (ev: RequestEvent) => { // tba: use in /auth/twofa/+page.svelte (during 2fa-enabled login flow) and UserTwofa.svelte (on /auth?/twofaEnable flow)
+  twofaVerify: async (ev: RequestEvent) => { // tba: use in UserTwofa.svelte (on /auth?/twofaEnable flow)
     const req = ev.request;
     const dat = await req.formData();
     const code: string = dat.get(`code`);

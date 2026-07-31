@@ -38,7 +38,7 @@
 </script>
 
 <div class="flex flex-col gap-[0.4rem] self-stretch">
-  <div class="flex flex-row gap-[0.4rem] self-stretch">
+  <div class="flex gap-[0.4rem] self-stretch">
     <div class="opacity-40">
       {m.email()}
     </div>
@@ -47,7 +47,7 @@
     </div>
   </div>
   {#if accounts.length}
-    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+    <div class="flex gap-[0.4rem] items-center self-stretch">
       <div class="opacity-40">{m.password()}</div>
       {#if accounts.some(account => account.providerId === `credential`)}
         <div>{m.set()}</div>
@@ -63,7 +63,7 @@
       </Button>
     </div>
 
-    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+    <div class="flex gap-[0.4rem] items-center self-stretch">
       <span class="opacity-40">
         GitHub
       </span>
@@ -88,7 +88,7 @@
       {/if}
     </div>
 
-    <div class="flex flex-row gap-[0.4rem] items-center self-stretch">
+    <div class="flex gap-[0.4rem] items-center self-stretch">
       <span class="opacity-40">
         Google
       </span>
@@ -126,7 +126,7 @@
       </div>
     {/if}
   {:else}
-    <div class="flex flex-row items-center gap-[0.2rem] opacity-40">
+    <div class="flex items-center gap-[0.2rem] opacity-40">
       <Spinner />
       {m.accountsLoading()}
     </div>

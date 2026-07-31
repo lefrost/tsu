@@ -29,7 +29,7 @@
             {form.er}
           </p>
         {/if}
-        <div class="flex flex-row gap-[0.6rem] self-stretch">
+        <div class="flex gap-[0.6rem] self-stretch">
           <Button type="submit" class="grow" disabled={form.loading}>
             {m.submit()}
           </Button>
