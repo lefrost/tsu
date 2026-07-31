@@ -1,10 +1,10 @@
 ### (WIP) **Tsu** is a fullstack web boilerplate with a customizable stack.
 
-Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and deployable to a [Fly machine](https://fly.io/docs/machines/) as a [Docker image](https://docs.docker.com/reference/dockerfile/). Get started with the following commands:
+Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and deployable to a [Fly machine](https://fly.io/docs/machines/) as a [Docker image](https://docs.docker.com/reference/dockerfile/).
 
+- Ensure prerequisites are installed (see "Prerequisite library" below): Git, Moon, Node, Pnpm.
 - Select one folder from `/shelf/be` and `shelf/fe` respectively, and move it into `/be` and `/fe` respectively.
 - Make adjustments within `/edge` of the selected `/be/~` and `/fe/~` folders, decoupled from boilerplate, barring documented edge cases.
-- Prerequisites (see Prerequisite library below): Git, Moon, Node, Pnpm.
 - Install: `moon run :install`
 - Install with latest packages: `moon run :update`
 - Initialize DB: `moon run :dbinit`
