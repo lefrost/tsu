@@ -1,12 +1,13 @@
 import type { Actions, RequestEvent } from './$types';
 import { auth } from '$lib/server/auth';
-import { m } from '$paraglide/generated/msgs';
+import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
 import { translations } from '$all/fe/betterauth/i18n';
 
 function erMsgGet(er: any, loc: string) {
   const locEntry = translations[loc as keyof typeof translations];
   const msg = locEntry?.[(er as any).body?.code as keyof typeof locEntry & string];
+  console.log(er, loc, locEntry, msg); // test
 
   return msg || m.unknownError({}, { loc } as any)
 }
@@ -14,11 +15,10 @@ function erMsgGet(er: any, loc: string) {
 export const actions: Actions = {
   emailLogin: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const act = dat.get(`act`);
     const email = dat.get(`email`);
     const loc = dat.get(`loc`);
-    const name = dat.get(`name`);
     const password = dat.get(`password`);
 
     try {
@@ -29,20 +29,21 @@ export const actions: Actions = {
 
       } else if (act === `signup`) {
         await auth.api.signUpEmail({
-          body: { email, password, name }
+          body: { email, password, name: `` }
         });
       }
 
       return { ok: true };
 
     } catch (er) {
+      console.log(er);
       return fail(400, { msg: erMsgGet(er, loc) });
     }
   },
 
   logout: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc = dat.get(`loc`);
 
     try {
@@ -59,7 +60,7 @@ export const actions: Actions = {
 
   emailVerificationResend: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const email = dat.get(`email`);
     const loc = dat.get(`loc`);
 
@@ -78,7 +79,7 @@ export const actions: Actions = {
 
   passwordForgot: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const email = dat.get(`email`);
     const loc = dat.get(`loc`);
 
@@ -99,7 +100,7 @@ export const actions: Actions = {
 
   passwordReset: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc = dat.get(`loc`);
     const password = dat.get(`password`);
     const token = dat.get(`token`);
@@ -121,9 +122,11 @@ export const actions: Actions = {
 
   socialLink: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
+
+    let res;
 
     try {
       let res = await auth.api.linkSocialAccount({
@@ -131,26 +134,28 @@ export const actions: Actions = {
         headers: req.headers,
       });
 
-      if (res && !(`error` in res) && `url` in res) return redirect(302, res.url);
-
-      return fail(400, {
-        msg: m.unknownError({}, { loc } as any)
-      });
-
     } catch (er) {
       return fail(400, { msg: erMsgGet(er, loc) });
     }
+
+    if (res && !(`error` in res) && `url` in res) return redirect(302, res.url);
+
+    return fail(400, {
+      msg: m.unknownError({}, { loc } as any)
+    });
   },
 
   socialLogin: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const callbackUrl = dat.get(`callbackUrl`) ?? `/`;
     const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
+    let res;
+
     try {
-      let res = await auth.api.signInSocial({
+      res = await auth.api.signInSocial({
         body: {
           provider: provider,
           callbackURL: callbackUrl,
@@ -158,20 +163,20 @@ export const actions: Actions = {
         }
       });
 
-      if (res?.url) return redirect(302, res.url);
-
-      return fail(400, {
-        er: m.unknownError({}, { loc } as any)
-      });
-
     } catch (er) {
       return fail(400, { msg: erMsgGet(er, loc) });
     }
+
+    if (res?.url) return redirect(302, res.url);
+
+    return fail(400, {
+      er: m.unknownError({}, { loc } as any)
+    });
   },
 
   socialUnlink: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
@@ -190,7 +195,7 @@ export const actions: Actions = {
 
   twofaDisable: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc: string = dat.get(`loc`);
     const password: string = dat.get(`password`);
 
@@ -209,20 +214,20 @@ export const actions: Actions = {
 
   twofaEnable: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const password: string = dat.get(`password`);
     const loc: string = dat.get(`loc`);
 
     try {
-      const result = await (auth.api as any).enableTwoFactor({
+      const res = await (auth.api as any).enableTwoFactor({
         body: { password, issuer: process.env.NAME },
         headers: req.headers
       });
 
       return {
         ok: true,
-        totpUri: result.totpUri?.toString(),
-        backupCodes: result.backupCodes ?? []
+        totpUri: res.totpUri?.toString(),
+        backupCodes: res.backupCodes ?? []
       }
 
     } catch (er) {
@@ -232,7 +237,7 @@ export const actions: Actions = {
 
   twofaVerify: async (ev: RequestEvent) => {
     const req = ev.request;
-    const dat = await req.data();
+    const dat = await req.formData();
     const loc: string = dat.get(`loc`);
 
     try {

@@ -22,8 +22,13 @@ export function formCreate(ops?: {
       let loc = getLocale();
       if (ops?.job) jobs.delete(ops.job);
 
-      if (result.type === `failure`) dat = {
-        er: result.er || m.unknownError({}, { loc } as any),
+      if (result.type === `error`) dat = {
+        er: result.error?.msg || m.unknownError({}, { loc } as any),
+        ok: false
+      };
+
+      else if (result.type === `failure`) dat = {
+        er: result.data?.msg || m.unknownError({}, { loc } as any),
         ok: false
       };
 
