@@ -4,7 +4,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 
 - Select one folder from `/shelf/be` and `shelf/fe` respectively, and move it into `/be` and `/fe` respectively.
 - Make adjustments within `/edge` of the selected `/be/~` and `/fe/~` folders, decoupled from boilerplate, barring documented edge cases.
-- Ensure Moon is installed - see prerequisite library below.
+- Prerequisites (see Prerequisite library below): Git, Moon, Node, Pnpm.
 - Install: `moon run :install`
 - Install with latest packages: `moon run :update`
 - Initialize DB: `moon run :dbinit`
@@ -62,12 +62,15 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
 | [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
 | [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
+| [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of touchscreen-compatible IDE | Stable |
 | [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
 
 
 ### Prerequisite library:
 
-- Bun: `powershell -c "irm bun.sh/install.ps1 | iex"`
+- Bun: (In PowerShell) `powershell -c "irm bun.sh/install.ps1 | iex"`
 - [Git](https://git-scm.com/install/).
-- Moon: `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh) ; proto install moon ; proto pin moon latest`
+- Moon: (In Bash) `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh)`, `proto install moon ; proto pin moon latest`
 - [Node](https://nodejs.org/en/download).
+- Pnpm: (In PowerShell) `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`
+
