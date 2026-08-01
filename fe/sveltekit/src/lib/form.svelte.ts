@@ -24,30 +24,33 @@ export function formCreate(ops?: {
 
       if (result.type === `error`) dat = {
         er: result.error?.msg || m.unknownError({}, { loc } as any),
-        ok: false
+        ok: false,
+        up: true
       };
 
       else if (result.type === `failure`) dat = {
         er: result.data?.msg || m.unknownError({}, { loc } as any),
-        ok: false
+        ok: false,
+        up: true
       };
 
       else if (result.type === `redirect`) window.location = result.location;
 
       else {
         dat = {
-          msg: result.msg,
-          ok: true
+          ...result.data,
+          msg: result.data?.msg,
+          ok: true,
+          up: true
         };
 
         if (ops?.onOk) await ops.onOk();
       }
-
-      dat.up = true;
     };
   }
 
   return {
+    get dat() { return dat; },
     enhance,
     get loading() { return jobs.has(ops?.job as string); },
     get er() { return dat.er; },

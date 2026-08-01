@@ -224,7 +224,7 @@ export const actions: Actions = {
 
       return {
         ok: true,
-        totpUri: res.totpUri?.toString(),
+        totpUri: res.totpURI?.toString(),
         backupCodes: res.backupCodes ?? []
       }
 

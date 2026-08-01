@@ -4,7 +4,7 @@
   import { Button, Card, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 
-  type User = ReturnType<typeof page.data.user>[number];
+  type User = ReturnType<typeof page.data.user>;
   
   let user: User = $derived(page.data.user);
 </script>

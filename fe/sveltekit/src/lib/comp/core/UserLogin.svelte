@@ -38,7 +38,7 @@
         <Label for="password">
           {m.password()}
         </Label>
-        <div class="cursor-default hover:underline ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4" onclick={() => { forgot = true; }} onkeydown={() => {}} role="button" tabindex="0">
+        <div class="cursor-default hover:underline ms-auto opacity-50 text-[0.7rem] text-sm underline-offset-4" onclick={() => { forgot = true; }} onkeydown={() => {}} role="button" tabindex={0}>
           {m.passwordForgot()}
         </div>
       </div>
