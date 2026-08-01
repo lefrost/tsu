@@ -191,7 +191,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaDisable: async (ev: RequestEvent) => { // tba: use in UserTwofa.svelte
+  twofaDisable: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.formData();
     const loc: string = dat.get(`loc`);
@@ -210,7 +210,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaEnable: async (ev: RequestEvent) => { // tba: use in UserTwofa.svelte
+  twofaEnable: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.formData();
     const password: string = dat.get(`password`);
@@ -224,7 +224,7 @@ export const actions: Actions = {
 
       return {
         ok: true,
-        totpUri: res.totpUri?.toString(),
+        totpUri: res.totpURI?.toString(),
         backupCodes: res.backupCodes ?? []
       }
 
@@ -233,7 +233,7 @@ export const actions: Actions = {
     }
   },
 
-  twofaVerify: async (ev: RequestEvent) => { // tba: use in /auth/twofa/+page.svelte (during 2fa-enabled login flow) and UserTwofa.svelte (on /auth?/twofaEnable flow)
+  twofaVerify: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.formData();
     const code: string = dat.get(`code`);

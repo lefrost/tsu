@@ -4,13 +4,16 @@
   import { page } from '$app/state';
   import { Button, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
+	import QR from '@svelte-put/qr/svg/QR.svelte';
 	import { m } from '$paraglide/generated/messages';
 	import { getLocale } from '$paraglide/generated/runtime';
+  import { mode } from "mode-watcher";
 
   type Form = ReturnType<typeof formCreate>;
   type Locale = ReturnType<typeof getLocale>;
   type User = ReturnType<typeof page.data.user>;
 
+  let disableToggled: boolean = $state(false);
   let enableToggled: boolean = $state(false);
   let loc: Locale = $state(getLocale());
 
@@ -20,6 +23,8 @@
     job: `userTwofaDisable`,
     onOk: async () => {
       await invalidateAll();
+      disableForm.reset();
+      disableToggled = false;
     }
   });
 
@@ -34,6 +39,8 @@
     job: `userTwofaVerify`,
     onOk: async () => {
       await invalidateAll();
+      enableForm.reset();
+      enableToggled = false;
     }
   });
 </script>
@@ -46,28 +53,26 @@
   {#if user.twoFactorEnabled}
     <div class="opacity-30">{m.enabled()}</div>
 
-    <form action="/auth?/twofaDisable" method="post" use:enhance={disableForm.enhance}>
-      <input name="loc" type="hidden" value={loc} />
+    <input name="loc" type="hidden" value={loc} />
 
-      <Button class="ms-auto" disabled={disableForm.loading} type="submit" variant="outline">
-        {m.disable()}
-      </Button>
-    </form>
+    <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; }} variant="outline">
+      {disableToggled ? m.cancel(): m.disable() }
+    </Button>
 
   {:else}
     <div class="opacity-30">{m.disabled()}</div>
     
-    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; }}>
+    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; }} variant="outline">
       {enableToggled ? m.cancel(): m.enable() }
     </Button>
   {/if}
 </div>
 
 {#if `totpUri` in enableForm.dat && enableForm.dat.totpUri}
-  <form action="/auth?/twofaVerify" class="flex flex-col self-stretch" method="post" use:enhance={verifyForm.enhance}>
+  <form action="/auth?/twofaVerify" class="flex flex-col gap-[0.6rem] self-stretch" method="post" use:enhance={verifyForm.enhance}>
     <input name="loc" type="hidden" value={loc} />
 
-    <!-- tba: qr code based on totpUri -->
+    <QR data={enableForm.dat.totpUri as string} moduleFill={mode.current === `dark` ? `white` : `black`} anchorOuterFill={mode.current === `dark` ? `white` : `black`} anchorInnerFill={mode.current === `dark` ? `white` : `black`} />
 
     {#if `backupCodes` in enableForm.dat && (enableForm.dat.backupCodes as string[]).length}
       <div class="flex flex-col gap-[0.2rem] self-stretch">
@@ -88,7 +93,7 @@
     </Button>
   </form>
 {:else if enableToggled}
-  <form action="/auth?/twofaEnable" method="post" use:enhance={enableForm.enhance}>
+  <form action="/auth?/twofaEnable" class="flex flex-col gap-[0.4rem] self-stretch" method="post" use:enhance={enableForm.enhance}>
     <input name="loc" type="hidden" value={loc} />
 
     <Label for="password">
@@ -98,6 +103,20 @@
     <Input class="w-full" name="password" type="password" />
 
     <Button class="ms-auto" disabled={enableForm.loading} type="submit" variant="outline">
+      {m.continue()}
+    </Button>
+  </form>
+{:else if disableToggled}
+  <form action="/auth?/twofaDisable" class="flex flex-col gap-[0.4rem] self-stretch" method="post" use:enhance={disableForm.enhance}>
+    <input name="loc" type="hidden" value={loc} />
+
+    <Label for="password">
+      {m.password()}
+    </Label>
+  
+    <Input class="w-full" name="password" type="password" />
+
+    <Button class="ms-auto" disabled={disableForm.loading} type="submit" variant="outline">
       {m.continue()}
     </Button>
   </form>

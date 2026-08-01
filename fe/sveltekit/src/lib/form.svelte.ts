@@ -56,6 +56,7 @@ export function formCreate(ops?: {
     get er() { return dat.er; },
     get msg() { return dat.msg; },
     get ok() { return dat.ok; },
+    reset() { dat = {}; },
     get up() { return dat.up; }
   };
 }
