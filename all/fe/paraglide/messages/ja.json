@@ -32,7 +32,7 @@
 	"socialLink": "{provider}と連携",
 	"socialLogin": "{provider}でログイン",
 	"submit": "提出する",
-	"twofa": "二段階認証",
+	"twofa": "2FA",
 	"twofaCodesCopy": "バックアップコードをコピーするには、ここをクリックしてください。",
 	"unknownError": "不明なエラー",
 	"unlink": "リンク解除",

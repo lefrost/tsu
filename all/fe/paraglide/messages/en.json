@@ -32,7 +32,7 @@
 	"socialLink": "Link with {provider}",
 	"socialLogin": "Login with {provider}",
 	"submit": "Submit",
-	"twofa": "Two-factor authentication",
+	"twofa": "2FA",
 	"twofaCodesCopy": "Click to copy your backup codes",
 	"unknownError": "Unknown error",
 	"unlink": "Unlink",

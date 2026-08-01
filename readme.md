@@ -20,7 +20,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | fe/astrosvelte | [Svelte](https://github.com/sveltejs/svelte) | Astro | TBA | - | - |
 | fe/next | [React](https://github.com/react/react) | [Next](https://github.com/vercel/next.js) | TBA | - | - |
 | fe/nuxt | [Vue](https://github.com/vuejs/core) | [Nuxt](https://github.com/nuxt/nuxt) | TBA | - | - |
-| fe/sveltekit | Svelte | [SvelteKit](https://github.com/sveltejs/kit) | WIP | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment. |
+| fe/sveltekit | Svelte | [SvelteKit](https://github.com/sveltejs/kit) | WIP | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment; [Svelte-put](https://github.com/vnphanquang/svelte-put) QR codes. |
 
 ### Backend options:
 
