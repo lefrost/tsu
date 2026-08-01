@@ -16,9 +16,9 @@
   });
 </script>
 
-<form method="post" action="/auth?/logout" use:enhance={form.enhance}>
+<form class="flex flex-col self-stretch" method="post" action="/auth?/logout" use:enhance={form.enhance}>
   <input type="hidden" name="loc" value={loc} />
-  <Button type="submit" variant="destructive" class="w-full" disabled={form.loading}>
+  <Button type="submit" variant="destructive" class="self-stretch" disabled={form.loading}>
     {m.logout()}
   </Button>
 </form>

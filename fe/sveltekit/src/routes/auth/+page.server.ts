@@ -5,6 +5,8 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types';
 
 function erMsgGet(er: any, loc: string) {
+  // if (loc === `en`) return er.message || m.unknownError({}, { loc } as any);
+
   const locEntry = translations[loc as keyof typeof translations];
   const msg = locEntry?.[(er as any).body?.code as keyof typeof locEntry & string];
 
@@ -191,6 +193,25 @@ export const actions: Actions = {
     }
   },
 
+  twofaBackupVerify: async (ev: RequestEvent) => {
+    const req = ev.request;
+    const dat = await req.formData();
+    const code: string = dat.get(`code`);
+    const loc: string = dat.get(`loc`);
+
+    try {
+      await (auth.api as any).verifyBackupCode({
+        body: { code },
+        headers: req.headers
+      });
+
+      return { ok: true };
+
+    } catch (er) {
+      return fail(400, { msg: erMsgGet(er, loc) });
+    }
+  },
+
   twofaDisable: async (ev: RequestEvent) => {
     const req = ev.request;
     const dat = await req.formData();
@@ -229,6 +250,7 @@ export const actions: Actions = {
       }
 
     } catch (er) {
+      console.log(er); //test
       return fail(400, { msg: erMsgGet(er, loc) });
     }
   },

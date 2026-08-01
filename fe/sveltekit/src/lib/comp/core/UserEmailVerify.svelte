@@ -37,7 +37,7 @@
       {m.emailVerificationPrompt()}
     </div>
   {/if}
-  <Button type="submit" class="w-full" disabled={form.loading}>
+  <Button type="submit" class="self-stretch" disabled={form.loading}>
     {m.emailVerificationResend()}
   </Button>
 </form>

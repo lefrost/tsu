@@ -15,7 +15,7 @@
       {user ? user.email : m.login()}
     </Button>
   </DropdownMenu.Trigger>
-  <DropdownMenu.Content align="end" class="p-0 w-[16rem]">
+  <DropdownMenu.Content align="end" class="max-h-[80vh] p-0 w-[16rem]">
     <Card.Root>
       <Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
         {#if user}

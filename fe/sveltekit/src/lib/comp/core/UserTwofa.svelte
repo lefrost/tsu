@@ -55,14 +55,14 @@
 
     <input name="loc" type="hidden" value={loc} />
 
-    <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; }} variant="outline">
+    <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; disableForm.reset(); }} variant="outline">
       {disableToggled ? m.cancel(): m.disable() }
     </Button>
 
   {:else}
     <div class="opacity-30">{m.disabled()}</div>
     
-    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; }} variant="outline">
+    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; enableForm.reset(); }} variant="outline">
       {enableToggled ? m.cancel(): m.enable() }
     </Button>
   {/if}
@@ -72,21 +72,23 @@
   <form action="/auth?/twofaVerify" class="flex flex-col gap-[0.6rem] self-stretch" method="post" use:enhance={verifyForm.enhance}>
     <input name="loc" type="hidden" value={loc} />
 
+    <Label class="opacity-40">
+      {m.twofaScan()}
+    </Label>
+
     <QR data={enableForm.dat.totpUri as string} moduleFill={mode.current === `dark` ? `white` : `black`} anchorOuterFill={mode.current === `dark` ? `white` : `black`} anchorInnerFill={mode.current === `dark` ? `white` : `black`} />
 
     {#if `backupCodes` in enableForm.dat && (enableForm.dat.backupCodes as string[]).length}
-      <div class="flex flex-col gap-[0.2rem] self-stretch">
-        {#each (enableForm.dat.backupCodes as string[]) as code}
-          <div class="opacity-0.4 text-xs">{code}</div>
-        {/each}
-        
-        <div class="hover:underline opacity-0.4" onclick={async () => { await navigator.clipboard.writeText((enableForm.dat.backupCodes as string[]).join(` `)) }} onkeydown={() => {}} role="button" tabindex={0}>
-          {m.twofaCodesCopy()}
-        </div>
-      </div>
+      <Button class="self-stretch" onclick={async () => { await navigator.clipboard.writeText((enableForm.dat.backupCodes as string[]).join(` `)) }} onkeydown={() => {}} role="button" tabindex={0} variant="outline">
+        {m.twofaCodesCopy()}
+      </Button>
     {/if}
 
-    <Input autocomplete="one-time-code" class="w-full" name="code" type="text" />
+    <Label for ="code">
+      {m.twofaCode()}
+    </Label>
+
+    <Input autocomplete="one-time-code" class="self-stretch" name="code" type="text" />
 
     <Button disabled={verifyForm.loading} type="submit">
       {m.submit()}
@@ -100,7 +102,7 @@
       {m.password()}
     </Label>
   
-    <Input class="w-full" name="password" type="password" />
+    <Input class="self-stretch" name="password" type="password" />
 
     <Button class="ms-auto" disabled={enableForm.loading} type="submit" variant="outline">
       {m.continue()}
@@ -114,7 +116,7 @@
       {m.password()}
     </Label>
   
-    <Input class="w-full" name="password" type="password" />
+    <Input class="self-stretch" name="password" type="password" />
 
     <Button class="ms-auto" disabled={disableForm.loading} type="submit" variant="outline">
       {m.continue()}
