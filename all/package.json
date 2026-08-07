@@ -5,8 +5,8 @@
   "exports": {
     "./betterauth": "./fe/betterauth/instance.ts",
     "./betterauth/schema": "./fe/betterauth/schema.ts",
-    "./drizzle": "./fe/drizzle/instance.ts",
-    "./drizzle/schema": "./fe/drizzle/schema.ts",
+    "./drizzle": "./drizzle/instance.ts",
+    "./drizzle/schema": "./drizzle/schema.ts",
     "./paraglide/*": "./fe/paraglide/generated/*"
   },
   "typesVersions": {
@@ -18,10 +18,10 @@
         "./fe/betterauth/schema.ts"
       ],
       "drizzle": [
-        "./fe/drizzle/instance.ts"
+        "./drizzle/instance.ts"
       ],
       "drizzle/schema": [
-        "./fe/drizzle/schema.ts"
+        "./drizzle/schema.ts"
       ],
       "paraglide/*": [
         "./fe/paraglide/generated/*"
@@ -29,11 +29,11 @@
     }
   },
   "scripts": {
-    "db:reset": "bun run ./fe/drizzle/reset.ts",
-    "db:push": "bunx drizzle-kit --config=./fe/drizzle/drizzle.config.ts push --force",
-    "db:generate": "bunx drizzle-kit --config=./fe/drizzle/drizzle.config.ts generate",
-    "db:migrate": "bunx drizzle-kit --config=./fe/drizzle/drizzle.config.ts migrate",
-    "db:studio": "bunx drizzle-kit --config=./fe/drizzle/drizzle.config.ts studio",
+    "db:reset": "bun run ./drizzle/reset.ts",
+    "db:push": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts push --force",
+    "db:generate": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts generate",
+    "db:migrate": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts migrate",
+    "db:studio": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts studio",
     "auth:schema": "better-auth generate --config ./fe/betterauth/instance.ts --output ./fe/betterauth/schema.ts --yes"
   },
   "dependencies": {
@@ -43,7 +43,8 @@
     "better-auth": "^1.6.23",
     "better-call": "^2.0.5",
     "drizzle-orm": "^0.45.2",
-    "nodemailer": "^9.0.3"
+    "nodemailer": "^9.0.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@inlang/paraglide-js": "^2.22.0",

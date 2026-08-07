@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { greet } from './greet';
+import { greet } from './_sample';
 
 describe('greet', () => {
 	it('returns a greeting', () => {
