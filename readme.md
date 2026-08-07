@@ -32,7 +32,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | be/fastapi | [FastAPI](https://github.com/fastapi/fastapi) | Python | TBA | - | - |
 | be/fiber | [Fiber](https://github.com/gofiber/fiber) | [Go](https://github.com/golang/go) | TBA | - | - |
 | be/laravel | [Laravel](https://github.com/laravel/laravel) | PHP | TBA | - | - |
-| be/nest | [Nest](https://github.com/nestjs/nest) | Node | TBA | - | - |
+| be/nest | [Nest](https://github.com/nestjs/nest) | [Node](https://github.com/nodejs/node) | TBA | - | - |
 | be/rails | [Rails](https://github.com/rails/rails) | [Ruby](https://github.com/ruby/ruby) | TBA | - | - |
 | be/springboot | [Spring Boot](https://github.com/spring-projects/spring-boot) | Java | TBA | - | - |
 
