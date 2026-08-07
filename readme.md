@@ -41,6 +41,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | Name | Usage | Purpose | Status |
 | --- | --- | --- | --- |
 | [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
+| [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
 | [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | TBA |
 | [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as Docker image | TBA |
 | [Dragonfly](https://github.com/dragonflydb/dragonfly) | All be | In-memory data storage | TBA |
