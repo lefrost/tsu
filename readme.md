@@ -58,7 +58,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
-| [Sherlock](https://github.com/opral/sherlock) | Paraglide management in VS Code | Stable |
+| [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
 | [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
@@ -74,4 +74,3 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 - Moon: (In Bash) `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh)`, `proto install moon ; proto pin moon latest`
 - [Node](https://nodejs.org/en/download).
 - Pnpm: (In PowerShell) `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`
-
