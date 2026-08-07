@@ -3,28 +3,28 @@
   "version": "0.0.1",
   "private": true,
   "exports": {
-    "./betterauth": "./fe/betterauth/instance.ts",
-    "./betterauth/schema": "./fe/betterauth/schema.ts",
-    "./drizzle": "./drizzle/instance.ts",
+    "./betterauth": "./betterauth/index.ts",
+    "./betterauth/schema": "./betterauth/schema.ts",
+    "./drizzle": "./drizzle/index.ts",
     "./drizzle/schema": "./drizzle/schema.ts",
-    "./paraglide/*": "./fe/paraglide/generated/*"
+    "./paraglide/*": "./paraglide/generated/*"
   },
   "typesVersions": {
     "*": {
       "betterauth": [
-        "./fe/betterauth/instance.ts"
+        "./betterauth/index.ts"
       ],
       "betterauth/schema": [
-        "./fe/betterauth/schema.ts"
+        "./betterauth/schema.ts"
       ],
       "drizzle": [
-        "./drizzle/instance.ts"
+        "./drizzle/index.ts"
       ],
       "drizzle/schema": [
         "./drizzle/schema.ts"
       ],
       "paraglide/*": [
-        "./fe/paraglide/generated/*"
+        "./paraglide/generated/*"
       ]
     }
   },
@@ -34,7 +34,7 @@
     "db:generate": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts generate",
     "db:migrate": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts migrate",
     "db:studio": "bunx drizzle-kit --config=./drizzle/drizzle.config.ts studio",
-    "auth:schema": "better-auth generate --config ./fe/betterauth/instance.ts --output ./fe/betterauth/schema.ts --yes"
+    "auth:schema": "better-auth generate --config ./betterauth/index.ts --output ./betterauth/schema.ts --yes"
   },
   "dependencies": {
     "@better-auth/cli": "^1.4.21",
@@ -42,6 +42,7 @@
     "@neondatabase/serverless": "^1.1.0",
     "better-auth": "^1.6.23",
     "better-call": "^2.0.5",
+    "bunqueue": "^2.8.59",
     "drizzle-orm": "^0.45.2",
     "nodemailer": "^9.0.3",
     "zod": "^4.4.3"

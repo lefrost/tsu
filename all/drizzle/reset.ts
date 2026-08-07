@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { db } from './instance';
+import { db } from './index';
 
 (async () => {
   const result = await db.execute(

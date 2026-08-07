@@ -6,4 +6,4 @@ import { pgTable, serial, integer, text } from 'drizzle-orm/pg-core';
 // 	priority: integer('priority').notNull().default(1)
 // });
 
-export * from '../fe/betterauth/schema';
+export * from '../betterauth/schema';

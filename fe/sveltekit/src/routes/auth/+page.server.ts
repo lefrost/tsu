@@ -1,8 +1,8 @@
-import { translations } from '$all/fe/betterauth/i18n';
+import { translations } from '$all/betterauth/i18n';
 import { auth } from '$lib/server/auth';
 import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, RequestEvent } from './$types';
+import type { Actions, RequestEvent } from './$types'; // expected to be error in pre-generation /core-routes; error goes away when generated to /routes
 
 function erMsgGet(er: any, loc: string) {
   // if (loc === `en`) return er.message || m.unknownError({}, { loc } as any);

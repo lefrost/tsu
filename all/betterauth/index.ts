@@ -1,10 +1,8 @@
-import { translations } from './i18n';
 import type { User } from 'better-auth';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { i18n } from '@better-auth/i18n';
 import { twoFactor } from 'better-auth/plugins';
-import { db } from '../../drizzle/instance';
+import { db } from '../drizzle';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -56,10 +54,6 @@ export const authConfig = {
     }
   },
   plugins: [
-    // i18n({
-    //   defaultLocale: `en`,
-    //   translations
-    // }),
     twoFactor() as any
   ],
   socialProviders,

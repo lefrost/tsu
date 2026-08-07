@@ -13,8 +13,8 @@
 			"$edge/*": ["./edge/*"],
 			"$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
-			"$paraglide": ["../../all/fe/paraglide"],
-			"$paraglide/*": ["../../all/fe/paraglide/*"]
+			"$paraglide": ["../../all/paraglide"],
+			"$paraglide/*": ["../../all/paraglide/*"]
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,

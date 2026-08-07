@@ -13,8 +13,8 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			paraglideVitePlugin({
-				project: path.resolve(import.meta.dirname, '../../all/fe/paraglide/project.inlang'),
-				outdir: path.resolve(import.meta.dirname, '../../all/fe/paraglide/generated'),
+				project: path.resolve(import.meta.dirname, '../../all/paraglide/project.inlang'),
+				outdir: path.resolve(import.meta.dirname, '../../all/paraglide/generated'),
 				emitTsDeclarations: true,
 				experimentalPerLocaleBuild: false,
 				strategy: ['url']
@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
 			alias: {
 				'$all': path.resolve(import.meta.dirname, '../../all/'),
 				'$edge': path.resolve(import.meta.dirname, './edge'),
-				'$paraglide': path.resolve(import.meta.dirname, '../../all/fe/paraglide') // paraglide files are generated at runtime
+				'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide') // paraglide files are generated at runtime
 			}
 		},
 		server: { port: Number(env.FE_PORT) },
