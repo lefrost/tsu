@@ -67,6 +67,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
 | [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of touchscreen-compatible IDE | Stable |
 | [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
+| [Zod](https://github.com/colinhacks/zod) | All fe, be/elysia, be/nest | Static types and schema validation | WIP |
 
 
 ### Prerequisite library:
