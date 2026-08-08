@@ -7,6 +7,8 @@
     "paths": {
 			"$all": ["../../all"],
 			"$all/*": ["../../all/*"],
+      "$core": ["./core"],
+      "$core/*": ["./core/*"],
 			"$edge": ["./edge"],
 			"$edge/*": ["./edge/*"],
 		},
