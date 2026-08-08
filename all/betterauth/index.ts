@@ -60,13 +60,13 @@ export const authConfig = {
   account: {
     accountLinking: {
       enabled: true,
-      trustedProviders: Object.keys(socialProviders),
+      trustedProviders: Object.keys(socialProviders)
     },
     fields: {
       accessTokenExpiresAt: `access_token_expires`,
       createdAt: `created`,
       refreshTokenExpiresAt: `refresh_token_expires`,
-      updatedAt: `updated`,
+      updatedAt: `updated`
     }
   },
   session: {
@@ -76,20 +76,21 @@ export const authConfig = {
     fields: {
       createdAt: `created`,
       expiresAt: `expires`,
-      updatedAt: `updated`,
+      updatedAt: `updated`
     }
   },
   user: {
     fields: {
       createdAt: `created`,
-      updatedAt: `updated`,
+      image: `icon`,
+      updatedAt: `updated`
     }
   },
   verification: {
     fields: {
       createdAt: `created`,
       expiresAt: `expires`,
-      updatedAt: `updated`,
+      updatedAt: `updated`
     }
   }
 };

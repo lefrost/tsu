@@ -1,8 +1,9 @@
 export { default as Header } from './core/Header.svelte';
 export { default as LanguageSelector } from './core/LanguageSelector.svelte';
 export { default as ModeToggler } from './core/ModeToggler.svelte';
-export { default as UserAccounts } from './core/UserAccounts.svelte';
+export { default as UserEmail } from './core/UserEmail.svelte';
 export { default as UserEmailVerify } from './core/UserEmailVerify.svelte';
+export { default as UserSocials } from './core/UserSocials.svelte';
 export { default as UserForgot } from './core/UserForgot.svelte';
 export { default as UserIcon } from './core/UserIcon.svelte';
 export { default as UserLogin } from './core/UserLogin.svelte';

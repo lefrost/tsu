@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { UserAccounts, UserEmailVerify, UserIcon, UserLogin, UserLogout, UserTwofa } from '$lib/comp/core';
+  import { UserEmail, UserEmailVerify, UserIcon, UserLogin, UserLogout, UserSocials, UserTwofa } from '$lib/comp/core';
   import { Button, Card, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 
@@ -21,7 +21,8 @@
         {#if user}
           {#if user.emailVerified}
             <UserIcon />
-            <UserAccounts />
+            <UserEmail />
+            <UserSocials />
             <UserTwofa />
           {:else}
             <UserEmailVerify />

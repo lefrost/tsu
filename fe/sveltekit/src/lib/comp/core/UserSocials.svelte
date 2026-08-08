@@ -38,14 +38,6 @@
 </script>
 
 <div class="flex flex-col gap-[0.6rem] self-stretch">
-  <div class="flex gap-[0.6rem] self-stretch">
-    <div class="opacity-40">
-      {m.email()}
-    </div>
-    <div class="ms-auto">
-      {user.email}
-    </div>
-  </div>
   {#if accounts.length}
     <div class="flex gap-[0.6rem] items-center self-stretch">
       <div class="opacity-40">{m.password()}</div>
