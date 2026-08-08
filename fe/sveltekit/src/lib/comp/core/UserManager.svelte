@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { UserAccounts, UserEmailVerify, UserLogin, UserLogout, UserTwofa } from '$lib/comp/core';
+  import { UserAccounts, UserEmailVerify, UserIcon, UserLogin, UserLogout, UserTwofa } from '$lib/comp/core';
   import { Button, Card, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 
@@ -20,6 +20,7 @@
       <Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
         {#if user}
           {#if user.emailVerified}
+            <UserIcon />
             <UserAccounts />
             <UserTwofa />
           {:else}

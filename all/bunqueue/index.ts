@@ -8,7 +8,7 @@ export async function jobAdd(
   await queue.add(k, dat);
 }
 
-export function queueCreate(
+export function queueMake(
   fn: (...args: unknown[]) => unknown,
   k: string,
   size?: number,
