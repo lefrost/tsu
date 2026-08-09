@@ -11,8 +11,8 @@
 
   let form = formCreate({
     job: `twofaVerify`,
-    onOk: () => {
-      invalidateAll();
+    onOk: async () => {
+      await invalidateAll();
       goto(`/`);
     }
   });
@@ -21,13 +21,11 @@
 <form action="/auth?/{backupUsing ? `twofaBackupVerify` : `twofaVerify`}" class="flex flex-col h-full items-center justify-center w-full" method="post" use:enhance={form.enhance}>
   <Card.Root>
     <Card.Content class="flex flex-col gap-[0.6rem] w-[20rem]">
-      <input name="loc" type="hidden" value={loc} />
-
       <Label for="code">
         {backupUsing ? m.twofaBackupCode() : m.twofaCode()}
       </Label>
 
-      <Input name="code" type="text" />
+      <Input id="code" name="code" type="text" />
 
       {#if form.up && form.er}
         <div class="text-red-400">

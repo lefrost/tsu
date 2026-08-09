@@ -3,22 +3,19 @@
   import { formCreate } from '$lib/form.svelte';
   import { Button, Input, Label } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
 
   let { forgot = $bindable() } = $props();
-  let loc = $state(getLocale());
   let form = formCreate({
     job: `passwordForgot`
   });
 </script>
 
 <form method="post" action="/auth?/passwordForgot" use:enhance={form.enhance} class="flex flex-col gap-[1.2rem] w-full">
-  <input type="hidden" name="loc" value={loc} />
   <div class="flex flex-col gap-[0.6rem] self-stretch">
     <Label for="email">
       {m.email()}
     </Label>
-    <Input type="email" name="email" />
+    <Input id="email" type="email" name="email" />
   </div>
   <div class="flex flex-col self-stretch">
     {#if form.up}

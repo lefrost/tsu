@@ -4,8 +4,8 @@ import { m } from '$paraglide/generated/messages';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types'; // expected to be error in pre-generation /core-routes; error goes away when generated to /routes
 
-function erMsgGet(er: any, loc: string) {
-  // if (loc === `en`) return er.message || m.unknownError({}, { loc } as any);
+export function erMsgGet(er: any, loc: string) {
+  if (!er) return m.unknownError({}, { loc } as any);
 
   const locEntry = translations[loc as keyof typeof translations];
   const msg = locEntry?.[(er as any).body?.code as keyof typeof locEntry & string];
@@ -15,11 +15,11 @@ function erMsgGet(er: any, loc: string) {
 
 export const actions: Actions = {
   emailLogin: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
     const act = dat.get(`act`);
     const email = dat.get(`email`);
-    const loc = dat.get(`loc`);
     const password = dat.get(`password`);
 
     let res;
@@ -33,9 +33,7 @@ export const actions: Actions = {
         body: { email, password, name: `` }
       });
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
 
     if (res && `twoFactorRedirect` in res && res.twoFactorRedirect) throw redirect(303, `/auth/twofa`);
     
@@ -43,9 +41,9 @@ export const actions: Actions = {
   },
 
   logout: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc = dat.get(`loc`);
 
     try {
       await auth.api.signOut({
@@ -54,16 +52,14 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   emailVerificationResend: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
     const email = dat.get(`email`);
-    const loc = dat.get(`loc`);
 
     try {
       await auth.api.sendVerificationEmail({
@@ -73,16 +69,14 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (error) {
-      return fail(400, { msg: erMsgGet(error, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   passwordForgot: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
     const email = dat.get(`email`);
-    const loc = dat.get(`loc`);
 
     try {
       await auth.api.requestPasswordReset({
@@ -94,15 +88,13 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   passwordReset: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc = dat.get(`loc`);
     const password = dat.get(`password`);
     const token = dat.get(`token`);
 
@@ -114,42 +106,36 @@ export const actions: Actions = {
         }
       });
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
 
     return redirect(302, `/`);
   },
 
   socialLink: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
     let res;
 
     try {
-      let res = await auth.api.linkSocialAccount({
+      res = await auth.api.linkSocialAccount({
         body: { provider },
         headers: req.headers,
       });
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
 
     if (res && !(`error` in res) && `url` in res) return redirect(302, res.url);
 
-    return fail(400, {
-      msg: m.unknownError({}, { loc } as any)
-    });
+    return fail(400, { msg: erMsgGet(null, loc) });
   },
 
   socialLogin: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
     let res;
@@ -163,21 +149,17 @@ export const actions: Actions = {
         }
       });
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
 
     if (res?.url) return redirect(302, res.url);
 
-    return fail(400, {
-      er: m.unknownError({}, { loc } as any)
-    });
+    return fail(400, { msg: erMsgGet(null, loc) });
   },
 
   socialUnlink: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc = dat.get(`loc`);
     const provider = dat.get(`provider`);
 
     try {
@@ -188,16 +170,14 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   twofaBackupVerify: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const code: string = dat.get(`code`);
-    const loc: string = dat.get(`loc`);
+    const code = dat.get(`code`);
 
     try {
       await (auth.api as any).verifyBackupCode({
@@ -207,16 +187,14 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   twofaDisable: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const loc: string = dat.get(`loc`);
-    const password: string = dat.get(`password`);
+    const password = dat.get(`password`);
 
     try {
       await (auth.api as any).disableTwoFactor({
@@ -226,16 +204,14 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   twofaEnable: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const password: string = dat.get(`password`);
-    const loc: string = dat.get(`loc`);
+    const password = dat.get(`password`);
 
     try {
       const res = await (auth.api as any).enableTwoFactor({
@@ -249,17 +225,14 @@ export const actions: Actions = {
         backupCodes: res.backupCodes ?? []
       }
 
-    } catch (er) {
-      console.log(er); //test
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   twofaVerify: async (ev: RequestEvent) => {
-    const req = ev.request;
+    const { locals, request: req } = ev;
+    const { loc } = locals;
     const dat = await req.formData();
-    const code: string = dat.get(`code`);
-    const loc: string = dat.get(`loc`);
+    const code = dat.get(`code`);
 
     try {
       await (auth.api as any).verifyTOTP({
@@ -269,8 +242,6 @@ export const actions: Actions = {
 
       return { ok: true };
 
-    } catch (er) {
-      return fail(400, { msg: erMsgGet(er, loc) });
-    }
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 };

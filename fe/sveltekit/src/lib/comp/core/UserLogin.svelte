@@ -5,10 +5,8 @@
   import { formCreate } from '$lib/form.svelte';
   import { Button, Input, Label } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
 
   let forgot = $state(false);
-  let loc = $state(getLocale());
 
   let emailForm = formCreate({
     job: `emailLogin`,
@@ -26,12 +24,11 @@
   </div>
 {:else}
   <form method="post" action="/auth?/emailLogin" use:enhance={emailForm.enhance} class="flex flex-col gap-[1.2rem] w-full">
-    <input type="hidden" name="loc" value={loc} />
     <div class="flex flex-col gap-[0.6rem] self-stretch">
       <Label for="email">
         {m.email()}
       </Label>
-      <Input type="email" name="email" />
+      <Input id="email" type="email" name="email" />
     </div>
     <div class="flex flex-col gap-[0.4rem] self-stretch">
       <div class="flex self-stretch">
@@ -42,7 +39,7 @@
           {m.passwordForgot()}
         </div>
       </div>
-      <Input type="password" name="password" />
+      <Input id="password" type="password" name="password" />
     </div>
     <div class="flex flex-col self-stretch">
       {#if emailForm.up && emailForm.er}
@@ -59,7 +56,6 @@
     </div>
   </form>
   <form method="post" action="/auth?/socialLogin" use:enhance={socialForm.enhance} class="flex flex-col mt-[0.6rem] gap-[0.6rem] self-stretch">
-    <input type="hidden" name="loc" value={loc} />
     <Button type="submit" name="provider" value="google" variant="outline" class="cursor-pointer w-full" disabled={emailForm.loading || socialForm.loading}>
       {m.socialLogin({ provider: `Google` })}
     </Button>

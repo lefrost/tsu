@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-  import { invalidateAll } from '$app/navigation';
   import { page } from '$app/state';
   import { Button, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
@@ -22,23 +21,18 @@
   let disableForm: Form = formCreate({
     job: `userTwofaDisable`,
     onOk: async () => {
-      await invalidateAll();
+      page.data.user.twoFactorEnabled = false;
       disableForm.reset();
       disableToggled = false;
     }
   });
 
-  let enableForm: Form = formCreate({
-    job: `userTwofaEnable`,
-    onOk: async () => {
-      await invalidateAll();
-    }
-  });
+  let enableForm: Form = formCreate({ job: `userTwofaEnable` });
 
   let verifyForm: Form = formCreate({
     job: `userTwofaVerify`,
     onOk: async () => {
-      await invalidateAll();
+      page.data.user.twoFactorEnabled = true;
       enableForm.reset();
       enableToggled = false;
     }
@@ -52,8 +46,6 @@
 
   {#if user.twoFactorEnabled}
     <div class="opacity-30">{m.enabled()}</div>
-
-    <input name="loc" type="hidden" value={loc} />
 
     <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; disableForm.reset(); }} variant="outline">
       {disableToggled ? m.cancel(): m.disable() }
@@ -70,8 +62,6 @@
 
 {#if `totpUri` in enableForm.dat && enableForm.dat.totpUri}
   <form action="/auth?/twofaVerify" class="flex flex-col gap-[0.6rem] self-stretch" method="post" use:enhance={verifyForm.enhance}>
-    <input name="loc" type="hidden" value={loc} />
-
     <Label class="opacity-40">
       {m.twofaScan()}
     </Label>
@@ -96,13 +86,11 @@
   </form>
 {:else if enableToggled}
   <form action="/auth?/twofaEnable" class="flex flex-col gap-[0.4rem] self-stretch" method="post" use:enhance={enableForm.enhance}>
-    <input name="loc" type="hidden" value={loc} />
-
     <Label for="password">
       {m.password()}
     </Label>
   
-    <Input class="self-stretch" name="password" type="password" />
+    <Input class="self-stretch" id="password" name="password" type="password" />
 
     <Button class="ms-auto" disabled={enableForm.loading} type="submit" variant="outline">
       {m.continue()}
@@ -110,13 +98,11 @@
   </form>
 {:else if disableToggled}
   <form action="/auth?/twofaDisable" class="flex flex-col gap-[0.4rem] self-stretch" method="post" use:enhance={disableForm.enhance}>
-    <input name="loc" type="hidden" value={loc} />
-
     <Label for="password">
       {m.password()}
     </Label>
   
-    <Input class="self-stretch" name="password" type="password" />
+    <Input class="self-stretch" id="password" name="password" type="password" />
 
     <Button class="ms-auto" disabled={disableForm.loading} type="submit" variant="outline">
       {m.continue()}

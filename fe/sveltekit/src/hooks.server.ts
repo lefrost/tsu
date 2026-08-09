@@ -21,6 +21,7 @@ const paraglideHandle: Handle = ({ event, resolve }) => {
 
 	return paraglideMiddleware(event.request, ({ request, locale }) => {
 		event.request = request;
+		event.locals.loc = locale;
 
 		return resolve(event, {
 			transformPageChunk: ({ html }) =>
@@ -32,11 +33,11 @@ const paraglideHandle: Handle = ({ event, resolve }) => {
 }
 
 const betterAuthHandle: Handle = async ({ event, resolve }) => {
-	const session = await auth.api.getSession({ headers: event.request.headers });
+	const sesh = await auth.api.getSession({ headers: event.request.headers });
 
-	if (session) {
-		event.locals.session = session.session;
-		event.locals.user = session.user;
+	if (sesh) {
+		event.locals.sesh = sesh.session;
+		event.locals.user = sesh.user;
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });
