@@ -9,7 +9,7 @@ export const actions: Actions = {
     const dat = await req.formData();
 
     try {
-      // tba
+      // tba: update user details
 
     } catch (er) { return fail(400, { msg: m.unknownError({}, { loc } as any) }); }
 

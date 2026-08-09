@@ -46,7 +46,7 @@
 </div>
 
 {#if changing}
-  <form action="tba" class="flex gap-2 self-stretch" method="post" use:enhance={form.enhance}>
-    <!-- tba: change email ui, user betterauth changeEmail api function, enable and setup changeEmail in instance config -->
+  <form action="/auth?/emailUpdate" class="flex gap-2 self-stretch" method="post" use:enhance={form.enhance}>
+    <!-- tba: change email ui -->
   </form>
 {/if}

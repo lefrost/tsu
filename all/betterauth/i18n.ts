@@ -1,7 +1,62 @@
 // src: https://github.com/marcellosso/better-auth-localization/tree/main/src/translations
 
 export const translations = {
-  // tba: override for "en"
+  en: {
+    // adhoc
+    VALIDATION_ERROR: "Validation error",
+
+    // User related errors
+    USER_NOT_FOUND: "User not found",
+    FAILED_TO_CREATE_USER: "Failed to create user",
+    FAILED_TO_UPDATE_USER: "Failed to update user",
+    USER_ALREADY_EXISTS: "User already exists",
+    USER_EMAIL_NOT_FOUND: "User email not found",
+    USER_ALREADY_HAS_PASSWORD:
+      "User already has a password. Please enter it to delete the account.",
+    USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL:
+      "User already exists. Please use another email.",
+
+    // Session related errors
+    FAILED_TO_CREATE_SESSION: "Failed to create session",
+    FAILED_TO_GET_SESSION: "Failed to get session",
+    SESSION_EXPIRED:
+      "Session has expired. Please log in again to perform this action.",
+
+    // Authentication errors
+    INVALID_PASSWORD: "Invalid password",
+    INVALID_EMAIL: "Invalid email",
+    INVALID_EMAIL_OR_PASSWORD: "Invalid email or password",
+    INVALID_TOKEN: "Invalid token",
+    EMAIL_NOT_VERIFIED: "Email not verified",
+    CREDENTIAL_ACCOUNT_NOT_FOUND: "Credential account not found",
+
+    // Password related errors
+    PASSWORD_TOO_SHORT: "Password is too short",
+    PASSWORD_TOO_LONG: "Password is too long",
+
+    // Social auth errors
+    SOCIAL_ACCOUNT_ALREADY_LINKED: "Account is already linked",
+    PROVIDER_NOT_FOUND: "Provider not found",
+    ID_TOKEN_NOT_SUPPORTED: "id_token is not supported",
+    FAILED_TO_GET_USER_INFO: "Failed to get user info",
+
+    // Account management errors
+    EMAIL_CAN_NOT_BE_UPDATED: "Email cannot be updated",
+    FAILED_TO_UNLINK_LAST_ACCOUNT: "Cannot unlink the last account",
+    ACCOUNT_NOT_FOUND: "Account not found",
+    
+    // Two Factor related errors
+    OTP_NOT_ENABLED: "OTP is not enabled",
+    OTP_HAS_EXPIRED: "OTP has expired",
+    TOTP_NOT_ENABLED: "TOTP is not enabled",
+    TWO_FACTOR_NOT_ENABLED: "Two-factor authentication is not enabled",
+    BACKUP_CODES_NOT_ENABLED: "Backup codes are not enabled",
+    INVALID_BACKUP_CODE: "Invalid backup code",
+    INVALID_CODE: "Invalid code",
+    TOO_MANY_ATTEMPTS_REQUEST_NEW_CODE:
+      "Too many attempts. Please request a new code.",
+    INVALID_TWO_FACTOR_COOKIE: "Invalid two-factor cookie"
+  },
   
   ja: {
     // adhoc
