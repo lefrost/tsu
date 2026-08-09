@@ -4,12 +4,15 @@
 	"accountsLoading": "アカウントを読み込んでいます",
 	"cancel": "キャンセル",
 	"continue": "続く",
+	"delete": "消去",
 	"disable": "無効にする",
 	"disabled": "無効",
 	"email": "メール",
-	"emailVerify": "確認メールが送信されました。受信箱をご確認ください。",
+	"emailChange": "メールアドレスを変更する",
+	"emailVerificationSent": "確認メールが送信されました。受信箱をご確認ください。",
 	"emailVerificationPrompt": "メールアドレスを確認して、フルアクセス権限を取得してください。",
 	"emailVerificationResend": "確認メールを再送信します",
+	"emailVerify": "メールアドレスを確認してください",
 	"enable": "有効にする",
 	"enabled": "有効",
 	"hello": "こんにちは、{name}。",
@@ -45,5 +48,7 @@
 	"unknownError": "不明なエラー",
 	"unlink": "リンク解除",
 	"unlinked": "リンク解除",
-	"unset": "未設定"
+	"unset": "未設定",
+	"userIconSizeExceed": "アイコンのサイズは{mb}MB未満である必要があります。",
+	"userIconTypeInvalid": "アイコンは画像である必要があります。"
 }

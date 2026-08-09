@@ -13,7 +13,7 @@ export function formCreate(ops?: {
     up?: boolean
   }>({});
 
-  function enhance() {
+  function enhance({ formElement }: { formElement: HTMLFormElement }) {
     if (ops?.job) jobs.add(ops.job);
 
     dat = {};
@@ -37,13 +37,13 @@ export function formCreate(ops?: {
       else if (result.type === `redirect`) window.location = result.location;
 
       else {
+        formElement.reset();
         dat = {
           ...result.data,
           msg: result.data?.msg,
           ok: true,
           up: true
         };
-
         if (ops?.onOk) await ops.onOk();
       }
     };

@@ -4,6 +4,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle';
 import nodemailer from 'nodemailer';
+import { m } from '$paraglide/generated/messages';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -33,11 +34,11 @@ export const authConfig = {
   database: drizzleAdapter(db, { provider: `pg` }),
   emailAndPassword: {
     enabled: true,
-    async sendResetPassword(data: { user: User; url: string; token: string }) {
+    async sendResetPassword({ url, user }: { url: string, user: User }) {
       await transporter.sendMail({
-        to: data.user.email,
-        subject: `Reset your password`,
-        html: `<a href="${data.url}">Reset password</a>`,
+        html: `<a href="${url}">${m.passwordReset()}</a>`,
+        subject: m.passwordReset(),
+        to: user.email
       });
     }
   },
@@ -45,11 +46,11 @@ export const authConfig = {
     callbackURL: encodeURIComponent(`/?email-verified=true`),
     enabled: true,
     sendOnSignUp: true,
-    async sendVerificationEmail(data: { user: User; url: string; token: string }) {
+    async sendVerificationEmail({ url, user }: { url: string, user: User }) {
       await transporter.sendMail({
-        to: data.user.email,
-        subject: `Verify your email address`,
-        html: `<a href="${data.url}">Verify email address</a>`
+        html: `<a href="${url}">${m.emailVerify()}</a>`,
+        subject: m.emailVerify(),
+        to: user.email
       });
     }
   },
@@ -80,9 +81,10 @@ export const authConfig = {
     }
   },
   user: {
+    changeEmail: { enabled: true },
     fields: {
       createdAt: `created`,
-      image: `icon`,
+      image: `iconk`,
       updatedAt: `updated`
     }
   },

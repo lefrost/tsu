@@ -3,24 +3,24 @@
   import { page } from '$app/state';
   import { authClient } from '$lib/auth';
   import { cache } from '$lib/runtime.svelte';
-  import { Button, Spinner } from '$lib/comp/shadcn';
+  import { Button, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
   import { onMount } from 'svelte';
 
   type Account = Awaited<ReturnType<typeof authClient.listAccounts>>[`data`][number];
   type Form = ReturnType<typeof formCreate>;
-  type Locale = ReturnType<typeof getLocale>;
   type User = ReturnType<typeof page.data.user>;
 
   let accounts: Account[] = $state([]);
   let changing: boolean = $state(false);
-  let loc: Locale = $state(getLocale());
   let user : User = $derived(page.data.user);
 
   let form: Form = formCreate({
-    job: `emailChange`
+    job: `emailChange`,
+    onOk: async () => {
+      changing = false;
+    }
   });
 
   onMount(async () => {
@@ -42,11 +42,18 @@
     {user.email}
   </div>
 
-  <!-- tba: "change" button, ms-auto class (turns to "cancel" if changing) -->
+  <Button class="h-auto" variant="outline" onclick={() => { changing = !changing; }}>
+    {changing ? m.cancel() : m.emailChange()}
+  </Button>
 </div>
 
 {#if changing}
   <form action="/auth?/emailUpdate" class="flex gap-2 self-stretch" method="post" use:enhance={form.enhance}>
-    <!-- tba: change email ui -->
+    <Label for="email">{m.email()}</Label>
+    <Input id="email" name="email" type="email" />
+    <Button disabled={form.loading} type="submit">{m.submit()}</Button>
+    {#if form.up && form.er}
+      <div class="text-red-400">{form.er}</div>
+    {/if}
   </form>
 {/if}

@@ -10,5 +10,9 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "composite": true,
     "declaration": true,
+    "paths": {
+			"$paraglide": ["./paraglide"],
+			"$paraglide/*": ["./paraglide/*"]
+		},
   }
 }

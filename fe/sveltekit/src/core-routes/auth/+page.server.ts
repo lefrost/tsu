@@ -44,8 +44,16 @@ export const actions: Actions = {
     const { locals, request: req } = ev;
     const { loc } = locals;
     const dat = await req.formData();
+    const email = dat.get(`email`);
+    
+    try {
+      await auth.api.changeEmail({
+        body: { callbackURL: `/`, newEmail: email },
+        headers: req.headers
+      });
+      return { ok: true };
 
-    // tba: complete this function; enable and setup changeEmail in instance config    
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   logout: async (ev: RequestEvent) => {

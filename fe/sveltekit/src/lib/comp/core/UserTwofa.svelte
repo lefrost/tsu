@@ -5,16 +5,13 @@
   import { formCreate } from '$lib/form.svelte';
 	import QR from '@svelte-put/qr/svg/QR.svelte';
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
   import { mode } from "mode-watcher";
 
   type Form = ReturnType<typeof formCreate>;
-  type Locale = ReturnType<typeof getLocale>;
   type User = ReturnType<typeof page.data.user>;
 
   let disableToggled: boolean = $state(false);
   let enableToggled: boolean = $state(false);
-  let loc: Locale = $state(getLocale());
 
   let user: User = $derived(page.data.user);
 

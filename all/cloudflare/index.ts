@@ -13,11 +13,11 @@ const r2 = new S3Client({
 
 function publicUrlGet(k: string) { return `${process.env.PUBLIC_URL}/${k}`; }
 
-export async function fileAdd(
+export async function fileAdd({ body, k, type } : {
   body: Buffer | Uint8Array | string,
   k: string,
   type?: string
-) {
+}) {
   await r2.send(new PutObjectCommand({
     Body: body,
     Bucket: bucket,
@@ -27,11 +27,11 @@ export async function fileAdd(
   return publicUrlGet(k);
 }
 
-export async function fileAddUrlGet( // client-triggered fileAdd, url to upload file directly to r2
+export async function fileAddUrlGet({ expiresIn = 3600, k, type }: { // client-triggered fileAdd, url to upload file directly to r2
   k: string,
   type?: string,
-  expiresIn = 3600,
-) {
+  expiresIn: number
+}) {
   return getSignedUrl(r2, new PutObjectCommand({
     Bucket: bucket,
     ContentType: type,
@@ -39,14 +39,14 @@ export async function fileAddUrlGet( // client-triggered fileAdd, url to upload 
   }), { expiresIn });
 }
 
-export async function fileDel(k: string) {
+export async function fileDel({ k }: {k: string}) {
   await r2.send(new DeleteObjectCommand({
     Bucket: bucket,
     Key: k
   }));
 }
 
-export async function fileGet(k: string) {
+export async function fileGet({ k }: {k: string}) {
   const res = await r2.send(new GetObjectCommand({
     Bucket: bucket,
     Key: k
@@ -57,17 +57,17 @@ export async function fileGet(k: string) {
   };
 }
 
-export async function fileGetUrlGet(
+export async function fileGetUrlGet({ expiresIn = 3600, k }: {
   k: string,
-  expiresIn = 3600
-) { // client-triggered fileGet, url to download file directly to r2
+  expiresIn: number
+}) { // client-triggered fileGet, url to download file directly to r2
   return getSignedUrl(r2, new GetObjectCommand({
     Bucket: bucket,
     Key: k
   }), { expiresIn });
 }
 
-export async function fileHeadGet(k: string) {
+export async function fileHeadGet({ k }: { k: string }) {
   try {
     return await r2.send(new HeadObjectCommand({
       Bucket: bucket,
@@ -79,10 +79,10 @@ export async function fileHeadGet(k: string) {
   }
 }
 
-export async function filesGet(
+export async function filesGet({ contToken, prefix }: {
   contToken?: string,
   prefix?: string
-) {
+}) {
   const res = await r2.send(new ListObjectsV2Command({
     Bucket: bucket,
     ContinuationToken: contToken,

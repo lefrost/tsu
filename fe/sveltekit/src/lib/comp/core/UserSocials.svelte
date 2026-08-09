@@ -1,22 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-  import { page } from '$app/state';
   import { authClient } from '$lib/auth';
   import { cache } from '$lib/runtime.svelte';
   import { Button, Spinner } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
   import { onMount } from 'svelte';
 
   type Account = Awaited<ReturnType<typeof authClient.listAccounts>>[`data`][number];
   type Form = ReturnType<typeof formCreate>;
-  type Locale = ReturnType<typeof getLocale>;
-  type User = ReturnType<typeof page.data.user>;
 
   let accounts: Account[] = $state([]);
-  let loc: Locale = $state(getLocale());
-  let user : User = $derived(page.data.user);
 
   let socialLinkForm: Form = formCreate({
     job: `socialLink`

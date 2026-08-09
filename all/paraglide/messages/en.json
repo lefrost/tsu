@@ -4,12 +4,15 @@
 	"accountsLoading": "Loading accounts",
 	"cancel": "Cancel",
 	"continue": "Continue",
+	"delete": "Delete",
 	"disable": "Disable",
 	"disabled": "Disabled",
 	"email": "Email",
+	"emailChange": "Change email",
 	"emailVerificationSent": "Verification email sent. Please check your inbox.",
 	"emailVerificationPrompt": "Verify your email to gain full access.",
 	"emailVerificationResend": "Resend verification email",
+	"emailVerify": "Verify email address",
 	"enable": "Enable",
 	"enabled": "Enabled",
 	"hello": "Hello, {name}.",
@@ -45,5 +48,7 @@
 	"unknownError": "Unknown error",
 	"unlink": "Unlink",
 	"unlinked": "Unlinked",
-	"unset": "Unset"
+	"unset": "Unset",
+	"userIconSizeExceed": "Icon size should be less than {mb} MB.",
+	"userIconTypeInvalid": "Icon should be an image."
 }
