@@ -15,6 +15,7 @@ const r2 = new S3Client({
 
 jobRun({
   dat: {},
+  interval: 60 * 60 * 1000, // 60 mins
   job: jobMake({
     fn: async () => {
       const fileCols = Object.values(schema)
