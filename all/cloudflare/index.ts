@@ -1,3 +1,4 @@
+import { jobMake, jobRun } from '$all/bunqueue';
 import { DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
@@ -9,6 +10,18 @@ const r2 = new S3Client({
   },
   endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   region: `auto`
+});;
+
+jobRun({
+  dat: {},
+  job: jobMake({
+    fn: () => {
+      // tba: delete all stale files in bucket, eg. files with keys with no association to any Filek across drizzle database (dynamic, doesn't require edge extensibility)
+    },
+    k: `cloudflareStalesDel`,
+    size: 1
+  }),
+  k: `cloudflareStalesDelRun`,
 });
 
 function publicUrlGet(k: string) { return `${process.env.PUBLIC_URL}/${k}`; }
