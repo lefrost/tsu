@@ -10,7 +10,7 @@
   let iconEr = $state(null);
   let iconIn: HTMLInputElement | undefined = $state(undefined);
   let iconPrevDel = $state(false);
-  let iconUrl = $state(user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.icon}` : null);
+  let iconUrl = $state(user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconk}` : null);
   let form = formCreate({
     job: `socialLink`,
     onOk: async () => {
@@ -27,7 +27,7 @@
   function reset() {
     form.reset();
     if (iconIn) iconIn.value = ``;
-    iconUrl = user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.icon}` : null;
+    iconUrl = user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconk}` : null;
     iconPrevDel = false;
   }
 </script>

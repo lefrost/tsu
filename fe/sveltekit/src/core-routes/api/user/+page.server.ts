@@ -1,5 +1,5 @@
 import { fileAdd, fileDel } from '$all/cloudflare';
-import { db } from '$all/drizzle';
+import { db, eq, schema } from '$all/drizzle';
 import { m } from '$paraglide/generated/messages';
 import { fail } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types'; // expected to be error in /core-routes
@@ -11,14 +11,14 @@ export const actions: Actions = {
     const { loc, user } = locals;
 
     try {
-      let iconk = user.icon;
+      let iconk = user.iconk;
 
       const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
       if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
       const { icon, iconPrevDel } = parse.data;
       
-      if (user.icon && (icon || iconPrevDel)) {
-        await fileDel({ k: user.icon });
+      if (user.iconk && iconPrevDel) {
+        await fileDel({ k: user.iconk });
         iconk = null;
       }
 
@@ -31,7 +31,9 @@ export const actions: Actions = {
         });
       }
 
-      // tba: db.update
+      if (iconk !== user.iconk) await db.update(schema.user)
+        .set({ iconk })
+        .where(eq(schema.user.id, user.id));
     } catch (er) {
       return fail(400, { msg: m.unknownError({}, { loc } as any) });
     }

@@ -40,16 +40,28 @@ export const actions: Actions = {
     return { ok: true };
   },
 
-  logout: async (ev: RequestEvent) => {
+  emailUpdate: async (ev: RequestEvent) => {
     const { locals, request: req } = ev;
     const { loc } = locals;
     const dat = await req.formData();
-
+    const email = dat.get(`email`);
+    
     try {
-      await auth.api.signOut({
+      await auth.api.changeEmail({
+        body: { callbackURL: `/`, newEmail: email },
         headers: req.headers
       });
+      return { ok: true };
 
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
+  },
+
+  logout: async (ev: RequestEvent) => {
+    const { locals, request: req } = ev;
+    const { loc } = locals;
+
+    try {
+      await auth.api.signOut({ headers: req.headers });
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -66,7 +78,6 @@ export const actions: Actions = {
         body: { email },
         headers: req.headers
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -85,7 +96,6 @@ export const actions: Actions = {
           redirectTo: `${process.env.FE_URL}/auth/reset-password`
         }
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -100,10 +110,7 @@ export const actions: Actions = {
 
     try {
       await auth.api.resetPassword({
-        body: {
-          newPassword: password,
-          token
-        }
+        body: { newPassword: password, token }
       });
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -167,7 +174,6 @@ export const actions: Actions = {
         body: { providerId: provider },
         headers: req.headers,
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -184,7 +190,6 @@ export const actions: Actions = {
         body: { code },
         headers: req.headers
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -201,7 +206,6 @@ export const actions: Actions = {
         body: { password },
         headers: req.headers
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
@@ -218,7 +222,6 @@ export const actions: Actions = {
         body: { password, issuer: process.env.NAME },
         headers: req.headers
       });
-
       return {
         ok: true,
         totpUri: res.totpURI?.toString(),
@@ -239,7 +242,6 @@ export const actions: Actions = {
         body: { code, trustDevice: true },
         headers: req.headers,
       });
-
       return { ok: true };
 
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
