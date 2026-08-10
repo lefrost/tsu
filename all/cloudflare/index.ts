@@ -1,4 +1,5 @@
 import { jobMake, jobRun } from '$all/bunqueue';
+import { db, eq, getTableConfig, is, isNotNull, PgTable, schema } from '$all/drizzle';
 import { DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
@@ -10,13 +11,39 @@ const r2 = new S3Client({
   },
   endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   region: `auto`
-});;
+});
 
 jobRun({
   dat: {},
   job: jobMake({
-    fn: () => {
-      // tba: delete all stale files in bucket, eg. files with keys with no association to any Filek across drizzle database (dynamic, doesn't require edge extensibility)
+    fn: async () => {
+      const fileCols = Object.values(schema)
+        .filter(tab => is(tab, PgTable))
+        .flatMap(tab =>
+          getTableConfig(tab).columns
+          .filter(col => col.name.endsWith(`Filek`))
+          .map(col => ({ col, tab })));
+
+      const fileks = new Set(
+        (await Promise.all(fileCols
+          .map(({ col, tab }) =>
+            db.select({ filek: col as any })
+              .from(tab)
+              .where(isNotNull(col as any)
+            ))
+        )).flat().map(row => row.filek)
+      );
+
+      let contToken;
+      do {
+        const { ks, nextToken } = await filesGet({ contToken });
+        await Promise.all(
+          ks.filter(({ k }) =>
+            !fileks.has(k)).map(({ k }) => fileDel({ k })
+          )
+        );
+        contToken = nextToken;
+      } while (contToken);
     },
     k: `r2StalesDel`,
     size: 1
@@ -103,7 +130,7 @@ export async function filesGet({ contToken, prefix }: {
     Prefix: prefix
   }));
   return {
-    keys: res.Contents?.map(o => ({
+    ks: res.Contents?.map(o => ({
       k: o.Key!,
       modified: o.LastModified,
       size: o.Size,

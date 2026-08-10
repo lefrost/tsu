@@ -11,28 +11,28 @@ export const actions: Actions = {
     const { loc, user } = locals;
 
     try {
-      let iconk = user.iconk;
+      let iconFilek = user.iconFilek;
 
       const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
       if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
       const { icon, iconPrevDel } = parse.data;
       
-      if (user.iconk && iconPrevDel) {
-        await fileDel({ k: user.iconk });
-        iconk = null;
+      if (user.iconFilek && iconPrevDel) {
+        await fileDel({ k: user.iconFilek });
+        iconFilek = null;
       }
 
       if (icon) {
-        iconk = crypto.randomUUID();
+        iconFilek = crypto.randomUUID();
         await fileAdd({
           body: Buffer.from(await icon.arrayBuffer()),
-          k: iconk,
+          k: iconFilek,
           type: icon.type
         });
       }
 
-      if (iconk !== user.iconk) await db.update(schema.user)
-        .set({ iconk })
+      if (iconFilek !== user.iconFilek) await db.update(schema.user)
+        .set({ iconFilek })
         .where(eq(schema.user.id, user.id));
     } catch (er) {
       return fail(400, { msg: m.unknownError({}, { loc } as any) });

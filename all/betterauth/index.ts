@@ -84,7 +84,7 @@ export const authConfig = {
     changeEmail: { enabled: true },
     fields: {
       createdAt: `created`,
-      image: `iconk`,
+      image: `iconFilek`,
       updatedAt: `updated`
     }
   },
