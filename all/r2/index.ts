@@ -18,10 +18,10 @@ jobRun({
     fn: () => {
       // tba: delete all stale files in bucket, eg. files with keys with no association to any Filek across drizzle database (dynamic, doesn't require edge extensibility)
     },
-    k: `cloudflareStalesDel`,
+    k: `r2StalesDel`,
     size: 1
   }),
-  k: `cloudflareStalesDelRun`,
+  k: `r2StalesDelRun`,
 });
 
 function publicUrlGet(k: string) { return `${process.env.PUBLIC_URL}/${k}`; }
@@ -42,8 +42,8 @@ export async function fileAdd({ body, k, type } : {
 
 export async function fileAddUrlGet({ expiresIn = 3600, k, type }: { // client-triggered fileAdd, url to upload file directly to r2
   k: string,
-  type?: string,
-  expiresIn: number
+  expiresIn?: number,
+  type?: string
 }) {
   return getSignedUrl(r2, new PutObjectCommand({
     Bucket: bucket,
@@ -72,7 +72,7 @@ export async function fileGet({ k }: {k: string}) {
 
 export async function fileGetUrlGet({ expiresIn = 3600, k }: {
   k: string,
-  expiresIn: number
+  expiresIn?: number
 }) { // client-triggered fileGet, url to download file directly to r2
   return getSignedUrl(r2, new GetObjectCommand({
     Bucket: bucket,

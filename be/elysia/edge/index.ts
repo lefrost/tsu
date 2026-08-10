@@ -1,14 +1,13 @@
-import { Elysia, t } from 'elysia';
+import { type Context, Elysia, t } from 'elysia';
 
 export const edge = new Elysia();
 
-// todo: cloud
-// import { fileAdd, fileAddUrlGet, fileDel, fileGet, fileGetUrlGet, fileHeadGet, filesGet } from '$all/cloudflare';
+// todo: bunqueue
+// import { jobAdd, jobMake } from '$all/bunqueue';
 
-// todo: jobs
-// import { jobAdd, queueMake } from '$all/bunqueue';
-
-// todo: routes; apply to edge
+// todo: drizzle
 // import { db, eq } from '$all/drizzle';
 // import * as schema from '$all/drizzle/schema';
-// import { type Context, Elysia } from 'elysia';
+
+// todo: r2
+// import { fileAdd, fileAddUrlGet, fileDel, fileGet, fileGetUrlGet, fileHeadGet, filesGet } from '$all/r2';

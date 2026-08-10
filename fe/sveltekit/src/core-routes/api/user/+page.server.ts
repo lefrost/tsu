@@ -1,4 +1,4 @@
-import { fileAdd, fileDel } from '$all/cloudflare';
+import { fileAdd, fileDel } from '$all/r2';
 import { db, eq, schema } from '$all/drizzle';
 import { m } from '$paraglide/generated/messages';
 import { fail } from '@sveltejs/kit';
