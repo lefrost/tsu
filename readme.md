@@ -12,6 +12,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 - Execute DB patch: `moon run :dbup`
 - Spin up: `moon run :dev`
 - Build and preview: `moon run :build`
+- Run unit tests: `moon run :test` (TBA)
 
 ### Frontend options:
 
@@ -76,3 +77,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 - Moon: (In Bash) `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh)`, `proto install moon ; proto pin moon latest`
 - [Node](https://nodejs.org/en/download).
 - Pnpm: (In PowerShell) `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`
+
+### Footnotes:
+
+- Unit tests are conducted for functions that house error potential detecable only at runtime and contain no asynchronous I/O.
