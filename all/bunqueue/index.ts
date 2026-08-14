@@ -1,12 +1,12 @@
-import { Bunqueue, Job, Queue } from 'bunqueue/client';
+import { Bunqueue, Job } from 'bunqueue/client';
 
 export async function jobRun({dat, interval = 0, k, job }: {
   dat: Record<string, unknown>,
   interval?: number,
   k: string,
-  job: Queue
+  job: Bunqueue
 }) {
-  if (interval > 0) await job.upsertJobScheduler(k, { every: interval }, dat);
+  if (interval > 0) await job.every(k, interval, dat);
   else await job.add(k, dat);
 }
 
