@@ -8,7 +8,7 @@
     <a class="cursor-pointer" href="/">
       <FishSymbol class="h-[1.6rem] w-[1.6rem]" />
     </a>
-    <div class="flex flex-1" />
+    <div class="flex flex-1"></div>
     <ModeToggler />
     <LanguageSelector />
     <UserManager />

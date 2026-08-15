@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import { UserDetails, UserEmail, UserEmailVerify, UserLogin, UserLogout, UserSocials, UserTwofa } from '$lib/comp/core';
-  import { Button, Card, DropdownMenu } from '$lib/comp/shadcn';
+  import { buttonVariants, Card, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 
   type User = ReturnType<typeof page.data.user>;
@@ -10,10 +10,8 @@
 </script>
 
 <DropdownMenu.Root>
-  <DropdownMenu.Trigger>
-    <Button variant="outline">
+  <DropdownMenu.Trigger class={buttonVariants({ variant: 'outline' })}>
       {user ? user.email : m.login()}
-    </Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" class="max-h-[80vh] p-0 w-[16rem]">
     <Card.Root>

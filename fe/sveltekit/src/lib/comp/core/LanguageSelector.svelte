@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from '$lib/comp/shadcn';
+  import { buttonVariants, DropdownMenu } from '$lib/comp/shadcn';
 	import { m } from '$paraglide/generated/messages';
 	import { locales, setLocale } from '$paraglide/generated/runtime';
 
@@ -12,8 +12,8 @@
 </script>
 
 <DropdownMenu.Root>
-  <DropdownMenu.Trigger>
-    <Button variant="outline">{m.language()}</Button>
+  <DropdownMenu.Trigger class={buttonVariants({ variant: 'outline' })}>
+    {m.language()}
   </DropdownMenu.Trigger>
   <DropdownMenu.Content align="end" >
     {#each langs as lang}

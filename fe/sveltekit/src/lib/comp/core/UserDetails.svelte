@@ -10,12 +10,17 @@
   let iconEr: string | null = $state(null);
   let iconIn: HTMLInputElement | undefined = $state(undefined);
   let iconPrevDel = $state(false);
-  let iconUrl = $state(user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconFilek}` : null);
+  let iconUrl: string | null = $state(null);
+
   let form = formCreate({
     job: `socialLink`,
     onOk: async () => {
       invalidateAll();
     }
+  });
+
+  $effect(() => {
+    iconUrl = user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconFilek}` : null;
   });
 
   function iconChange(e: Event) {

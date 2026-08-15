@@ -13,7 +13,7 @@ export const user = pgTable("user", {
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
-  iconFilek: text("iconFilek"),
+  iconFilek: text("icon_filek"),
   created: timestamp("created").defaultNow().notNull(),
   updated: timestamp("updated")
     .defaultNow()
