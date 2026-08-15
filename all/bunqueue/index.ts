@@ -1,4 +1,4 @@
-import { Bunqueue, Job } from 'bunqueue/client';
+import { Bunqueue } from 'bunqueue/client';
 
 export async function jobRun({dat, interval = 0, k, job }: {
   dat: Record<string, unknown>,
@@ -10,18 +10,14 @@ export async function jobRun({dat, interval = 0, k, job }: {
   else await job.add(k, dat);
 }
 
-export function jobMake({ fn, k, size, timeout }: {
+export function jobMake({ fn, k, size }: {
   fn: (...args: unknown[]) => unknown,
   k: string,
   size?: number,
-  timeout?: number
 }) {
   return new Bunqueue(k, {
-    batch: {
-      processor: (job: typeof Job) => fn(job.data),
-      size: size ?? 1,
-      timeout: timeout ?? 0,
-    },
+    concurrency: size ?? 1,
     embedded: true,
+    processor: (job) => fn(job.data)
   });
 }

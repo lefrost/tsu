@@ -44,14 +44,14 @@
   {#if user.twoFactorEnabled}
     <div class="opacity-30">{m.enabled()}</div>
 
-    <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; disableForm.reset(); }} variant="outline">
+    <Button class="h-auto ms-auto" disabled={disableForm.loading} onclick={() => { disableToggled = !disableToggled; disableForm.reset(); }} variant={disableToggled ? `destructive` : `outline`}>
       {disableToggled ? m.cancel(): m.disable() }
     </Button>
 
   {:else}
     <div class="opacity-30">{m.disabled()}</div>
     
-    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; enableForm.reset(); }} variant="outline">
+    <Button class="h-auto ms-auto" disabled={enableForm.loading || verifyForm.loading} onclick={() => { enableToggled = !enableToggled; enableForm.reset(); }} variant={enableToggled ? `destructive` : `outline`}>
       {enableToggled ? m.cancel(): m.enable() }
     </Button>
   {/if}

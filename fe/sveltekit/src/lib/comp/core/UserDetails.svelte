@@ -8,7 +8,7 @@
   
   let user = $derived(page.data.user);
   let iconEr: string | null = $state(null);
-  let iconIn: HTMLInputElement | undefined = $state(undefined);
+  let iconIn: HTMLInputElement | null = $state(null);
   let iconPrevDel = $state(false);
   let iconUrl: string | null = $state(null);
 
@@ -37,11 +37,11 @@
   }
 </script>
 
-<form action="/api/user?/update" class="flex flex-col gap-1 self-stretch" use:enhance={form.enhance}>
+<form action="/api/user?/update" class="flex flex-col gap-2 self-stretch" method="post" use:enhance={form.enhance}>
   <input name="iconPrevDel" type="hidden" value={iconPrevDel} />
 
   <Label for="icon">{m.icon()}</Label>
-  <Input bind:ref={iconIn} id="icon" name="icon" type="file" />
+  <Input bind:ref={iconIn} id="icon" name="icon" oninput={iconChange} type="file" />
 
   {#if iconEr}
     <div class="text-red-400">{iconEr}</div>

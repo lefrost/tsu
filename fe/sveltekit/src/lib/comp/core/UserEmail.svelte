@@ -34,23 +34,23 @@
   });
 </script>
 
-<div class="flex gap-2 items-start self-stretch">
-  <div class="flex flex-col">
-    <div class="opacity-40">
-      {m.email()}
-    </div>
-    {user.email}
+<div class="flex flex-col items-start relative self-stretch">
+  <div class="opacity-40">
+    {m.email()}
   </div>
+  {user.email}
 
-  <Button class="h-auto" variant="outline" onclick={() => { changing = !changing; }}>
+  <Button class="absolute h-auto right-0 top-0" variant={changing ? `destructive` : `outline`} onclick={() => { changing = !changing; }}>
     {changing ? m.cancel() : m.emailChange()}
   </Button>
 </div>
 
 {#if changing}
-  <form action="/auth?/emailUpdate" class="flex gap-2 self-stretch" method="post" use:enhance={form.enhance}>
-    <Label for="email">{m.email()}</Label>
-    <Input id="email" name="email" type="email" />
+  <form action="/auth?/emailUpdate" class="flex flex-col gap-2 self-stretch" method="post" use:enhance={form.enhance}>
+    <div class="flex flex-row gap-2 self-stretch">
+      <Label for="email">{m.email()}</Label>
+      <Input id="email" name="email" type="email" />
+    </div>
     <Button disabled={form.loading} type="submit">{m.submit()}</Button>
     {#if form.up && form.er}
       <div class="text-red-400">{form.er}</div>
