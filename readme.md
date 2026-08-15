@@ -64,6 +64,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
 | [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
+| [Upstash](https://github.com/upstash/redis-js) | All | Redis client | WIP | 
 | [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
 | [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of touchscreen-compatible IDE | Stable |
 | [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
