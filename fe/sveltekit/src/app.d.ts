@@ -17,4 +17,11 @@ declare global {
 	}
 }
 
+declare const viteEnv: {
+  FE_URL: string;
+  R2_PUBLIC_URL: string;
+  SENTRY_DSN: string;
+	USER_ICON_MB_MAX: string;
+};
+
 export {};

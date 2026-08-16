@@ -20,19 +20,19 @@
   });
 
   $effect(() => {
-    iconUrl = user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    iconUrl = user?.icon ? `${viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
   });
 
   function iconChange(e: Event) {
     const file = (e.currentTarget as HTMLInputElement).files?.[0];
-    iconEr = file && file.size > Number(page.data.env.USER_ICON_MB_MAX) * 1024 * 1024 ? m.userIconSizeExceed() : null;
+    iconEr = file && file.size > Number(viteEnv.USER_ICON_MB_MAX) * 1024 * 1024 ? m.userIconSizeExceed() : null;
     iconUrl = file && !iconEr ? URL.createObjectURL(file) : null;
   }
 
   function reset() {
     form.reset();
     if (iconIn) iconIn.value = ``;
-    iconUrl = user?.icon ? `${page.data.env.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    iconUrl = user?.icon ? `${viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
     iconPrevDel = false;
   }
 </script>

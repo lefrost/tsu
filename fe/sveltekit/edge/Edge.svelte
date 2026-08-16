@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { m } from '$paraglide/generated/messages';
-  // import { msgs, send } from '$lib/comp/ws';
+  // import { msgs, send } from '$lib/ws';
   // todo: ws
 </script>
 

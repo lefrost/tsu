@@ -1,10 +1,17 @@
 import { sequence } from '@sveltejs/kit/hooks';
 import { building } from '$app/environment';
-import { auth } from '$lib/server/auth';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
+import { auth } from '$lib/server/auth';
+import '$lib/otel';
 import type { Handle } from '@sveltejs/kit';
 import { getTextDirection, locales } from '$paraglide/generated/runtime';
 import { paraglideMiddleware } from '$paraglide/generated/server';
+import * as Sentry from '@sentry/sveltekit';
+
+Sentry.init({
+	dsn: process.env.SENTRY_DSN,
+	tracesSampleRate: 0
+});
 
 const paraglideHandle: Handle = ({ event, resolve }) => {
 	// const url = new URL(event.request.url);
@@ -44,3 +51,4 @@ const betterAuthHandle: Handle = async ({ event, resolve }) => {
 };
 
 export const handle: Handle = sequence(paraglideHandle, betterAuthHandle);
+export const handleError = Sentry.handleErrorWithSentry();

@@ -11,6 +11,14 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, path.resolve(process.cwd(), '../../'), '');
 
 	return {
+		define: {
+			viteEnv: {
+				FE_URL: JSON.stringify(env.FE_URL),
+				R2_PUBLIC_URL: JSON.stringify(env.R2_PUBLIC_URL),
+				SENTRY_DSN: JSON.stringify(env.SENTRY_DSN),
+				USER_ICON_MB_MAX: JSON.stringify(env.USER_ICON_MB_MAX)
+			}
+		},
 		plugins: [
 			paraglideVitePlugin({
 				project: path.resolve(import.meta.dirname, '../../all/paraglide/project.inlang'),
