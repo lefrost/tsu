@@ -59,11 +59,11 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
+| [Scalar](https://github.com/scalar/scalar) | All be | API documentation | TBA |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
 | [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via observability | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
 | [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
-| [Swagger](https://github.com/swagger-api/swagger-ui) | All be | API documentation | TBA |
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
 | [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
