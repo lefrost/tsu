@@ -44,27 +44,30 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
 | [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | TBA |
 | [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as Docker image | TBA |
-| [Dragonfly](https://github.com/dragonflydb/dragonfly) | All be | In-memory data storage | TBA |
 | [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
 | [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
 | [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
+| [Kafka](https://github.com/apache/kafka) | All be | Event stream | TBA | 
 | [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
 | [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | WIP |
+| [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | TBA |
 | [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
+| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring | TBA |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
 | [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
+| [Swagger](https://github.com/swagger-api/swagger-ui) | All be | API documentation | TBA |
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
 | [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
-| [Upstash](https://github.com/upstash/redis-js) | All | Redis client | WIP | 
+| [Upstash](https://github.com/upstash/redis-js) | All | Redis client fro in-memory data storage | WIP | 
 | [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
 | [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of touchscreen-compatible IDE | Stable |
 | [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
