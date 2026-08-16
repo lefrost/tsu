@@ -60,7 +60,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
-| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring | TBA |
+| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via observability | TBA |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
 | [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
 | [Swagger](https://github.com/swagger-api/swagger-ui) | All be | API documentation | TBA |
