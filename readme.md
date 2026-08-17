@@ -58,13 +58,13 @@ For subsequent updates specifically:
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
 | [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | WIP |
-| [OpenAPI](https://github.com/oai/openapi-specification) | All be | API spec | WIP |
+| [OpenAPI](https://github.com/oai/openapi-specification) | All fe | Consumer API spec | WIP |
 | [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | WIP |
 | [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
-| [Scalar](https://github.com/scalar/scalar) | All fe | Docs UI for AI spec | WIP |
+| [Scalar](https://github.com/scalar/scalar) | All fe | UI for Consumer API docs | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
 | [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via OpenTelemetry | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
