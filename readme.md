@@ -52,7 +52,7 @@ For subsequent updates specifically:
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
 | [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
 | [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
-| [Hono](https://github.com/honojs/hono) | All fe | Consumer API with OpenAPI and Scalar integration | WIP |
+| [Hono](https://github.com/honojs/hono) | All fe | FE-embedded consumer API with OpenAPI and Scalar integration | WIP |
 | [Kafka](https://github.com/apache/kafka) | All be | Event stream | WIP | 
 | [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
