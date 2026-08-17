@@ -30,11 +30,11 @@ For subsequent updates specifically:
 | --- | --- | --- | --- | --- | --- |
 | be/actixweb | [Actix Web](https://github.com/actix/actix-web) | [Tokio](https://github.com/tokio-rs/tokio) ([Rust](https://github.com/rust-lang/rust)) | TBA | - | - |
 | be/drogon | [Drogon](https://github.com/drogonframework/drogon) | C++ | TBA | - | - |
-| be/elysia | [Elysia](https://github.com/elysiajs/elysia) | [Bun](https://github.com/oven-sh/bun) | WIP | Bun | Bun package management and websocket; [Bunqueue](https://github.com/egeominotti/bunqueue) job queueing. |
+| be/elysia | [Elysia](https://github.com/elysiajs/elysia) | [Bun](https://github.com/oven-sh/bun) | WIP | Bun | Bun package management and websocket; [Bunqueue](https://github.com/egeominotti/bunqueue) job queueing; [Kafkajs](https://github.com/tulios/kafkajs) Kafka client. |
 | be/fastapi | [FastAPI](https://github.com/fastapi/fastapi) | Python | TBA | - | - |
 | be/fiber | [Fiber](https://github.com/gofiber/fiber) | [Go](https://github.com/golang/go) | TBA | - | - |
 | be/laravel | [Laravel](https://github.com/laravel/laravel) | PHP | TBA | - | - |
-| be/nest | [Nest](https://github.com/nestjs/nest) | [Node](https://github.com/nodejs/node) | TBA | - | - |
+| be/nest | [Nest](https://github.com/nestjs/nest) | [Node](https://github.com/nodejs/node) | TBA | - | [Kafkajs](https://github.com/tulios/kafkajs) Kafka client. |
 | be/rails | [Rails](https://github.com/rails/rails) | [Ruby](https://github.com/ruby/ruby) | TBA | - | - |
 | be/springboot | [Spring Boot](https://github.com/spring-projects/spring-boot) | Java | TBA | - | - |
 
