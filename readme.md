@@ -66,7 +66,7 @@ For subsequent updates specifically:
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
 | [Scalar](https://github.com/scalar/scalar) | All fe | Docs UI for AI spec | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
-| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via observability | WIP |
+| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via OpenTelemetry | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
 | [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
 | [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
