@@ -1,4 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
+import { hono } from '$all/hono';
 import { building } from '$app/environment';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 import { auth } from '$lib/server/auth';
@@ -12,6 +13,12 @@ Sentry.init({
 	dsn: process.env.SENTRY_DSN,
 	tracesSampleRate: 0
 });
+
+const honoHandle: Handle = async ({ event, resolve }) => {
+  if (event.url.pathname.startsWith(`/api`) || event.url.pathname.startsWith(`/docs`)) return hono.fetch(event.request);
+  return resolve(event);
+};
+
 
 const paraglideHandle: Handle = ({ event, resolve }) => {
 	// const url = new URL(event.request.url);
@@ -50,5 +57,5 @@ const betterAuthHandle: Handle = async ({ event, resolve }) => {
 	return svelteKitHandler({ event, resolve, auth, building });
 };
 
-export const handle: Handle = sequence(paraglideHandle, betterAuthHandle);
+export const handle: Handle = sequence(honoHandle, paraglideHandle, betterAuthHandle);
 export const handleError = Sentry.handleErrorWithSentry();
