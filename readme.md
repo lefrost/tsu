@@ -8,11 +8,13 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 - Install: `moon run :install`
 - Install with latest packages: `moon run :update`
 - Initialize DB: `moon run :dbinit`
-- Prepare DB patch: `moon run :dbgen`
-- Execute DB patch: `moon run :dbup`
 - Spin up: `moon run :dev`
 - Build and preview: `moon run :build`
 - Run unit tests: `moon run :test`
+
+For subsequent updates specifically:
+- Prepare DB patch: `moon run :dbgen`
+- Execute DB patch: `moon run :dbup`
 
 ### Frontend options:
 
