@@ -42,6 +42,7 @@ For subsequent updates specifically:
 
 | Name | Usage | Purpose | Status |
 | --- | --- | --- | --- |
+| [Aiven](https://github.com/aiven) | All be | Kafka broker | WIP |
 | [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
 | [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
 | [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | WIP |
