@@ -12,7 +12,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 - Execute DB patch: `moon run :dbup`
 - Spin up: `moon run :dev`
 - Build and preview: `moon run :build`
-- Run unit tests: `moon run :test` (TBA)
+- Run unit tests: `moon run :test`
 
 ### Frontend options:
 
@@ -42,8 +42,8 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | --- | --- | --- | --- |
 | [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
 | [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
-| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | TBA |
-| [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as Docker image | TBA |
+| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | WIP |
+| [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as image for deployment | TBA |
 | [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
@@ -55,7 +55,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
 | [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | WIP |
-| [OpenAPI](https://github.com/oai/openapi-specification) | All be | API spec | TBA |
+| [OpenAPI](https://github.com/oai/openapi-specification) | All be | API spec | WIP |
 | [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | WIP |
 | [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
