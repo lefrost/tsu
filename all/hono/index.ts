@@ -4,8 +4,8 @@ import { Scalar } from '@scalar/hono-api-reference';
 const res = (schema: z.ZodType) => ({
   200: {
     content: { 'application/json': { schema } },
-    description: `ok`,
-  },
+    description: `ok`
+  }
 })
 
 export const hono = new OpenAPIHono();

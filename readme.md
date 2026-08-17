@@ -49,6 +49,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
 | [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
 | [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
+| [Hono](https://github.com/honojs/hono) | All fe | Consumer API with OpenAPI and Scalar integration | WIP |
 | [Kafka](https://github.com/apache/kafka) | All be | Event stream | TBA | 
 | [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
@@ -60,7 +61,7 @@ Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and depl
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
-| [Scalar](https://github.com/scalar/scalar) | All fe | Docs UI for AI spec | TBA |
+| [Scalar](https://github.com/scalar/scalar) | All fe | Docs UI for AI spec | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
 | [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via observability | WIP |
 | [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
