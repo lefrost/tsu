@@ -52,7 +52,7 @@ For subsequent updates specifically:
 | [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
 | [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
 | [Hono](https://github.com/honojs/hono) | All fe | Consumer API with OpenAPI and Scalar integration | WIP |
-| [Kafka](https://github.com/apache/kafka) | All be | Event stream | TBA | 
+| [Kafka](https://github.com/apache/kafka) | All be | Event stream | WIP | 
 | [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
 | [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
 | [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
