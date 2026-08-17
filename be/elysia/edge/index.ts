@@ -9,5 +9,8 @@ export const edge = new Elysia();
 // import { db, eq } from '$all/drizzle';
 // import * as schema from '$all/drizzle/schema';
 
+// todo: kafka
+// import { msgAdd, msgsListen } from '$all/kafka';
+
 // todo: r2
 // import { fileAdd, fileAddUrlGet, fileDel, fileGet, fileGetUrlGet, fileHeadGet, filesGet } from '$all/r2';
