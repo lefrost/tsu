@@ -62,7 +62,7 @@ For subsequent updates specifically:
 | [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | WIP |
 | [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
-| [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | TBA |
+| [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | WIP |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
 | [Scalar](https://github.com/scalar/scalar) | All fe | UI for Consumer API docs | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
