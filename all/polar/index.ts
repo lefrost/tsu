@@ -1,3 +1,5 @@
+import { db, eq } from '$all/drizzle';
+import { card } from '$all/drizzle/schema';
 import { Polar } from "@polar-sh/sdk";
 import { validateEvent } from "@polar-sh/sdk/webhooks";
 
@@ -32,31 +34,32 @@ export async function polarWebhookHandle({ headers, rawBody }: {
 }) {
   const ev = validateEvent(rawBody, headers, POLAR_SECRET);
   const d = ev.data as any;
+  const orderk = d.subscriptionId ?? d.id;
+  const productk = d.productId;
   const userId = d.customer?.externalId;
+  if (!(orderk && productk && userId)) return;
+
+  async function upsert(productk: string, status: `active` | `inactive`) {
+    await db.insert(card).values({
+      orderk,
+      productk,
+      status,
+      userId
+    }).onConflictDoUpdate({
+      target: [card.orderk, card.userId],
+      set: { productk, status }
+    });
+  }
 
   switch (ev.type) {
-    case `order.paid`: {
-      // tba
-      break;
-    }
-    case `subscription.active`: {
-      // tba
-      break;
-    }
-    case `subscription.canceled`: {
-      // tba
-      break;
-    }
-    case `subscription.past_due`: {
-      // tba
-      break;
-    }
-    case `subscription.revoked`: {
-      // tba
-      break;
-    }
+    case `order.paid`:
     case `subscription.updated`: {
-      // tba
+      await upsert(productk, `active`);
+      break;
+    }
+    
+    case `subscription.revoked`: {
+      await upsert(productk, `inactive`);
       break;
     }
   }
