@@ -13,10 +13,10 @@ export default defineConfig(({ mode }) => {
 	return {
 		define: {
 			viteEnv: {
-				FE_URL: JSON.stringify(env.FE_URL),
-				R2_PUBLIC_URL: JSON.stringify(env.R2_PUBLIC_URL),
-				SENTRY_DSN: JSON.stringify(env.SENTRY_DSN),
-				USER_ICON_MB_MAX: JSON.stringify(env.USER_ICON_MB_MAX)
+				FE_URL: env.FE_URL,
+				R2_PUBLIC_URL: env.R2_PUBLIC_URL,
+				SENTRY_DSN: env.SENTRY_DSN,
+				USER_ICON_MB_MAX: env.USER_ICON_MB_MAX
 			}
 		},
 		plugins: [

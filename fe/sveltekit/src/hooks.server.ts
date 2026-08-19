@@ -15,7 +15,7 @@ Sentry.init({
 });
 
 const honoHandle: Handle = async ({ event, resolve }) => {
-  if (event.url.pathname.startsWith(`/api`) || event.url.pathname.startsWith(`/docs`)) return hono.fetch(event.request);
+	if ((event.url.pathname.startsWith(`/api`) && !event.url.pathname.startsWith(`/api/auth`)) || event.url.pathname.startsWith(`/docs`)) return hono.fetch(event.request);
   return resolve(event);
 };
 

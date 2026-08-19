@@ -1,3 +1,5 @@
+// todo: any runtime vars
 // import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 
-// todo: any runtime vars
+// todo: redis
+// import { redis } from '$all/upstash';
