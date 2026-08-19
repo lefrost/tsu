@@ -14,3 +14,6 @@ export const edge = new Elysia();
 
 // todo: r2
 // import { fileAdd, fileAddUrlGet, fileDel, fileGet, fileGetUrlGet, fileHeadGet, filesGet } from '$all/r2';
+
+// todo: redis
+// import { redis } from '$all/upstash';
