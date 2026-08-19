@@ -46,9 +46,9 @@
   {#if iconEr}
     <div class="text-red-400">{iconEr}</div>
   {:else if iconUrl}
-    <div class="aspect-square flex max-h-32 relative">
+    <div class="aspect-square flex max-h-32 relative self-start">
       <img alt="" class="h-full w-full" src={iconUrl} />
-      <Button class="absolute h-auto right-1 top-1" onclick={() => { iconUrl = null; iconPrevDel = true; }} type="button">{m.delete()}</Button>
+      <Button class="absolute h-auto right-1 top-1" onclick={() => { iconIn!.value = ``; iconUrl = null; iconPrevDel = true; }} type="button">{m.delete()}</Button>
     </div>
   {/if}
 
