@@ -3,7 +3,9 @@ import { db, eq, schema } from '$all/drizzle';
 import { m } from '$paraglide/generated/messages';
 import { fail } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types'; // expected to be error in /core-routes
-import { UserDetails } from '$all/zod';
+import { UserDetailsCreate } from '$all/zod';
+
+const UserDetails = UserDetailsCreate({ userIconMbMax: viteEnv.USER_ICON_MB_MAX });
 
 export const actions: Actions = {
   update: async (ev: RequestEvent) => {
@@ -13,7 +15,7 @@ export const actions: Actions = {
     try {
       let iconFilek = user.iconFilek;
 
-      const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
+      const parse = UserDetails.safeParse(Object.fromEntries(await req.formData));
       if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
       const { icon, iconPrevDel } = parse.data;
       

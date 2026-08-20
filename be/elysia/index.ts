@@ -1,3 +1,4 @@
+import { stalesDelInit } from '$all/r2/bg';
 import { routes as cloudRoutes } from '$core/cloud';
 import { keyGuard } from '$core/guard'
 import { routes as polarRoutes } from '$core/polar';
@@ -15,5 +16,7 @@ new Elysia()
   .use(edge)
   .onError(({ error }) => Sentry.captureException(error))
   .listen(Number(process.env.BE_PORT));
+
+stalesDelInit();
 
 console.log(`Elysia - ${process.env.BE_URL}`);

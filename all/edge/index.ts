@@ -2,4 +2,4 @@
 // import { hono } from '$all/hono';
 // import { redis } from '$all/upstash';
 
-// todo: hono consumer api routes, apply with hono.openapi()
+// todo: hono client api routes, apply with hono.openapi()

@@ -10,26 +10,26 @@ const res = (schema: z.ZodType) => ({
 
 export const hono = new OpenAPIHono();
 
-hono.use(`/api/*`, async (ctx, next) => {
-  if (ctx.req.header(`apik`) !== process.env.API_KEY) return ctx.json({ error: `Unauthorized` }, 401)
+hono.use(`/client/*`, async (ctx, next) => {
+  if (ctx.req.header(`apik`) !== process.env.CLIENT_KEY) return ctx.json({ error: `Unauthorized` }, 401)
   await next()
 });
 
 hono.openapi(createRoute({
   method: `get`,
-  path: `/api`,
+  path: `/client`,
   // request
-  responses: res(z.literal(`Consumer API`))
+  responses: res(z.literal(`Client API`))
 }), async (ctx) => {
-  return ctx.json(`Consumer API`);
+  return ctx.json(`Client API`);
 });
 
-hono.doc(`/api/openapi.json`, {
+hono.doc(`/client/openapi.json`, {
   openapi: `3.0.0`,
   info: {
-    title: `Consumer API`,
+    title: `Client API`,
     version: `0.0.1`
   }
 });
 
-hono.get(`/docs`, Scalar({ spec: { url: '/api/openapi.json' } }));
+hono.get(`/client/docs`, Scalar({ spec: { url: '/client/openapi.json' } }));

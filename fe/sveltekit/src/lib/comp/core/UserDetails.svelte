@@ -25,19 +25,20 @@
 
   function iconChange(e: Event) {
     const file = (e.currentTarget as HTMLInputElement).files?.[0];
-    iconEr = file && file.size > Number(viteEnv.USER_ICON_MB_MAX) * 1024 * 1024 ? m.userIconSizeExceed() : null;
+    iconEr = file && file.size > Number(viteEnv.USER_ICON_MB_MAX) * 1024 * 1024 ? m.userIconSizeExceed({ mb: viteEnv.USER_ICON_MB_MAX }) : null;
     iconUrl = file && !iconEr ? URL.createObjectURL(file) : null;
   }
 
   function reset() {
     form.reset();
+    iconEr = null;
     if (iconIn) iconIn.value = ``;
     iconUrl = user?.icon ? `${viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
     iconPrevDel = false;
   }
 </script>
 
-<form action="/api/user?/update" class="flex flex-col gap-2 self-stretch" method="post" use:enhance={form.enhance}>
+<form action="/api/user?/update" class="flex flex-col gap-2 self-stretch" enctype="multipart/form-data" method="post" use:enhance={form.enhance}>
   <input name="iconPrevDel" type="hidden" value={iconPrevDel} />
 
   <Label for="icon">{m.icon()}</Label>
