@@ -20,7 +20,8 @@
   });
 
   $effect(() => {
-    iconUrl = user?.icon ? `${viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    iconUrl = user?.iconFilek ? `${user.iconFilek.startsWith(`http`) ? `` : viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    console.log(user) // test
   });
 
   function iconChange(e: Event) {
@@ -49,7 +50,7 @@
   {:else if iconUrl}
     <div class="aspect-square flex max-h-32 relative self-start">
       <img alt="" class="h-full w-full" src={iconUrl} />
-      <Button class="absolute h-auto right-1 top-1" onclick={() => { iconIn!.value = ``; iconUrl = null; iconPrevDel = true; }} type="button">{m.delete()}</Button>
+      <Button class="absolute h-auto right-1 top-1" disabled={form.loading} onclick={() => { iconIn!.value = ``; iconUrl = null; iconPrevDel = true; }} type="button">{m.delete()}</Button>
     </div>
   {/if}
 
@@ -62,7 +63,7 @@
   {/if}
 
   <div class="flex gap-1 self-stretch">
-    <Button class="grow" type="submit">{m.save()}</Button>
-    <Button onclick={reset} type="button" variant="outline">{m.reset()}</Button>
+    <Button class="grow" disabled={form.loading} type="submit">{m.save()}</Button>
+    <Button disabled={form.loading} onclick={reset} type="button" variant="outline">{m.reset()}</Button>
   </div>
 </form>

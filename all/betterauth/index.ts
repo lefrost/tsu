@@ -5,6 +5,7 @@ import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle';
 import nodemailer from 'nodemailer';
 import { m } from '$paraglide/generated/messages';
+import { schema } from '$all/drizzle';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -31,7 +32,10 @@ export const authConfig = {
   appName: process.env.NAME,
   baseURL: process.env.FE_URL,
   secret: process.env.BETTER_AUTH_SECRET,
-  database: drizzleAdapter(db, { provider: `pg` }),
+  database: drizzleAdapter(db, {
+    provider: `pg`,
+    schema
+  }),
   emailAndPassword: {
     enabled: true,
     async sendResetPassword({ url, user }: { url: string, user: User }) {

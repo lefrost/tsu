@@ -15,7 +15,7 @@ export const actions: Actions = {
     try {
       let iconFilek = user.iconFilek;
 
-      const parse = UserDetails.safeParse(Object.fromEntries(await req.formData));
+      const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
       if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
       const { icon, iconPrevDel } = parse.data;
       

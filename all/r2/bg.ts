@@ -1,5 +1,6 @@
 import { jobMake, jobRun } from '$all/bunqueue';
 import { db, eq, getTableConfig, is, isNotNull, PgTable, schema } from '$all/drizzle';
+import { fileDel, filesGet } from '$all/r2';
 
 export function stalesDelInit() {
   jobRun({
