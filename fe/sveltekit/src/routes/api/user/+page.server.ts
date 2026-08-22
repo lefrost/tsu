@@ -12,12 +12,14 @@ export const actions: Actions = {
     const { loc, user } = locals;
 
     try {
-      return (user && await db.query.account.findFirst({
-        where: and(
-          eq(schema.account.userId, user.id),
-          eq(schema.account.providerId, `credential`)
-        )
-      })) ? true : false;
+      return {
+        hasPass: (user && await db.query.account.findFirst({
+          where: and(
+            eq(schema.account.userId, user.id),
+            eq(schema.account.providerId, `credential`)
+          )
+        })) ? true : false
+      }
     } catch (er) {
       return fail(400, { msg: m.unknownError({}, { loc } as any) });
     }

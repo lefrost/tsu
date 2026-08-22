@@ -5,7 +5,6 @@
   import { Button, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
-  import { onMount } from 'svelte';
   
   let user = $derived(page.data.user);
 

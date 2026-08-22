@@ -3,7 +3,7 @@
   import { page } from '$app/state';
   import { authClient } from '$lib/auth';
   import { cache } from '$lib/runtime.svelte';
-  import { Button, Input, Label } from '$lib/comp/shadcn';
+  import { Button, Input, Label, Spinner } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
   import { onMount } from 'svelte';
@@ -14,7 +14,8 @@
 
   let accounts: Account[] = $state([]);
   let changing: boolean = $state(false);
-  let user : User = $derived(page.data.user);
+  let hasPassLoaded = $state(false);
+  let user: User = $derived(page.data.user);
   let userHasPass = $state(false);
 
   let form: Form = formCreate({
@@ -25,8 +26,9 @@
   });
 
   onMount(async () => {
-    const hasPassRes = await fetch(`/api/user?/hasPass`, { method: `POST` });
+    const hasPassRes = await fetch(`/api/user?x=hasPass`);
     if (hasPassRes.ok) userHasPass = await hasPassRes.json();
+    hasPassLoaded = true;
 
     let cachedAccounts: Account[] = cache.get(`accounts`) || [];
     if (cachedAccounts.length) {
@@ -44,7 +46,9 @@
   </div>
   {user.email}
 
-  {#if userHasPass}
+  {#if !hasPassLoaded}
+    <Spinner class="absolute h-auto opacity-40 right-0 top-0" />
+  {:else if userHasPass}
     <Button class="absolute h-auto right-0 top-0" variant={changing ? `destructive` : `outline`} onclick={() => { changing = !changing; }}>
       {changing ? m.cancel() : m.emailChange()}
     </Button>
