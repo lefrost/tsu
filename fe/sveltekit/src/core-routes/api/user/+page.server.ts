@@ -1,5 +1,5 @@
 import { fileAdd, fileDel } from '$all/r2';
-import { db, eq, schema } from '$all/drizzle';
+import { and, db, eq, schema } from '$all/drizzle';
 import { m } from '$paraglide/generated/messages';
 import { fail } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types'; // expected to be error in /core-routes
@@ -8,8 +8,22 @@ import { UserDetailsCreate } from '$all/zod';
 const UserDetails = UserDetailsCreate({ userIconMbMax: viteEnv.USER_ICON_MB_MAX });
 
 export const actions: Actions = {
-  update: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
+  hasPass: async ({ locals, request: req }: RequestEvent) => {
+    const { loc, user } = locals;
+
+    try {
+      return (user && await db.query.account.findFirst({
+        where: and(
+          eq(schema.account.userId, user.id),
+          eq(schema.account.providerId, `credential`)
+        )
+      })) ? true : false;
+    } catch (er) {
+      return fail(400, { msg: m.unknownError({}, { loc } as any) });
+    }
+  },
+  
+  update: async ({ locals, request: req }: RequestEvent) => {
     const { loc, user } = locals;
 
     try {

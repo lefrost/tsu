@@ -9,5 +9,5 @@ const client = neon(process.env.NEON_URL);
 export const db = drizzle(client, { schema });
 
 export { schema };
-export { eq, is, isNotNull } from 'drizzle-orm';
+export { and, eq, is, isNotNull } from 'drizzle-orm';
 export { getTableConfig, PgTable } from 'drizzle-orm/pg-core';

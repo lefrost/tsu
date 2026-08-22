@@ -15,6 +15,7 @@
   let accounts: Account[] = $state([]);
   let changing: boolean = $state(false);
   let user : User = $derived(page.data.user);
+  let userHasPass = $state(false);
 
   let form: Form = formCreate({
     job: `emailChange`,
@@ -24,6 +25,9 @@
   });
 
   onMount(async () => {
+    const hasPassRes = await fetch(`/api/user?/hasPass`, { method: `POST` });
+    if (hasPassRes.ok) userHasPass = await hasPassRes.json();
+
     let cachedAccounts: Account[] = cache.get(`accounts`) || [];
     if (cachedAccounts.length) {
       accounts = cachedAccounts;
@@ -40,9 +44,11 @@
   </div>
   {user.email}
 
-  <Button class="absolute h-auto right-0 top-0" variant={changing ? `destructive` : `outline`} onclick={() => { changing = !changing; }}>
-    {changing ? m.cancel() : m.emailChange()}
-  </Button>
+  {#if userHasPass}
+    <Button class="absolute h-auto right-0 top-0" variant={changing ? `destructive` : `outline`} onclick={() => { changing = !changing; }}>
+      {changing ? m.cancel() : m.emailChange()}
+    </Button>
+  {/if}
 </div>
 
 {#if changing}

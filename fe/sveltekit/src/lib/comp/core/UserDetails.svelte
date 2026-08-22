@@ -5,8 +5,10 @@
   import { Button, Input, Label } from '$lib/comp/shadcn';
   import { formCreate } from '$lib/form.svelte';
 	import { m } from '$paraglide/generated/messages';
+  import { onMount } from 'svelte';
   
   let user = $derived(page.data.user);
+
   let iconEr: string | null = $state(null);
   let iconIn: HTMLInputElement | null = $state(null);
   let iconPrevDel = $state(false);
@@ -21,7 +23,6 @@
 
   $effect(() => {
     iconUrl = user?.iconFilek ? `${user.iconFilek.startsWith(`http`) ? `` : viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
-    console.log(user) // test
   });
 
   function iconChange(e: Event) {
