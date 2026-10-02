@@ -21,7 +21,7 @@
   });
 
   $effect(() => {
-    iconUrl = user?.iconFilek ? `${user.iconFilek.startsWith(`http`) ? `` : viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    iconUrlLoad();
   });
 
   function iconChange(e: Event) {
@@ -34,8 +34,12 @@
     form.reset();
     iconEr = null;
     if (iconIn) iconIn.value = ``;
-    iconUrl = user?.icon ? `${viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
+    iconUrlLoad();
     iconPrevDel = false;
+  }
+
+  function iconUrlLoad() {
+    iconUrl = user?.iconFilek ? `${user.iconFilek.startsWith(`http`) ? `` : viteEnv.R2_PUBLIC_URL}/${user.iconFilek}` : null;
   }
 </script>
 

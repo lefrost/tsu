@@ -1,4 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
+import { authConfig } from '$all/betterauth'; // adjust path
 import { hono } from '$all/hono';
 import { building } from '$app/environment';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
@@ -46,12 +47,15 @@ const paraglideHandle: Handle = ({ event, resolve }) => {
 	});
 }
 
+const rekey = <T extends object>(o: T, fields: Record<string, string> = {}) =>
+  Object.fromEntries(Object.entries(o).map(([k, v]) => [fields[k] ?? k, v]));
+
 const betterAuthHandle: Handle = async ({ event, resolve }) => {
 	const sesh = await auth.api.getSession({ headers: event.request.headers });
 
 	if (sesh) {
-		event.locals.sesh = sesh.session;
-		event.locals.user = sesh.user;
+		event.locals.sesh = rekey(sesh.session, authConfig.session.fields) as any;
+    event.locals.user = rekey(sesh.user, authConfig.user.fields) as any;
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });
