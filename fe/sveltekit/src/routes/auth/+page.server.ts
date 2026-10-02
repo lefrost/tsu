@@ -73,24 +73,6 @@ export const actions: Actions = {
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
-  passwordForgot: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const email = dat.get(`email`);
-
-    try {
-      await auth.api.requestPasswordReset({
-        body: {
-          email,
-          redirectTo: `${process.env.FE_URL}/auth/reset-password`
-        }
-      });
-      return { ok: true };
-
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
-
   passwordReset: async (ev: RequestEvent) => {
     const { locals, request: req } = ev;
     const { loc } = locals;
@@ -106,6 +88,24 @@ export const actions: Actions = {
     } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
 
     return redirect(302, `/`);
+  },
+
+  passwordResetRequest: async (ev: RequestEvent) => {
+    const { locals, request: req } = ev;
+    const { loc } = locals;
+    const dat = await req.formData();
+    const email = dat.get(`email`);
+
+    try {
+      await auth.api.requestPasswordReset({
+        body: {
+          email,
+          redirectTo: `${process.env.FE_URL}/auth/password-reset`
+        }
+      });
+      return { ok: true };
+
+    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
   },
 
   socialLink: async (ev: RequestEvent) => {

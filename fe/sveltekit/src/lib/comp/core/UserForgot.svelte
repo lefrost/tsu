@@ -6,11 +6,11 @@
 
   let { forgot = $bindable() } = $props();
   let form = formCreate({
-    job: `passwordForgot`
+    job: `passwordReset`
   });
 </script>
 
-<form method="post" action="/auth?/passwordForgot" use:enhance={form.enhance} class="flex flex-col gap-[1.2rem] w-full">
+<form method="post" action="/auth?/passwordResetRequest" use:enhance={form.enhance} class="flex flex-col gap-[1.2rem] w-full">
   <div class="flex flex-col gap-[0.6rem] self-stretch">
     <Label for="email">
       {m.email()}

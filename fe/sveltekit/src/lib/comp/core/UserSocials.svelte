@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+  import { page } from '$app/state';
   import { authClient } from '$lib/auth';
   import { cache } from '$lib/runtime.svelte';
   import { Button, Spinner } from '$lib/comp/shadcn';
@@ -11,13 +12,21 @@
   type Form = ReturnType<typeof formCreate>;
 
   let accounts: Account[] = $state([]);
+  
+  let user = $derived(page.data.user);
+
+  let passwordResetForm: Form = formCreate({
+    job: `passwordReset`
+  });
 
   let socialLinkForm: Form = formCreate({
-    job: `socialLink`
+    job: `socialLink`,
+    onOk: () => accountsRefresh(),
   });
 
   let socialUnlinkForm: Form = formCreate({
-    job: `socialUnlink`
+    job: `socialUnlink`,
+    onOk: () => accountsRefresh(),
   });
 
   onMount(async () => {
@@ -29,25 +38,32 @@
       cache.set(`accounts`, accounts);
     }
   });
+
+  async function accountsRefresh() {
+    accounts = (await authClient.listAccounts()).data || [];
+    cache.set(`accounts`, accounts);
+    console.log(accounts); // test
+  }
 </script>
 
 <div class="flex flex-col gap-[0.6rem] self-stretch">
   {#if accounts.length}
-    <div class="flex gap-[0.6rem] items-center self-stretch">
+    <form action="/auth?/passwordResetRequest" class="flex gap-[0.6rem] items-center self-stretch" method="post" use:enhance={passwordResetForm.enhance}>
+      <input type="hidden" name="email" value={user.email} />
       <div class="opacity-40">{m.password()}</div>
       {#if accounts.some(account => account.providerId === `credential`)}
         <div>{m.set()}</div>
       {:else}
         <div class="opacity-30">{m.unset()}</div>
       {/if}
-      <Button class="cursor-pointer h-auto ms-auto" href="/auth/reset-password" variant="outline">
+      <Button class="cursor-pointer h-auto ms-auto" type="submit" variant="outline">
         {#if accounts.some(account => account.providerId === `credential`)}
           {m.reset()}
         {:else}
           {m.set()}
         {/if}
       </Button>
-    </div>
+    </form>
 
     <div class="flex gap-[0.6rem] items-center self-stretch">
       <span class="opacity-40">
@@ -96,13 +112,13 @@
       {/if}
     </div>
 
-    {#if socialLinkForm.up}
+    {#if socialLinkForm.up && socialLinkForm.er}
       <div class="text-red-400">
         {socialLinkForm.er}
       </div>
     {/if}
 
-    {#if socialUnlinkForm.up}
+    {#if socialUnlinkForm.up && socialLinkForm.er}
       <div class="text-red-400">
         {socialUnlinkForm.er}
       </div>
