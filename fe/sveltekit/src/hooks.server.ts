@@ -1,5 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
-import { authConfig } from '$all/betterauth'; // adjust path
+import { authConfig } from '$all/betterauth';
 import { hono } from '$all/hono';
 import { building } from '$app/environment';
 import { svelteKitHandler } from 'better-auth/svelte-kit';

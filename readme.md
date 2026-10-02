@@ -1,4 +1,4 @@
-### (WIP) **Tsu** is a fullstack web boilerplate with a customizable stack.
+### **Tsu** is a fullstack web boilerplate with a customizable stack.
 
 Tsu is contained in a [Moon](https://github.com/moonrepo/moon) monorepo and deployable to a [Fly machine](https://fly.io/docs/machines/) as a [Docker image](https://docs.docker.com/reference/dockerfile/).
 
