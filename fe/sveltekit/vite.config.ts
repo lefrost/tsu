@@ -1,4 +1,3 @@
-
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { routesSync } from './src/lib/scripts/routes-sync';
 import path from 'path';
@@ -14,9 +13,9 @@ export default defineConfig(({ mode }) => {
 		build: {
 			rolldownOptions: {
 				output: {
-					codeSplitting: { groups: [{ name: 'vendor', test: /node_modules/ }] },
-				},
-			},
+					codeSplitting: { groups: [{ name: 'vendor', test: /node_modules/ }] }
+				}
+			}
 		},
 
 		define: {
@@ -37,7 +36,7 @@ export default defineConfig(({ mode }) => {
 			}),
 
 			routesSync(),
-			
+
 			sveltekit({
 				compilerOptions: {
 					// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
@@ -47,22 +46,22 @@ export default defineConfig(({ mode }) => {
 				env: {
 					dir: '../../'
 				},
-				adapter: adapter(),
+				adapter: adapter()
 				// typescript: {
 				// 	config: (config) => {
 				// 		config.include.push('../drizzle.config.ts');
 				// 	}
 				// }
 			}),
-			
+
 			tailwindcss()
 		],
 		preview: { port: Number(env.FE_PORT) },
 		resolve: {
 			alias: {
-				'$all': path.resolve(import.meta.dirname, '../../all/'),
-				'$edge': path.resolve(import.meta.dirname, './edge'),
-				'$paraglide': path.resolve(import.meta.dirname, '../../all/paraglide') // paraglide files are generated at runtime
+				$all: path.resolve(import.meta.dirname, '../../all/'),
+				$edge: path.resolve(import.meta.dirname, './edge'),
+				$paraglide: path.resolve(import.meta.dirname, '../../all/paraglide') // paraglide files are generated at runtime
 			}
 		},
 		server: { port: Number(env.FE_PORT) },
@@ -80,5 +79,5 @@ export default defineConfig(({ mode }) => {
 				}
 			]
 		}
-	}
+	};
 });

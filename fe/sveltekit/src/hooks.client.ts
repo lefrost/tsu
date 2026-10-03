@@ -1,5 +1,5 @@
-import type { ClientInit } from '@sveltejs/kit';
-import { Locale } from '$lib/paraglide.svelte';
+import type { ClientInit } from '@sveltejs/kit/hooks';
+import { Locale } from '#lib/paraglide.svelte.js';
 import * as Sentry from '@sentry/sveltekit';
 
 Sentry.init({

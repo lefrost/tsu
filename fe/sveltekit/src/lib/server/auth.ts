@@ -4,9 +4,6 @@ import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { authConfig } from '$all/betterauth';
 
 export const auth = betterAuth({
-  ...authConfig,
-  plugins: [
-    ...(authConfig.plugins || []),
-    sveltekitCookies(getRequestEvent),
-  ]
+	...authConfig,
+	plugins: [...(authConfig.plugins || []), sveltekitCookies(getRequestEvent)]
 });

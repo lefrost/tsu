@@ -13,37 +13,43 @@ let firstRun = true;
 let timer: number | null = null;
 
 async function build() {
-  try {
-    if (firstRun) {
-      await rm(TARGET, { recursive: true, force: true });
-      firstRun = false;
-    }
-    await mkdir(TARGET, { recursive: true });
-    try { await cp(CORE, TARGET, { recursive: true, force: true }); } catch {}
-    try { await cp(EDGE, TARGET, { recursive: true, force: true }); } catch {}
-    console.log(`[routes-sync] Built`);
-  } catch (err) {
-    console.error(`[routes-sync] Build error:`, err);
-  }
+	try {
+		if (firstRun) {
+			await rm(TARGET, { recursive: true, force: true });
+			firstRun = false;
+		}
+		await mkdir(TARGET, { recursive: true });
+		try {
+			await cp(CORE, TARGET, { recursive: true, force: true });
+		} catch {}
+		try {
+			await cp(EDGE, TARGET, { recursive: true, force: true });
+		} catch {}
+		console.log(`[routes-sync] Built`);
+	} catch (err) {
+		console.error(`[routes-sync] Build error:`, err);
+	}
 }
 
 export function routesSync(): Plugin {
-  return {
-    name: `routes-sync`,
-    async buildStart() { await build(); },
-    configureServer(server) {
-      server.watcher.add(CORE);
-      server.watcher.add(EDGE);
-      server.watcher.on(`change`, (path) => {
-        if (path.startsWith(CORE) || path.startsWith(EDGE)) {
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(() => {
-            build();
-            server.ws.send({ type: `full-reload` });
-            timer = null;
-          }, 50) as unknown as number;
-        }
-      });
-    }
-  };
+	return {
+		name: `routes-sync`,
+		async buildStart() {
+			await build();
+		},
+		configureServer(server) {
+			server.watcher.add(CORE);
+			server.watcher.add(EDGE);
+			server.watcher.on(`change`, (path) => {
+				if (path.startsWith(CORE) || path.startsWith(EDGE)) {
+					if (timer) clearTimeout(timer);
+					timer = setTimeout(() => {
+						build();
+						server.ws.send({ type: `full-reload` });
+						timer = null;
+					}, 50) as unknown as number;
+				}
+			});
+		}
+	};
 }

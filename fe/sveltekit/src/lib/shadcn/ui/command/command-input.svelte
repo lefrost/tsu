@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Command as CommandPrimitive } from "bits-ui";
-	import * as InputGroup from "$lib/shadcn/ui/input-group/index.js";
+	import { Command as CommandPrimitive } from 'bits-ui';
+	import * as InputGroup from '#lib/shadcn/ui/input-group/index.js';
 	import SearchIcon from '@lucide/svelte/icons/search';
-	import { cn } from "$lib/shadcn/utils.js";
+	import { cn } from '#lib/shadcn/utils.js';
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		value = $bindable(""),
+		value = $bindable(''),
 		...restProps
 	}: CommandPrimitive.InputProps = $props();
 </script>
@@ -18,7 +18,7 @@
 			{value}
 			data-slot="command-input"
 			class={cn(
-				"w-full text-xs/relaxed outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+				'w-full text-xs/relaxed outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
 				className
 			)}
 			{...restProps}

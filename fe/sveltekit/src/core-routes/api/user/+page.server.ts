@@ -8,54 +8,57 @@ import { UserDetailsCreate } from '$all/zod';
 const UserDetails = UserDetailsCreate({ userIconMbMax: viteEnv.USER_ICON_MB_MAX });
 
 export const actions: Actions = {
-  hasPass: async ({ locals, request: req }: RequestEvent) => {
-    const { loc, user } = locals;
+	hasPass: async ({ locals, request: req }: RequestEvent) => {
+		const { loc, user } = locals;
 
-    try {
-      return {
-        hasPass: (user && await db.query.account.findFirst({
-          where: and(
-            eq(schema.account.userId, user.id),
-            eq(schema.account.providerId, `credential`)
-          )
-        })) ? true : false
-      }
-    } catch (er) {
-      return fail(400, { msg: m.unknownError({}, { loc } as any) });
-    }
-  },
-  
-  update: async ({ locals, request: req }: RequestEvent) => {
-    const { loc, user } = locals;
+		try {
+			return {
+				hasPass:
+					user &&
+					(await db.query.account.findFirst({
+						where: and(
+							eq(schema.account.userId, user.id),
+							eq(schema.account.providerId, `credential`)
+						)
+					}))
+						? true
+						: false
+			};
+		} catch (er) {
+			return fail(400, { msg: m.unknownError({}, { loc } as any) });
+		}
+	},
 
-    try {
-      let iconFilek = user.iconFilek;
+	update: async ({ locals, request: req }: RequestEvent) => {
+		const { loc, user } = locals;
 
-      const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
-      if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
-      const { icon, iconPrevDel } = parse.data;
-      
-      if (user.iconFilek && iconPrevDel) {
-        await fileDel({ k: user.iconFilek });
-        iconFilek = null;
-      }
+		try {
+			let iconFilek = user.iconFilek;
 
-      if (icon) {
-        iconFilek = crypto.randomUUID();
-        await fileAdd({
-          body: Buffer.from(await icon.arrayBuffer()),
-          k: iconFilek,
-          type: icon.type
-        });
-      }
+			const parse = UserDetails.safeParse(Object.fromEntries(await req.formData()));
+			if (!parse.success) return fail(400, { msg: parse.error.issues[0].message });
+			const { icon, iconPrevDel } = parse.data;
 
-      if (iconFilek !== user.iconFilek) await db.update(schema.user)
-        .set({ iconFilek })
-        .where(eq(schema.user.id, user.id));
-    } catch (er) {
-      return fail(400, { msg: m.unknownError({}, { loc } as any) });
-    }
+			if (user.iconFilek && iconPrevDel) {
+				await fileDel({ k: user.iconFilek });
+				iconFilek = null;
+			}
 
-    return { ok: true };
-  }
-}
+			if (icon) {
+				iconFilek = crypto.randomUUID();
+				await fileAdd({
+					body: Buffer.from(await icon.arrayBuffer()),
+					k: iconFilek,
+					type: icon.type
+				});
+			}
+
+			if (iconFilek !== user.iconFilek)
+				await db.update(schema.user).set({ iconFilek }).where(eq(schema.user.id, user.id));
+		} catch (er) {
+			return fail(400, { msg: m.unknownError({}, { loc } as any) });
+		}
+
+		return { ok: true };
+	}
+};

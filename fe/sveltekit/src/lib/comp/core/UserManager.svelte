@@ -1,35 +1,43 @@
 <script lang="ts">
-  import { page } from '$app/state';
-  import { UserDetails, UserEmail, UserEmailVerify, UserLogin, UserLogout, UserSocials, UserTwofa } from '$lib/comp/core';
-  import { buttonVariants, Card, DropdownMenu } from '$lib/comp/shadcn';
+	import { page } from '$app/state';
+	import {
+		UserDetails,
+		UserEmail,
+		UserEmailVerify,
+		UserLogin,
+		UserLogout,
+		UserSocials,
+		UserTwofa
+	} from '#lib/comp/core.js';
+	import { buttonVariants, Card, DropdownMenu } from '#lib/comp/shadcn.js';
 	import { m } from '$paraglide/generated/messages';
 
-  type User = ReturnType<typeof page.data.user>;
-  
-  let user: User = $derived(page.data.user);
+	type User = ReturnType<typeof page.data.user>;
+
+	let user: User = $derived(page.data.user);
 </script>
 
 <DropdownMenu.Root>
-  <DropdownMenu.Trigger class={buttonVariants({ variant: 'outline' })}>
-      {user ? user.email : m.login()}
-  </DropdownMenu.Trigger>
-  <DropdownMenu.Content align="end" class="max-h-[80vh] p-0 w-[16rem]">
-    <Card.Root>
-      <Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
-        {#if user}
-          {#if user.emailVerified}
-            <UserDetails />
-            <UserEmail />
-            <UserSocials />
-            <UserTwofa />
-          {:else}
-            <UserEmailVerify />
-          {/if}
-          <UserLogout />
-        {:else}
-          <UserLogin />
-        {/if}
-      </Card.Content>
-    </Card.Root>
-  </DropdownMenu.Content>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: 'outline' })}>
+		{user ? user.email : m.login()}
+	</DropdownMenu.Trigger>
+	<DropdownMenu.Content align="end" class="max-h-[80vh] w-[16rem] p-0">
+		<Card.Root>
+			<Card.Content class="flex flex-col gap-[0.6rem] self-stretch">
+				{#if user}
+					{#if user.emailVerified}
+						<UserDetails />
+						<UserEmail />
+						<UserSocials />
+						<UserTwofa />
+					{:else}
+						<UserEmailVerify />
+					{/if}
+					<UserLogout />
+				{:else}
+					<UserLogin />
+				{/if}
+			</Card.Content>
+		</Card.Root>
+	</DropdownMenu.Content>
 </DropdownMenu.Root>

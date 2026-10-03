@@ -1,11 +1,10 @@
-import { sequence } from '@sveltejs/kit/hooks';
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { authConfig } from '$all/betterauth';
 import { hono } from '$all/hono';
-import { building } from '$app/environment';
+import { building } from '$app/env';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
-import { auth } from '$lib/server/auth';
-import '$lib/otel';
-import type { Handle } from '@sveltejs/kit';
+import { auth } from '#lib/server/auth.js';
+import '#lib/otel.js';
 import { getTextDirection, locales } from '$paraglide/generated/runtime';
 import { paraglideMiddleware } from '$paraglide/generated/server';
 import * as Sentry from '@sentry/sveltekit';
@@ -17,9 +16,8 @@ Sentry.init({
 
 const honoHandle: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname.startsWith(`/client`)) return hono.fetch(event.request);
-  return resolve(event);
+	return resolve(event);
 };
-
 
 const paraglideHandle: Handle = ({ event, resolve }) => {
 	// const url = new URL(event.request.url);
@@ -45,17 +43,17 @@ const paraglideHandle: Handle = ({ event, resolve }) => {
 					.replace('%paraglide.dir%', getTextDirection(locale))
 		});
 	});
-}
+};
 
 const rekey = <T extends object>(o: T, fields: Record<string, string> = {}) =>
-  Object.fromEntries(Object.entries(o).map(([k, v]) => [fields[k] ?? k, v]));
+	Object.fromEntries(Object.entries(o).map(([k, v]) => [fields[k] ?? k, v]));
 
 const betterAuthHandle: Handle = async ({ event, resolve }) => {
 	const sesh = await auth.api.getSession({ headers: event.request.headers });
 
 	if (sesh) {
 		event.locals.sesh = rekey(sesh.session, authConfig.session.fields) as any;
-    event.locals.user = rekey(sesh.user, authConfig.user.fields) as any;
+		event.locals.user = rekey(sesh.user, authConfig.user.fields) as any;
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });

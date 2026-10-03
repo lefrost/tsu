@@ -1,239 +1,254 @@
-import { auth } from '$lib/server/auth';
+import { auth } from '#lib/server/auth.js';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, RequestEvent } from './$types'; // expected to be error in pre-generation /core-routes; error goes away when generated to /routes
 import { erMsgGet } from './util.server';
 
 export const actions: Actions = {
-  emailLogin: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const act = dat.get(`act`);
-    const email = dat.get(`email`);
-    const password = dat.get(`password`);
+	emailLogin: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const act = dat.get(`act`);
+		const email = dat.get(`email`);
+		const password = dat.get(`password`);
 
-    let res;
-    
-    try {
-      if (act === `login`) res = await auth.api.signInEmail({
-        body: { email, password }
-      });
+		let res;
 
-      else if (act === `signup`) await auth.api.signUpEmail({
-        body: { email, password, name: `` }
-      });
+		try {
+			if (act === `login`)
+				res = await auth.api.signInEmail({
+					body: { email, password }
+				});
+			else if (act === `signup`)
+				await auth.api.signUpEmail({
+					body: { email, password, name: `` }
+				});
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
+		if (res && `twoFactorRedirect` in res && res.twoFactorRedirect)
+			throw redirect(303, `/auth/twofa`);
 
-    if (res && `twoFactorRedirect` in res && res.twoFactorRedirect) throw redirect(303, `/auth/twofa`);
-    
-    return { ok: true };
-  },
+		return { ok: true };
+	},
 
-  emailUpdate: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const email = dat.get(`email`);
-    
-    try {
-      await auth.api.changeEmail({
-        body: { callbackURL: `/`, newEmail: email },
-        headers: req.headers
-      });
-      return { ok: true };
+	emailUpdate: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const email = dat.get(`email`);
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+		try {
+			await auth.api.changeEmail({
+				body: { callbackURL: `/`, newEmail: email },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-  logout: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
+	logout: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
 
-    try {
-      await auth.api.signOut({ headers: req.headers });
-      return { ok: true };
+		try {
+			await auth.api.signOut({ headers: req.headers });
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+	emailVerificationResend: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const email = dat.get(`email`);
 
-  emailVerificationResend: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const email = dat.get(`email`);
+		try {
+			await auth.api.sendVerificationEmail({
+				body: { email },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    try {
-      await auth.api.sendVerificationEmail({
-        body: { email },
-        headers: req.headers
-      });
-      return { ok: true };
+	passwordReset: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const password = dat.get(`password`);
+		const token = dat.get(`token`);
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+		try {
+			await auth.api.resetPassword({
+				body: { newPassword: password, token }
+			});
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
 
-  passwordReset: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const password = dat.get(`password`);
-    const token = dat.get(`token`);
+		return redirect(302, `/`);
+	},
 
-    try {
-      await auth.api.resetPassword({
-        body: { newPassword: password, token }
-      });
+	passwordResetRequest: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const email = dat.get(`email`);
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
+		try {
+			await auth.api.requestPasswordReset({
+				body: {
+					email,
+					redirectTo: `${process.env.FE_URL}/auth/password-reset`
+				}
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    return redirect(302, `/`);
-  },
+	socialLink: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const provider = dat.get(`provider`);
 
-  passwordResetRequest: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const email = dat.get(`email`);
+		let res;
 
-    try {
-      await auth.api.requestPasswordReset({
-        body: {
-          email,
-          redirectTo: `${process.env.FE_URL}/auth/password-reset`
-        }
-      });
-      return { ok: true };
+		try {
+			res = await auth.api.linkSocialAccount({
+				body: { provider },
+				headers: req.headers
+			});
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+		if (res && !(`error` in res) && `url` in res) return redirect(302, res.url);
 
-  socialLink: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const provider = dat.get(`provider`);
+		return fail(400, { msg: erMsgGet(null, loc) });
+	},
 
-    let res;
+	socialLogin: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const provider = dat.get(`provider`);
 
-    try {
-      res = await auth.api.linkSocialAccount({
-        body: { provider },
-        headers: req.headers,
-      });
+		let res;
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
+		try {
+			res = await auth.api.signInSocial({
+				body: {
+					provider: provider,
+					callbackURL: `/auth/twofa`,
+					errorCallbackURL: `/auth/error`
+				}
+			});
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
 
-    if (res && !(`error` in res) && `url` in res) return redirect(302, res.url);
+		if (res?.url) return redirect(302, res.url);
 
-    return fail(400, { msg: erMsgGet(null, loc) });
-  },
+		return fail(400, { msg: erMsgGet(null, loc) });
+	},
 
-  socialLogin: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const provider = dat.get(`provider`);
+	socialUnlink: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const provider = dat.get(`provider`);
 
-    let res;
+		try {
+			await auth.api.unlinkAccount({
+				body: { providerId: provider },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    try {
-      res = await auth.api.signInSocial({
-        body: {
-          provider: provider,
-          callbackURL: `/auth/twofa`,
-          errorCallbackURL: `/auth/error`,
-        }
-      });
+	twofaBackupVerify: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const code = dat.get(`code`);
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
+		try {
+			await (auth.api as any).verifyBackupCode({
+				body: { code },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    if (res?.url) return redirect(302, res.url);
+	twofaDisable: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const password = dat.get(`password`);
 
-    return fail(400, { msg: erMsgGet(null, loc) });
-  },
+		try {
+			await (auth.api as any).disableTwoFactor({
+				body: { password },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-  socialUnlink: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const provider = dat.get(`provider`);
+	twofaEnable: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const password = dat.get(`password`);
 
-    try {
-      await auth.api.unlinkAccount({
-        body: { providerId: provider },
-        headers: req.headers,
-      });
-      return { ok: true };
+		try {
+			const res = await (auth.api as any).enableTwoFactor({
+				body: { password, issuer: process.env.NAME },
+				headers: req.headers
+			});
+			return {
+				ok: true,
+				totpUri: res.totpURI?.toString(),
+				backupCodes: res.backupCodes ?? []
+			};
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	},
 
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+	twofaVerify: async (ev: RequestEvent) => {
+		const { locals, request: req } = ev;
+		const { loc } = locals;
+		const dat = await req.formData();
+		const code = dat.get(`code`);
 
-  twofaBackupVerify: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const code = dat.get(`code`);
-
-    try {
-      await (auth.api as any).verifyBackupCode({
-        body: { code },
-        headers: req.headers
-      });
-      return { ok: true };
-
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
-
-  twofaDisable: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const password = dat.get(`password`);
-
-    try {
-      await (auth.api as any).disableTwoFactor({
-        body: { password },
-        headers: req.headers
-      });
-      return { ok: true };
-
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
-
-  twofaEnable: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const password = dat.get(`password`);
-
-    try {
-      const res = await (auth.api as any).enableTwoFactor({
-        body: { password, issuer: process.env.NAME },
-        headers: req.headers
-      });
-      return {
-        ok: true,
-        totpUri: res.totpURI?.toString(),
-        backupCodes: res.backupCodes ?? []
-      }
-
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
-
-  twofaVerify: async (ev: RequestEvent) => {
-    const { locals, request: req } = ev;
-    const { loc } = locals;
-    const dat = await req.formData();
-    const code = dat.get(`code`);
-
-    try {
-      await (auth.api as any).verifyTOTP({
-        body: { code, trustDevice: true },
-        headers: req.headers,
-      });
-      return { ok: true };
-
-    } catch (er) { return fail(400, { msg: erMsgGet(er, loc) }); }
-  },
+		try {
+			await (auth.api as any).verifyTOTP({
+				body: { code, trustDevice: true },
+				headers: req.headers
+			});
+			return { ok: true };
+		} catch (er) {
+			return fail(400, { msg: erMsgGet(er, loc) });
+		}
+	}
 };
