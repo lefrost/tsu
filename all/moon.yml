@@ -9,6 +9,8 @@ tasks:
     script: 'bun run --env-file=../.env db:studio'
   install:
     script: 'pnpm install'
+  preview:
+    script: 'bun run --env-file=../.env db:studio'
   test:
     script: 'bun test'
   update:

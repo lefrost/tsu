@@ -11,6 +11,14 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, path.resolve(process.cwd(), '../../'), '');
 
 	return {
+		build: {
+			rolldownOptions: {
+				output: {
+					codeSplitting: { groups: [{ name: 'vendor', test: /node_modules/ }] },
+				},
+			},
+		},
+
 		define: {
 			viteEnv: {
 				FE_URL: env.FE_URL,
@@ -49,6 +57,7 @@ export default defineConfig(({ mode }) => {
 			
 			tailwindcss()
 		],
+		preview: { port: Number(env.FE_PORT) },
 		resolve: {
 			alias: {
 				'$all': path.resolve(import.meta.dirname, '../../all/'),

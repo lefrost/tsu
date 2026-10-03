@@ -1,10 +1,12 @@
 tasks:
   build:
-    script: 'bun run --env-file=../../.env build ; bun run --env-file=../../.env preview'
+    script: 'bun run --env-file=../../.env build'
   dev:
     script: 'bun run --env-file=../../.env dev'
   install:
     script: 'pnpm install'
+  preview:
+    script: 'bun run --env-file=../../.env preview'
   test:
     script: 'bun test'
   update:

@@ -47,7 +47,6 @@
     "@scalar/hono-api-reference": "^0.11.14",
     "@upstash/redis": "^1.38.2",
     "better-auth": "^1.6.23",
-    "better-call": "^2.0.5",
     "bunqueue": "^2.8.59",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.13.2",
