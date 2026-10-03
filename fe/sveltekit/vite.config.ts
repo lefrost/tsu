@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
 					codeSplitting: { groups: [{ name: 'aws', test: /@aws-sdk|@smithy/ }] }
 				}
 			}
-},
+		},
 
 		define: {
 			viteEnv: {
