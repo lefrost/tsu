@@ -5,13 +5,12 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$paraglide/generated/runtime';
-	import favicon from '$lib/assets/favicon.svg';
 	import { ModeWatcher } from "mode-watcher";
 
 	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head><link rel="icon" href="/favicon.png" /></svelte:head>
 <ModeWatcher />
 
 <div class="flex flex-col items-center h-full w-full">
