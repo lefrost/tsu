@@ -1,0 +1,5 @@
+{
+  "framework": null,
+  "installCommand": "corepack pnpm@10.34.6 --dir all install --frozen-lockfile && corepack pnpm@10.34.6 --dir fe/sveltekit install --frozen-lockfile",
+  "buildCommand": "cd fe/sveltekit && pnpm build && cd ../.. && rm -rf .vercel/output && mkdir -p .vercel && cp -a fe/sveltekit/.vercel/output .vercel/output"
+}

@@ -4,7 +4,7 @@
 	import { Button, Input, Label } from '#lib/comp/shadcn.js';
 	import { formCreate } from '#lib/form.svelte.js';
 	import QR from '@svelte-put/qr/svg/QR.svelte';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 	import { mode } from 'mode-watcher';
 
 	type Form = ReturnType<typeof formCreate>;

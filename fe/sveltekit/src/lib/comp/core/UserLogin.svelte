@@ -4,7 +4,7 @@
 	import { UserForgot } from '#lib/comp/core.js';
 	import { formCreate } from '#lib/form.svelte.js';
 	import { Button, Input, Label } from '#lib/comp/shadcn.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	let forgot = $state(false);
 

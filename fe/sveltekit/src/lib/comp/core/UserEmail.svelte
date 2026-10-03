@@ -5,7 +5,7 @@
 	import { cache } from '#lib/runtime.svelte.js';
 	import { Button, Input, Label, Spinner } from '#lib/comp/shadcn.js';
 	import { formCreate } from '#lib/form.svelte.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 	import { onMount } from 'svelte';
 
 	type Account = Awaited<ReturnType<typeof authClient.listAccounts>>[`data`][number];

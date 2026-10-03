@@ -1,6 +1,6 @@
 import { jobs } from '#lib/runtime.svelte.js';
-import { getLocale } from '$paraglide/generated/runtime';
-import { m } from '$paraglide/generated/messages';
+import { getLocale } from '#paraglide/generated/runtime';
+import { m } from '#paraglide/generated/messages';
 
 export function formCreate(ops?: { job?: string; onOk?: () => void }) {
 	let dat = $state<{

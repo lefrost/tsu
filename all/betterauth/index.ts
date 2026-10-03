@@ -4,8 +4,8 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { twoFactor } from 'better-auth/plugins';
 import { db } from '../drizzle';
 import nodemailer from 'nodemailer';
-import { m } from '$paraglide/generated/messages';
-import { schema } from '$all/drizzle';
+import { m } from '#paraglide/generated/messages';
+import { schema } from '#all/drizzle';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,

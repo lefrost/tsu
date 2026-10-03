@@ -4,7 +4,7 @@
 	import { page } from '$app/state';
 	import { Button, Input, Label } from '#lib/comp/shadcn.js';
 	import { formCreate } from '#lib/form.svelte.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	let user = $derived(page.data.user);
 

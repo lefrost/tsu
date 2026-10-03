@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { m } from '$paraglide/generated/messages';
+import { m } from '#paraglide/generated/messages';
 
 export function UserDetailsCreate({ userIconMbMax }: { userIconMbMax: number }) {
   return z.object({

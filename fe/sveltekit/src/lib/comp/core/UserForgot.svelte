@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { formCreate } from '#lib/form.svelte.js';
 	import { Button, Input, Label } from '#lib/comp/shadcn.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	let { forgot = $bindable() } = $props();
 	let form = formCreate({

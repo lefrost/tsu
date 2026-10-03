@@ -1,5 +1,5 @@
-import { translations } from '$all/betterauth/i18n';
-import { m } from '$paraglide/generated/messages';
+import { translations } from '#all/betterauth/i18n';
+import { m } from '#paraglide/generated/messages';
 
 export function erMsgGet(er: any, loc: string) {
 	loc = loc in translations ? loc : `en`;

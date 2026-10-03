@@ -10,7 +10,7 @@
 		UserTwofa
 	} from '#lib/comp/core.js';
 	import { buttonVariants, Card, DropdownMenu } from '#lib/comp/shadcn.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	type User = ReturnType<typeof page.data.user>;
 

@@ -4,7 +4,7 @@
 	import type { Path } from '$app/types';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { locales, localizeHref } from '$paraglide/generated/runtime';
+	import { locales, localizeHref } from '#paraglide/generated/runtime';
 	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { buttonVariants, DropdownMenu } from '#lib/comp/shadcn.js';
-	import { m } from '$paraglide/generated/messages';
-	import { locales, setLocale } from '$paraglide/generated/runtime';
+	import { m } from '#paraglide/generated/messages';
+	import { locales, setLocale } from '#paraglide/generated/runtime';
 
 	let langs = $derived.by(() =>
 		locales.map((locale) => ({

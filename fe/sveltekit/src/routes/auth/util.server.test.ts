@@ -1,8 +1,8 @@
-import { translations } from '$all/betterauth/i18n';
+import { translations } from '#all/betterauth/i18n';
 import { beforeAll, describe, expect, it } from 'bun:test';
 import { erMsgGet } from './util.server';
-import { m } from '$paraglide/generated/messages';
-import { overwriteGetLocale } from '$paraglide/generated/runtime';
+import { m } from '#paraglide/generated/messages';
+import { overwriteGetLocale } from '#paraglide/generated/runtime';
 
 describe(`erMsgGet`, () => {
 	beforeAll(() => overwriteGetLocale(() => `en`));

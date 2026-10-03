@@ -1,4 +1,4 @@
-import { user } from '$all/betterauth/schema';
+import { user } from '#all/betterauth/schema';
 import { bigint, pgTable, text, timestamp, uuid, unique } from 'drizzle-orm/pg-core';
 
 export const card = pgTable(`card`, {
@@ -11,4 +11,4 @@ export const card = pgTable(`card`, {
   updated: bigint(`updated`, { mode: `number` }).notNull().$defaultFn(() => Date.now()).$onUpdate(() => Date.now())
 }, table => [unique().on(table.orderk, table.userId)]);
 
-export * from '$all/betterauth/schema';
+export * from '#all/betterauth/schema';

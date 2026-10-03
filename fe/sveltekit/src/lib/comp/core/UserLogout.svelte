@@ -3,7 +3,7 @@
 	import { refreshAll } from '$app/navigation';
 	import { formCreate } from '#lib/form.svelte.js';
 	import { Button } from '#lib/comp/shadcn.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	let form = formCreate({
 		job: `logout`,

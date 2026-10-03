@@ -3,14 +3,14 @@
 	"compilerOptions": {
 		"rewriteRelativeImportExtensions": true,
 		"paths": {
-			"$all": ["../../all"],
-			"$all/*": ["../../all/*"],
-			"$edge": ["./edge"],
-			"$edge/*": ["./edge/*"],
-			"$lib": ["./src/lib"],
-			"$lib/*": ["./src/lib/*"],
-			"$paraglide": ["../../all/paraglide"],
-			"$paraglide/*": ["../../all/paraglide/*"]
+			"#all": ["../../all"],
+			"#all/*": ["../../all/*"],
+			"#edge": ["./edge"],
+			"#edge/*": ["./edge/*"],
+			"#lib": ["./src/lib"],
+			"#lib/*": ["./src/lib/*"],
+			"#paraglide": ["../../all/paraglide"],
+			"#paraglide/*": ["../../all/paraglide/*"]
 		},
 		"sourceMap": true,
 		"strict": true,

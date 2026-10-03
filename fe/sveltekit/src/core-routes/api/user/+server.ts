@@ -1,4 +1,4 @@
-import { and, db, eq, schema } from '$all/drizzle';
+import { and, db, eq, schema } from '#all/drizzle';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 

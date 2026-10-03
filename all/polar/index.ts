@@ -1,5 +1,5 @@
-import { db, eq } from '$all/drizzle';
-import { card } from '$all/drizzle/schema';
+import { db, eq } from '#all/drizzle';
+import { card } from '#all/drizzle/schema';
 import { Polar } from "@polar-sh/sdk";
 import { validateEvent } from "@polar-sh/sdk/webhooks";
 

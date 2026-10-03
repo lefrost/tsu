@@ -1,6 +1,6 @@
-import { fileAddUrlGet, fileGetUrlGet } from '$all/r2';
-import { userGuard } from '$core/guard';
-import { Body } from '$core/types';
+import { fileAddUrlGet, fileGetUrlGet } from '#all/r2';
+import { userGuard } from '#core/guard';
+import { Body } from '#core/types';
 import { Elysia, status } from 'elysia';
 
 export const routes = new Elysia()

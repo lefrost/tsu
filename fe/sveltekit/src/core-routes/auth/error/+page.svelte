@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import { Button, Card } from '#lib/comp/shadcn.js';
 	import { formCreate } from '#lib/form.svelte.js';
-	import { m } from '$paraglide/generated/messages';
+	import { m } from '#paraglide/generated/messages';
 
 	const error = $derived(page.url.searchParams.get(`error`));
 </script>

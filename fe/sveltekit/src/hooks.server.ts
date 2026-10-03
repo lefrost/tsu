@@ -1,12 +1,12 @@
 import { sequence, type Handle } from '@sveltejs/kit/hooks';
-import { authConfig } from '$all/betterauth';
-import { hono } from '$all/hono';
+import { authConfig } from '#all/betterauth';
+import { hono } from '#all/hono';
 import { building } from '$app/env';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 import { auth } from '#lib/server/auth.js';
 import '#lib/otel.js';
-import { getTextDirection, locales } from '$paraglide/generated/runtime';
-import { paraglideMiddleware } from '$paraglide/generated/server';
+import { getTextDirection, locales } from '#paraglide/generated/runtime';
+import { paraglideMiddleware } from '#paraglide/generated/server';
 import * as Sentry from '@sentry/sveltekit';
 
 Sentry.init({

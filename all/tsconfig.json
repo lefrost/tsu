@@ -11,10 +11,10 @@
     "composite": true,
     "declaration": true,
     "paths": {
-      "$all": ["./"],
-      "$all/*": ["./*"],
-			"$paraglide": ["./paraglide"],
-			"$paraglide/*": ["./paraglide/*"]
+      "#all": ["./"],
+      "#all/*": ["./*"],
+			"#paraglide": ["./paraglide"],
+			"#paraglide/*": ["./paraglide/*"]
 		},
   }
 }

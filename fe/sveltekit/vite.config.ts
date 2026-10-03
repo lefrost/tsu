@@ -61,16 +61,26 @@ export default defineConfig(({ mode }) => {
 		preview: { port: Number(env.FE_PORT) },
 		resolve: {
 			alias: {
-				$all: path.resolve(import.meta.dirname, '../../all/'),
-				$edge: path.resolve(import.meta.dirname, './edge'),
-				$paraglide: path.resolve(import.meta.dirname, '../../all/paraglide'), // paraglide files are generated at runtime
+				'#all': path.resolve(import.meta.dirname, '../../all/'),
+				'#core': path.resolve(import.meta.dirname, './core'),
+				'#edge': path.resolve(import.meta.dirname, './edge'),
+				'#paraglide': path.resolve(import.meta.dirname, '../../all/paraglide'), // paraglide files are generated at runtime
 				'@sentry/sveltekit/browser-tracing-variant': path.resolve(
 					import.meta.dirname,
 					'node_modules/@sentry/sveltekit/build/esm/client/svelte5BrowserTracing.js'
 				)
 			}
 		},
-		server: { port: Number(env.FE_PORT) },
+		server: {
+			port: Number(env.FE_PORT),
+			fs: {
+				allow: [
+					path.resolve(import.meta.dirname, '../../all'),
+					path.resolve(import.meta.dirname, './core'),
+					path.resolve(import.meta.dirname, './edge'),
+				]
+			}
+		},
 		test: {
 			expect: { requireAssertions: true },
 			projects: [

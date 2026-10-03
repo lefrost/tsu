@@ -3,8 +3,8 @@
 	import { goto, refreshAll } from '$app/navigation';
 	import { Button, Card, Input, Label } from '#lib/comp/shadcn.js';
 	import { formCreate } from '#lib/form.svelte.js';
-	import { m } from '$paraglide/generated/messages';
-	import { getLocale } from '$paraglide/generated/runtime';
+	import { m } from '#paraglide/generated/messages';
+	import { getLocale } from '#paraglide/generated/runtime';
 
 	let backupUsing = $state(false);
 	let loc = $state(getLocale());

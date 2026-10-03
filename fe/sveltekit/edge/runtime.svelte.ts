@@ -2,4 +2,4 @@
 // import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 
 // todo: redis
-// import { redis } from '$all/upstash';
+// import { redis } from '#all/upstash';

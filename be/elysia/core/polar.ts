@@ -1,4 +1,4 @@
-import { polarWebhookHandle } from '$all/polar';
+import { polarWebhookHandle } from '#all/polar';
 import { Elysia } from 'elysia';
 
 export const routes = new Elysia()
