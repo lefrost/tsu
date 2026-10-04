@@ -40,16 +40,18 @@ export function routesSync(): Plugin {
 		configureServer(server) {
 			server.watcher.add(CORE);
 			server.watcher.add(EDGE);
-			server.watcher.on(`change`, (path) => {
-				if (path.startsWith(CORE) || path.startsWith(EDGE)) {
+			for (const ev of [`add`, `addDir`, `change`, `unlink`, `unlinkDir`]) {
+				server.watcher.on(ev, (path) => {
+					if (!(path.startsWith(CORE) || path.startsWith(EDGE))) return;
+					if (ev.startsWith(`unlink`)) firstRun = true;
 					if (timer) clearTimeout(timer);
 					timer = setTimeout(() => {
 						build();
 						server.ws.send({ type: `full-reload` });
 						timer = null;
 					}, 50) as unknown as number;
-				}
-			});
+				});
+			}
 		}
 	};
 }
