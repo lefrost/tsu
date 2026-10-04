@@ -15,7 +15,7 @@
 
 <div class="flex h-full w-full flex-col items-center">
 	<Header />
-	<div class="flex w-full max-w-[1400px] flex-1 flex-col px-[1rem] py-[2rem]">
+	<div class="flex w-full max-w-[1400px] flex-1 flex-col">
 		{@render children()}
 	</div>
 </div>
