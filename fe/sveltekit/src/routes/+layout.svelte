@@ -13,7 +13,7 @@
 <svelte:head><link rel="icon" href="/favicon.png" /></svelte:head>
 <ModeWatcher />
 
-<div class="flex h-full w-full flex-col items-center">
+<div class="flex h-full w-full flex-col items-center text-sm md:text-base">
 	<Header />
 	<div class="flex w-full max-w-[1400px] flex-1 flex-col">
 		{@render children()}
