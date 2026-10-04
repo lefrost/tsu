@@ -87,7 +87,7 @@ For subsequent updates specifically:
 - [Git](https://git-scm.com/install/).
 - Moon: (In Bash) `bash <(curl -fsSL https://moonrepo.dev/install/proto.sh)`, `proto install moon ; proto pin moon latest`
 - [Node](https://nodejs.org/en/download).
-- Pnpm: (In PowerShell) `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`\
+- Pnpm: (In PowerShell) `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`
 
 ### Platform-specific deployment notes:
 
