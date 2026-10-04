@@ -44,41 +44,41 @@ For subsequent updates specifically:
 | Name | Usage | Purpose | Status |
 | --- | --- | --- | --- |
 | [Aiven](https://github.com/aiven) | All be | Kafka broker | WIP |
-| [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | WIP |
+| [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | Stable |
 | [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
-| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | WIP |
+| [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | Stable |
 | [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as image for deployment | TBA |
-| [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | WIP |
+| [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | Stable |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
 | [Fly](https://fly.io/docs/machines/) | All | Containerized deployment | TBA |
-| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | WIP |
-| [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | WIP |
+| [GitHub OAuth](https://better-auth.com/docs/authentication/github) | All fe | Better Auth default SSO option | Stable |
+| [Google OAuth](https://better-auth.com/docs/authentication/google) | All fe | Better Auth default SSO option | Stable |
 | [Hono](https://github.com/honojs/hono) | All fe | FE-embedded client API with OpenAPI and Scalar integration | WIP |
 | [Kafka](https://github.com/apache/kafka) | All be | Event stream | WIP | 
-| [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | WIP |
-| [Moon](https://github.com/moonrepo/moon) | All | Monorepo | WIP |
-| [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | WIP |
-| [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | WIP |
+| [Lucide](https://github.com/lucide-icons/lucide/) | All fe | Icons | Stable |
+| [Moon](https://github.com/moonrepo/moon) | All | Monorepo | Stable |
+| [Neon](https://github.com/neondatabase/neon) | All | PostgreSQL deployment | Stable |
+| [Nodemailer](https://github.com/nodemailer/nodemailer) | All fe, be/elysia, be/nest | SMTP | Stable |
 | [OpenAPI](https://github.com/oai/openapi-specification) | All fe | Client API spec | WIP |
-| [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | WIP |
-| [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | WIP |
+| [OpenTelemetry](https://github.com/open-telemetry) | All | Observability | Stable |
+| [Paraglide](https://github.com/opral/paraglide-js) | All fe | i18n | Stable |
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | WIP |
-| [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | WIP |
+| [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | Stable |
 | [Scalar](https://github.com/scalar/scalar) | All fe | UI for Client API docs | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
-| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via OpenTelemetry | WIP |
-| [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | WIP |
+| [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via OpenTelemetry | Stable |
+| [Shadcn](https://github.com/shadcn-ui/ui) | All fe | UI components | Stable |
 | [Sherlock](https://github.com/opral/sherlock) | All | Paraglide management in VS Code | Stable |
-| [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | WIP |
+| [Tailwind](https://github.com/tailwindlabs/tailwindcss) | All fe | CSS classes | Stable |
 | [Tsgo](https://github.com/zed-extensions/tsgo) | All | Resource-efficient TypeScript compiler for Zed | Stable |
-| [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | WIP |
+| [TypeScript](https://github.com/microsoft/typescript) | All fe, be/elysia, be/nest | Used in place of JavaScript | Stable |
 | [Upstash](https://github.com/upstash/redis-js) | All | Redis client fro in-memory data storage | WIP |
 | [Vercel](https://github.com/vercel) | All | Frontend-only deployment | Stable |
-| [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | WIP |
+| [Vite](https://github.com/vitejs/vite) | All fe | Frontend build tool | Stable |
 | [VS Code](https://github.com/microsoft/vscode) | All | Author's choice of touchscreen-compatible IDE | Stable |
 | [Zed](https://github.com/zed-industries/zed) | All | Author's choice of resource-efficient IDE | Stable |
-| [Zod](https://github.com/colinhacks/zod) | All fe, be/elysia, be/nest | Static types and schema validation | WIP |
+| [Zod](https://github.com/colinhacks/zod) | All fe, be/elysia, be/nest | Static types and schema validation | Stable |
 
 
 ### Prerequisite library:
