@@ -91,7 +91,7 @@ For subsequent updates specifically:
 
 ### Platform-specific deployment notes:
 
-- Vercel: No `be`. For `fe/sveltekit` use `adapterVercel` over `adapterNode` in `vite.config.ts`. Set `ENABLE_EXPIERMENTAL_COREPACK` to `1` in `.env`. `vercel.json` takes effect.
+- Vercel: No `be`. For `fe/sveltekit` use `adapterVercel` over `adapterNode` in `vite.config.ts`. Set `ENABLE_EXPIERMENTAL_COREPACK` to `1` in `.env`. `vercel.json` takes effect. Deploy by linking your GitHub repo at [vercel.com/new](https://vercel.com/new).
 
 ### Footnotes:
 
