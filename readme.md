@@ -23,7 +23,7 @@ For subsequent updates specifically:
 | --- | --- | --- | --- | --- | --- |
 | fe/next | [React](https://github.com/react/react) | [Next](https://github.com/vercel/next.js) | TBA | - | - |
 | fe/nuxt | [Vue](https://github.com/vuejs/core) | [Nuxt](https://github.com/nuxt/nuxt) | TBA | - | - |
-| fe/sveltekit | [Svelte](https://github.com/sveltejs/svelte) | [SvelteKit](https://github.com/sveltejs/kit) | Stable | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment; [vite-plugin-svelte](https://github.com/sveltejs/vite-plugin-svelte) for Sass preprocessing; [Svelte-put](https://github.com/vnphanquang/svelte-put) QR codes. |
+| fe/sveltekit | [Svelte](https://github.com/sveltejs/svelte) | [SvelteKit](https://github.com/sveltejs/kit) | Stable | Bun, Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment; [vite-plugin-svelte](https://github.com/sveltejs/vite-plugin-svelte) for Sass preprocessing; [Svelte-put](https://github.com/vnphanquang/svelte-put) QR codes. |
 
 ### Backend options:
 
