@@ -23,7 +23,7 @@ For subsequent updates specifically:
 | --- | --- | --- | --- | --- | --- |
 | fe/next | [React](https://github.com/react/react) | [Next](https://github.com/vercel/next.js) | TBA | - | - |
 | fe/nuxt | [Vue](https://github.com/vuejs/core) | [Nuxt](https://github.com/nuxt/nuxt) | TBA | - | - |
-| fe/sveltekit | [Svelte](https://github.com/sveltejs/svelte) | [SvelteKit](https://github.com/sveltejs/kit) | Stable | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment; [Svelte-put](https://github.com/vnphanquang/svelte-put) QR codes. |
+| fe/sveltekit | [Svelte](https://github.com/sveltejs/svelte) | [SvelteKit](https://github.com/sveltejs/kit) | Stable | Node | [Bun adapter](https://github.com/gornostay25/svelte-adapter-bun) for deployment; [vite-plugin-svelte](https://github.com/sveltejs/vite-plugin-svelte) for Sass preprocessing; [Svelte-put](https://github.com/vnphanquang/svelte-put) QR codes. |
 
 ### Backend options:
 
@@ -47,6 +47,7 @@ For subsequent updates specifically:
 | [Better Auth](https://github.com/better-auth/better-auth) | All fe | BFF auth (credentials, SSO), password resetting, and TOTP 2FA | Stable |
 | [Bunqueue](https://github.com/egeominotti/bunqueue) | be/elysia | Job queue | WIP |
 | [Cloudflare R2](https://www.cloudflare.com/products/r2/) | All be | Object storage | Stable |
+| [CSV](https://github.com/jonaraphael/csv) | All | CSV editor for VS Code | Stable |
 | [Docker](https://docs.docker.com/reference/dockerfile/) | All | Containerization as image for deployment | TBA |
 | [Drizzle](https://github.com/drizzle-team/drizzle-orm) | All fe, be/elysia, be/nest | ORM for PostgreSQL | Stable |
 | [Ethereal](https://ethereal.email/) | All | SMTP testing | Stable |
@@ -65,6 +66,7 @@ For subsequent updates specifically:
 | [Pnpm](https://github.com/pnpm/pnpm) | All | Package management unless otherwise stated | Stable |
 | [Polar](https://github.com/polarsource/polar) | All be | User billing and seats | WIP |
 | [PostgreSQL](https://github.com/postgres/postgres) | All | Relational database | Stable |
+| [Sass](https://github.com/sass/sass) | All fe | CSS preprocessor | Stable |
 | [Scalar](https://github.com/scalar/scalar) | All fe | UI for Client API docs | WIP |
 | [Sequoia](https://github.com/Sequoia-Theme/vs-code) | All | Author's choice of theme for VS Code and Zed | Stable |
 | [Sentry](https://github.com/getsentry/sentry) | All | Error tracking and performance monitoring via OpenTelemetry | Stable |
