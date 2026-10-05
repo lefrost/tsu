@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import adapterNode from '@sveltejs/adapter-node';
 // import adapterVercel from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
@@ -49,6 +50,7 @@ export default defineConfig(({ mode }) => {
 				env: {
 					dir: '../../'
 				},
+				preprocess: vitePreprocess(),
 				// typescript: {
 				// 	config: (config) => {
 				// 		config.include.push('../drizzle.config.ts');
